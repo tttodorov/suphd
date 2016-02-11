@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="./adminUniversityEditPhdLayout.xhtml">
+		<h:messages layout="table" errorStyle="background: red;"
+			infoStyle="background: #AFEEEE;" globalOnly="true" />
+
+		<!-- Edit Phd Content -->
+		<ui:define name="tabEditPhd">
+			<h:form>
+				<div class="panelGroupCenter">
+					<h:panelGroup styleClass="tr">
+						<h:panelGroup layout="block" styleClass="formsPositionL formBox">
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="status" styleClass="labelsInputInfo"
+									value="#{msgs.academicsStatus}" />
+								<p:autoComplete id="status"
+									value="#{adminUniversityEditPhd.educationStatus}"
+									completeMethod="#{adminUniversityEditPhd.completeEducationStatus}"
+									var="mes" itemLabel="#{mes.mesName}" itemValue="#{mes}"
+									converter="educationStatusConverter" forceSelection="true"
+									dropdown="true" styleClass="inputTextAutocompleateFormat"
+									placeholder="#{mesService.getEducationStatusNameById(adminUniversityEditPhd.user.academicsStatus)}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="faculty" styleClass="labelsInputInfo"
+									value="#{msgs.faculty}" />
+								<p:autoComplete id="faculty"
+									value="#{adminUniversityEditPhd.academicsFaculty}"
+									completeMethod="#{adminUniversityEditPhd.completeGroupsPhDFaculty}"
+									var="mes" itemLabel="#{mes.mesName}" itemValue="#{mes}"
+									converter="groupPhdFacultyConverter" forceSelection="true"
+									dropdown="true" styleClass="inputTextAutocompleateFormat"
+									placeholder="#{mesService.getFacultyNameById(adminUniversityEditPhd.user.academicsFaculty)}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="department" styleClass="labelsInputInfo"
+									value="#{msgs.department}" />
+								<p:autoComplete id="department"
+									value="#{adminUniversityEditPhd.academicsDepartment}"
+									completeMethod="#{adminUniversityEditPhd.completeGroupsPhDDepartment}"
+									var="mes" itemLabel="#{mes.mesName}" itemValue="#{mes}"
+									converter="groupPhdDepartmentConverter" forceSelection="true"
+									dropdown="true" styleClass="inputTextAutocompleateFormat"
+									placeholder="#{mesService.getGroupNameById(adminUniversityEditPhd.user.academicsDepartment)}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="facultyNumber" styleClass="labelsInputInfo"
+									value="#{msgs.facultyNumber}" />
+								<h:inputText id="facultyNumber" styleClass="inputTextFormat"
+									value="#{adminUniversityEditPhd.user.academicsFacultyNumber}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="specialtyCurrent"
+									styleClass="labelsInputInfo" value="#{msgs.codeOfSpecialty}" />
+								<p:autoComplete id="specialtyCurrent"
+									value="#{adminUniversityEditPhd.academicsSpeciality}"
+									completeMethod="#{adminUniversityEditPhd.completeSpeciality}"
+									var="mes" itemLabel="#{mes.mesName}" itemValue="#{mes}"
+									converter="specialityConverter" forceSelection="true"
+									dropdown="true" styleClass="inputTextAutocompleateFormat"
+									placeholder="#{mesService.getCodeSpecialityNameById(adminUniversityEditPhd.user.academicsSpeciality)}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="specialtyNSICurrent"
+									styleClass="labelsInputInfo" value="#{msgs.codeOfSpecialtyOld}" />
+								<p:autoComplete id="specialtyNSICurrent"
+									value="#{adminUniversityEditPhd.academicsSpecialityNSI}"
+									completeMethod="#{adminUniversityEditPhd.completeSpecialityNSI}"
+									var="mes" itemLabel="#{mes.mesName}" itemValue="#{mes}"
+									converter="specialityNSIConverter" forceSelection="true"
+									dropdown="true" styleClass="inputTextAutocompleateFormat"
+									placeholder="#{mesService.getSpecialityNSINameById(adminUniversityEditPhd.user.academicsSpecialityNSI)}" />
+							</h:panelGrid>
+						</h:panelGroup>
+						<h:panelGroup styleClass="formsPositionL formBox">
+							<h:panelGrid styleClass="checkboxCenter"
+								style="color: #163358; border-bottom: 2px solid #163358; margin-bottom: 20px;">
+								<h2 style="text-transform: capitalize;">#{msgs.internationlPrograms}</h2>
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter"
+								style="margin-bottom:15px;">
+								<h:outputLabel for="phdProgram" styleClass="labelsInputInfo"
+									value="#{msgs.phdHasInternationProgramCurrent}" />
+								<h:selectBooleanCheckbox id="phdProgram"
+									styleClass="checkboxCenter"
+									value="#{adminUniversityEditPhd.user.academicsInternationalProgram}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter"
+								style="margin-bottom:15px;">
+								<h:outputLabel for="phdProgramStart"
+									styleClass="labelsInputInfo" value="#{msgs.dateEnrolled}" />
+								<p:calendar id="phdProgramStart" styleClass="inputTextFormat"
+									style="border: none; box-shadow:none; padding: 0px;"
+									value="#{adminUniversityEditPhd.user.academicsInternationalProgramStart}"
+									navigator="true" pattern="dd.MM.yyyy" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter"
+								style="margin-bottom:15px;">
+								<h:outputLabel for="phdProgramEnd"
+									styleClass="labelsInputInfo" value="#{msgs.dateFinished}" />
+								<p:calendar id="phdProgramEnd" styleClass="inputTextFormat"
+									style="border: none; box-shadow:none; padding: 0px;"
+									value="#{adminUniversityEditPhd.user.academicsInternationalProgramEnd}"
+									navigator="true" pattern="dd.MM.yyyy" />
+							</h:panelGrid>
+						</h:panelGroup>
+						<h:panelGroup styleClass="formsPositionL formBox">
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="jointDegreeWithAnotherUniversity"
+									styleClass="labelsInputInfo"
+									value="#{msgs.jointDegreeWithAnotherUniversity}" />
+								<h:selectBooleanCheckbox id="jointDegreeWithAnotherUniversity"
+									styleClass="checkboxCenter"
+									value="#{adminUniversityEditPhd.user.academicsDegreeWithAnotherUniversity}" />
+							</h:panelGrid>
+						</h:panelGroup>
+					</h:panelGroup>
+					<h:panelGroup style="margin-bottom: 10px;" styleClass="tr">
+						<h:panelGroup styleClass="formsPositionR formBox">
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="newSpecialtyToTheSameExtent"
+									styleClass="labelsInputInfo"
+									value="#{msgs.newSpecialtyToTheSameExtent}" />
+								<h:selectBooleanCheckbox id="newSpecialtyToTheSameExtent"
+									styleClass="checkboxCenter"
+									value="#{adminUniversityEditPhd.user.academicsNewSpecialty}" />
+							</h:panelGrid>
+						</h:panelGroup>
+					</h:panelGroup>
+					<h:panelGroup id="center" styleClass="tr ac db">
+						<h:commandButton class="button tabMenuButtonStyle ac"
+							type="submit" action="#{adminUniversityEditPhd.saveUser()}"
+							value="#{msgs.save}">
+							<f:param name="userId" value="#{adminUniversityEditPhd.user.id}" />
+						</h:commandButton>
+						<h:commandButton styleClass="button tabMenuButtonStyle"
+							action="#{adminUniversityEditPhd.deleteUser()}" type="submit"
+							value="#{msgs.delete}">
+							<f:param name="userId" value="#{adminUniversityEditPhd.user.id}" />
+						</h:commandButton>
+					</h:panelGroup>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

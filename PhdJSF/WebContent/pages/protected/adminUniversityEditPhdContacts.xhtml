@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="./adminUniversityEditPhdLayout.xhtml">
+		<h:messages layout="table" errorStyle="background: red;"
+			infoStyle="background: #AFEEEE;" globalOnly="true" />
+
+		<!-- Edit Phd Content -->
+		<ui:define name="tabEditPhd">
+			<h:form>
+				<div class="panelGroupCenter">
+					<h:panelGroup styleClass="tr">
+						<h:panelGroup styleClass="formsPositionL formBox">
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel class="labelsInputInfo" for="residenceCountry"
+									value="#{msgs.countryOfResidence}" />
+								<p:autoComplete id="residenceCountry"
+									value="#{adminUniversityEditPhd.countryResidence}"
+									completeMethod="#{adminUniversityEditPhd.completeCountry}"
+									var="mes" itemLabel="#{mes.mesName}" itemValue="#{mes}"
+									converter="countryConverter" forceSelection="true"
+									dropdown="true" styleClass="inputTextAutocompleateFormat"
+									placeholder="#{mesService.getCountryNameById((empty adminUniversityEditPhd.user.contactCountry) ? adminUniversityEditPhd.user.personalCitizenship1 : adminUniversityEditPhd.user.contactCountry)}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel class="labelsInputInfo" for="residenceCity"
+									value="#{msgs.cityOfResidence}" />
+								<p:autoComplete id="residenceCity"
+									value="#{adminUniversityEditPhd.EKATTEResidence}"
+									completeMethod="#{adminUniversityEditPhd.completeCity}"
+									var="mes" itemLabel="#{mes.mesName}" itemValue="#{mes}"
+									converter="ekatteConverter" forceSelection="true"
+									dropdown="true" styleClass="inputTextAutocompleateFormat"
+									placeholder="#{mesService.getEkatteNameById( adminUniversityEditPhd.user.contactCity)}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel class="labelsInputInfo" for="residenceStreet"
+									value="#{msgs.residenceStreet}" />
+								<h:inputText id="residenceStreet" styleClass="inputTextFormat"
+									value="#{adminUniversityEditPhd.user.contactStreet}" />
+							</h:panelGrid>
+							<h:panelGroup>
+								<h:panelGroup styleClass="threeElementsInline">
+									<h:outputLabel class="labelsInputInfoInline" for="streetNumber"
+										value="#{msgs.streetNumber}" />
+									<h:inputText id="streetNumber"
+										styleClass="inputTextFormatInline"
+										value="#{adminUniversityEditPhd.user.contactStreetNumber}" />
+								</h:panelGroup>
+								<h:panelGroup styleClass="threeElementsInline">
+									<h:outputLabel class="labelsInputInfoInline"
+										for="residenceFloor" value="#{msgs.residenceFloor}" />
+									<h:inputText id="residenceFloor"
+										styleClass="inputTextFormatInline"
+										value="#{adminUniversityEditPhd.user.contactFloor}" />
+								</h:panelGroup>
+								<h:panelGroup styleClass="threeElementsInline">
+									<h:outputLabel class="labelsInputInfoInline"
+										for="residenceApartment" value="#{msgs.residenceApartment}" />
+									<h:inputText id="residenceApartment"
+										styleClass="inputTextFormatInline"
+										value="#{adminUniversityEditPhd.user.contactApartment}" />
+								</h:panelGroup>
+							</h:panelGroup>
+						</h:panelGroup>
+						<h:panelGroup styleClass="formsPositionR formBox">
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel class="labelsInputInfo" for="email"
+									value="#{msgs.email}" />
+								<h:inputText id="email" styleClass="inputTextFormat"
+									value="#{adminUniversityEditPhd.user.profileEmail}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel class="labelsInputInfo" for="phone"
+									value="#{msgs.phone}" />
+								<h:inputText id="phone" styleClass="inputTextFormat"
+									value="#{adminUniversityEditPhd.user.contactPhone}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel class="labelsInputInfo" for="phone2"
+									value="#{msgs.phone2}" />
+								<h:inputText id="phone2" styleClass="inputTextFormat"
+									value="#{adminUniversityEditPhd.user.contactPhone2}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel class="labelsInputInfo" for="facebook"
+									value="Facebook" />
+								<h:inputText id="facebook" styleClass="inputTextFormat"
+									value="#{adminUniversityEditPhd.user.contactFacebook}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel class="labelsInputInfo" for="twitter"
+									value="Twitter" />
+								<h:inputText id="twitter" styleClass="inputTextFormat"
+									value="#{adminUniversityEditPhd.user.contactTwitter}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel class="labelsInputInfo" for="skype" value="Skype" />
+								<h:inputText id="skype" styleClass="inputTextFormat"
+									value="#{adminUniversityEditPhd.user.contactSkype}" />
+							</h:panelGrid>
+						</h:panelGroup>
+						<h:panelGroup styleClass="tr ac db">
+							<h:commandButton styleClass="button tabMenuButtonStyle"
+								action="#{adminUniversityEditPhd.saveUser()}" type="submit"
+								value="#{msgs.save}">
+								<f:param name="userId" value="#{adminUniversityEditPhd.user.id}" />
+							</h:commandButton>
+							<h:commandButton styleClass="button tabMenuButtonStyle"
+								action="#{adminUniversityEditPhd.deleteUser()}" type="submit"
+								value="#{msgs.delete}">
+								<f:param name="userId" value="#{adminUniversityEditPhd.user.id}" />
+							</h:commandButton>
+						</h:panelGroup>
+					</h:panelGroup>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

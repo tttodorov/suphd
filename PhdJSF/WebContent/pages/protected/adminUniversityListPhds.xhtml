@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="../layout.xhtml">
+		<h:messages layout="table" errorStyle="background: red;"
+			infoStyle="background: #AFEEEE;" globalOnly="true" />
+
+		<!-- Content -->
+		<ui:define name="tab">
+			<p:panel styleClass="pageTitle ac">
+				<h2>
+					<h:form rendered="#{adminUniversityHome.user.roleAdminUniversity}">
+						<span class="fl"> <h:commandLink
+								action="#{navigation.moveToSelectRole()}"
+								value="#{msgs.pageTitleSelectRole}"
+								styleClass="mainMenuButtonStyle" />
+						</span>
+						<span class="fl delimiter">/</span>
+						<span class="fl"> <h:commandLink
+								action="#{navigation.moveToAdminUniversityHome()}"
+								value="#{msgs.pageTitleAdminUniversityHome}"
+								styleClass="mainMenuButtonStyle dropdownWidth" />
+						</span>
+						<span class="fl delimiter">/</span>
+						<span class="fl">#{msgs.pageTitleAdminUniversityListPhds}</span>
+					</h:form>
+				</h2>
+			</p:panel>
+			<br />
+			<h:form>
+				<div style="overflow: auto;">
+					<div
+						style="width: 4400px; margin-left: auto; margin-right: auto; text-align: center">
+						<p:dataTable id="allUsers" styleClass="allUsers" var="user"
+							value="#{adminUniversityListPhds.listAllUserPhd}" rows="10"
+							paginator="true" widgetVar="usersTable"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+							lazy="true">
+
+							<f:facet name="header">
+								<p:outputPanel styleClass="al">
+									<h:outputText
+										value="#{msgs.adminSystemHomeSearchAllFields}:&nbsp;" />
+									<p:inputText id="globalFilter"
+										onkeyup="PF('usersTable').filter()" style="width:200px"
+										placeholder="#{msgs.adminSystemHomeSearchPlaceholder}" />
+									<p:inputText id="globalFilter2" styleClass="fr"
+										onkeyup="PF('usersTable').filter()" style="width:200px"
+										placeholder="#{msgs.adminSystemHomeSearchPlaceholder}" />
+									<h:outputText styleClass="fr"
+										value="#{msgs.adminSystemHomeSearchAllFields}:&nbsp;" />
+								</p:outputPanel>
+							</f:facet>
+
+							<f:facet name="{Exporters}">
+								&nbsp;
+								<h:commandLink>
+									<p:outputLabel>#{msgs.exportXls}</p:outputLabel>
+									<p:dataExporter type="csv" target="allUsers" fileName="users" />
+								</h:commandLink>
+								&nbsp;
+								<h:commandLink>
+									<p:graphicImage name="/images/icons/xls.png" />
+									<p:dataExporter type="csv" target="allUsers" fileName="users" />
+								</h:commandLink>
+							</f:facet>
+
+							<p:column filterBy="#{user. profileUsername}"
+								filterMatchMode="contains" headerText="#{msgs.user}"
+								sortBy="#{user.profileUsername}">
+								<h:outputText styleClass="al tableFont"
+									value="#{user.profileUsername}" />
+							</p:column>
+
+							<p:column filterBy="#{user.personalIdNumber}"
+								filterMatchMode="contains" headerText="#{msgs.userPhdIdNumber}"
+								style="text-align:center;" sortBy="#{user.personalIdNumber}">
+								<h:button styleClass="tableFontLink"
+									value="#{user.personalIdNumber}"
+									outcome="#{navigation.moveToAdminUniversityEditPhdPersonalData()}">
+									<f:param name="userId" value="#{user.id}" />
+								</h:button>
+							</p:column>
+
+							<p:column
+								filterBy="#{user.personalNameFirst},#{user.personalNameSecond},#{user.personalNameOther},#{user.personalNameThird}"
+								filterMatchMode="contains" headerText="#{msgs.name}"
+								styleClass="ac;"
+								sortBy="#{user.personalNameFirst},#{user.personalNameSecond},#{user.personalNameOther},#{user.personalNameThird}">
+								<h:button styleClass="tableFontLink"
+									value="#{user.personalNameFirst} #{user.personalNameSecond} #{user.personalNameOther} #{user.personalNameThird}"
+									outcome="#{navigation.moveToAdminUniversityEditPhdPersonalData()}">
+									<f:param name="userId" value="#{user.id}" />
+								</h:button>
+							</p:column>
+
+							<p:column
+								filterBy="#{user.personalNameFirstLatin},#{user.personalNameSecondLatin},#{user.personalNameOtherLatin},#{user.personalNameThirdLatin}"
+								filterMatchMode="contains" headerText="#{msgs.nameLatin}"
+								styleClass="ac"
+								sortBy="#{user.personalNameFirstLatin},#{user.personalNameSecondLatin},#{user.personalNameOtherLatin},#{user.personalNameThirdLatin}">
+								<h:outputText styleClass="al tableFont"
+									value="#{user.personalNameFirstLatin} #{user.personalNameSecondLatin} #{user.personalNameOtherLatin} #{user.personalNameThirdLatin}" />
+							</p:column>
+
+							<p:column headerText="#{msgs.userPhdGender}"
+								sortBy="#{user.personalGender}">
+								<h:outputText rendered="#{user.personalGender == 1}"
+									value="#{msgs.man}" />
+								<h:outputText rendered="#{user.personalGender == 2}"
+									value="#{msgs.woman}" />
+							</p:column>
+
+							<p:column filterBy="#{user.personalCitizenship1}"
+								filterMatchMode="contains"
+								headerText="#{msgs.userPhdCitizenship}" styleClass="ac"
+								sortBy="#{user.personalCitizenship1}">
+								<h:outputText styleClass="al tableFont"
+									value="#{mesService.getCountryNameById(user.personalCitizenship1)}" />
+							</p:column>
+
+							<p:column filterBy="#{user.personalBirthCountry}"
+								filterMatchMode="contains"
+								headerText="#{msgs.userPhdBirthCountry}" styleClass="ac"
+								sortBy="#{user.personalBirthCountry}">
+								<h:outputText styleClass="al tableFont"
+									value="#{mesService.getCountryNameById(user.personalBirthCountry)}" />
+							</p:column>
+
+							<p:column filterBy="#{user.personalBirthCity}"
+								filterMatchMode="contains" headerText="#{msgs.userPhdBirthCity}"
+								styleClass="ac" sortBy="#{user.personalBirthCity}">
+								<h:outputText styleClass="al tableFont"
+									value="#{mesService.getEkatteNameById(user.personalBirthCity)}" />
+							</p:column>
+
+							<p:column filterBy="#{user.personalBirthDate}"
+								filterMatchMode="contains" headerText="#{msgs.userPhdBirthDate}"
+								styleClass="ac" sortBy="#{user.personalBirthDate}">
+								<h:outputText styleClass="al tableFont"
+									value="#{user.personalBirthDate}">
+									<f:convertDateTime type="date" pattern="dd.MM.yyyy" />
+								</h:outputText>
+							</p:column>
+
+							<p:column filterBy="#{user.contactCountry}"
+								filterMatchMode="contains"
+								headerText="#{msgs.countryOfResidence}" styleClass="ac"
+								sortBy="#{user.contactCountry}">
+								<h:outputText styleClass="al tableFont"
+									value="#{mesService.getCountryNameById(user.contactCountry)}" />
+							</p:column>
+
+							<p:column filterBy="#{user.contactCity}"
+								filterMatchMode="contains" headerText="#{msgs.cityOfResidence}"
+								styleClass="ac" sortBy="#{user.contactCountry}">
+								<h:outputText styleClass="al tableFont"
+									value="#{mesService.getEkatteNameById(user.contactCity)}" />
+							</p:column>
+
+							<p:column filterBy="#{user.masterCountry}"
+								filterMatchMode="contains"
+								headerText="#{msgs.countryOfCompletedMaster}" styleClass="ac"
+								sortBy="#{user.masterCountry}">
+								<h:outputText styleClass="al tableFont"
+									value="#{mesService.getCountryNameById(user.masterCountry)}" />
+							</p:column>
+
+							<p:column filterBy="#{user.masterCity}"
+								filterMatchMode="contains"
+								headerText="#{msgs.cityOfCompletedMaster}" styleClass="ac"
+								sortBy="#{user.masterCity}">
+								<h:outputText styleClass="al tableFont"
+									value="#{mesService.getEkatteNameById(user.masterCity)}" />
+							</p:column>
+
+							<p:column filterBy="#{user.masterUniversityName}"
+								filterMatchMode="contains"
+								headerText="#{msgs.universityOfCompletedMaster}" styleClass="ac"
+								sortBy="#{user.masterUniversityName}">
+								<h:outputText styleClass="al tableFont"
+									value="#{mesService.getUniversityNameById(user.masterUniversity)}" />
+							</p:column>
+
+							<p:column filterBy="#{user.masterSpeciality}"
+								filterMatchMode="contains"
+								headerText="#{msgs.acquiredSpecialtyOfMasters}" styleClass="ac"
+								sortBy="#{user.masterSpeciality}">
+								<h:outputText styleClass="al tableFont"
+									value="#{mesService.getCodeSpecialityNameById(user.masterSpeciality)}" />
+							</p:column>
+
+							<p:column filterBy="#{user.masterDiplomaDate}"
+								filterMatchMode="contains"
+								headerText="#{msgs.dateOfCompletionOfTheMaster}" styleClass="ac"
+								sortBy="#{user.masterDiplomaDate}">
+								<h:outputText styleClass="al tableFont"
+									value="#{user.masterDiplomaDate}">
+									<f:convertDateTime type="date" pattern="dd.MM.yyyy" />
+								</h:outputText>
+							</p:column>
+
+							<p:column filterBy="#{user.academicsSpecialityTheme}"
+								filterMatchMode="contains" headerText="#{msgs.specialityTheme}"
+								styleClass="ac" sortBy="#{user.academicsSpecialityTheme}">
+								<h:outputText styleClass="al tableFont"
+									value="#{user.academicsSpecialityTheme}" />
+							</p:column>
+
+							<p:column filterBy="#{user.academicsForm}"
+								filterMatchMode="contains" headerText="#{msgs.formOfTraining}"
+								styleClass="ac" sortBy="#{user.academicsForm}">
+								<h:outputText styleClass="al tableFont"
+									value="#{mesService.getEducationFormNameById(user.academicsForm)}" />
+							</p:column>
+
+							<p:column filterBy="#{user.academicsPayment}"
+								filterMatchMode="contains" headerText="#{msgs.typeOfPayment}"
+								styleClass="ac" sortBy="#{user.academicsPayment}">
+								<h:outputText styleClass="al tableFont"
+									value="#{mesService.getEducationPaymentNameById(user.academicsPayment)}" />
+							</p:column>
+
+							<p:column filterBy="#{user.academicsYearOfAdmission}"
+								filterMatchMode="contains" headerText="#{msgs.yearOfAdmission}"
+								styleClass="ac" sortBy="#{user.academicsYearOfAdmission}">
+								<h:outputText styleClass="al tableFont"
+									value="#{user.academicsYearOfAdmission}">
+									<f:convertDateTime type="date" pattern="dd.MM.yyyy" />
+								</h:outputText>
+							</p:column>
+
+							<p:column filterBy="#{user.academicsCalendarYearOfAdmission}"
+								filterMatchMode="contains"
+								headerText="#{msgs.calendarYearOfAdmission}" styleClass="ac"
+								sortBy="#{user.academicsCalendarYearOfAdmission}">
+								<h:outputText styleClass="al tableFont"
+									value="#{user.academicsCalendarYearOfAdmission}">
+									<f:convertDateTime type="date" pattern="dd.MM.yyyy" />
+								</h:outputText>
+							</p:column>
+
+							<p:column filterBy="#{mesService.getFacultyNameById(user.academicsFaculty)}"
+								filterMatchMode="contains" headerText="#{msgs.faculty}"
+								styleClass="ac" sortBy="#{user.academicsFaculty}">
+								<h:outputText styleClass="al tableFont"
+									value="#{mesService.getFacultyNameById(user.academicsFaculty)}" />
+							</p:column>
+
+							<p:column filterBy="#{user.academicsDepartment}"
+								filterMatchMode="contains" headerText="#{msgs.department}"
+								styleClass="ac" sortBy="#{user.academicsFaculty}">
+								<h:outputText styleClass="al tableFont"
+									value="#{mesService.getGroupNameById(user.academicsDepartment)}" />
+							</p:column>
+
+							<p:column filterBy="#{user.academicsSpeciality}"
+								filterMatchMode="contains" headerText="#{msgs.codeOfSpecialty}"
+								styleClass="ac" sortBy="#{user.academicsSpeciality}">
+								<h:outputText styleClass="al tableFont"
+									value="#{mesService.getCodeSpecialityNameById(user.academicsSpeciality)}" />
+							</p:column>
+
+							<p:column filterBy="#{user.academicsSpecialityNSI}"
+								filterMatchMode="contains"
+								headerText="#{msgs.codeOfSpecialtyOld}" styleClass="ac"
+								sortBy="#{user.academicsSpecialityNSI}">
+								<h:outputText styleClass="al tableFont"
+									value="#{mesService.getSpecialityNSINameById(user.academicsSpecialityNSI)}" />
+							</p:column>
+						</p:dataTable>
+					</div>
+				</div>
+
+				<h3 style="margin-top: 20px;">
+					#{msgs.exportPageDataOnly}
+					<h:commandLink>
+						<p:graphicImage name="/images/icons/xls.png" />
+						<p:dataExporter type="csv" target="allUsers" fileName="users"
+							pageOnly="true" />
+					</h:commandLink>
+				</h3>
+
+				<div id="center">
+					<br />
+					<h:commandButton class="button tabMenuButtonStyle "
+						action="#{navigation.moveToAdminUniversityEditPhdNew()}"
+						value="#{msgs.createNewPhd}" />
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

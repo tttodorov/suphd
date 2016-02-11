@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="./adminUniversityEditPhdLayout.xhtml">
+		<h:messages layout="table" errorStyle="background: red;"
+			infoStyle="background: #AFEEEE;" globalOnly="true" />
+
+		<!-- Edit Phd Content -->
+		<ui:define name="tabEditPhd">
+			<h:form>
+				<div class="panelGroupCenter">
+					<h:panelGroup styleClass="tr">
+						<h:panelGroup styleClass="formsPositionL formBox"
+							style="margin-bottom: 10px;">
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="userPhdIdNumberType" value="#{msgs.userPhdIdNumberType}" />
+								<h:selectOneMenu id="userPhdIdNumberType"
+									styleClass="inputTextFormat"
+									value="#{adminUniversityEditPhd.user.personalIdNumberType}">
+									<f:selectItem itemValue="0"
+										itemLabel="#{msgs.idNumberTypeChoose}" />
+									<f:selectItem itemValue="0" itemLabel="#{msgs.PIN}" />
+									<f:selectItem itemValue="1" itemLabel="#{msgs.personalId}" />
+									<f:selectItem itemValue="2" itemLabel="#{msgs.service}" />
+								</h:selectOneMenu>
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="userPhdIdNumberCountry"
+									value="#{msgs.userPhdIdNumberCountry}" />
+								<p:autoComplete id="userPhdIdNumberCountry"
+									value="#{adminUniversityEditPhd.countryIdNumber}"
+									completeMethod="#{adminUniversityEditPhd.completeCountry}"
+									var="mes" itemLabel="#{mes.mesName}" itemValue="#{mes}"
+									converter="countryConverter" forceSelection="true"
+									dropdown="true" styleClass="inputTextAutocompleateFormat"
+									placeholder="#{mesService.getCountryNameById( (empty adminUniversityEditPhd.user.personalIdNumberCountry) ? adminUniversityEditPhd.user.personalBirthCountry : adminUniversityEditPhd.user.personalIdNumberCountry)}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="userPhdIdNumber" value="#{msgs.userPhdIdNumber}" />
+								<h:inputText id="userPhdIdNumber" styleClass="inputTextFormat"
+									value="#{adminUniversityEditPhd.user.personalIdNumber}" />
+							</h:panelGrid>
+						</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="formsPositionR formBox">
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="userPhdCitizenship1" value="#{msgs.userPhdCitizenship1}" />
+								<p:autoComplete id="userPhdCitizenship1"
+									value="#{adminUniversityEditPhd.countryCitizenship1}"
+									completeMethod="#{adminUniversityEditPhd.completeCountry}"
+									var="mes" itemLabel="#{mes.mesName}" itemValue="#{mes}"
+									converter="countryConverter" forceSelection="true"
+									dropdown="true" styleClass="inputTextAutocompleateFormat"
+									placeholder="#{mesService.getCountryNameById( (empty adminUniversityEditPhd.user.personalCitizenship1) ? adminUniversityEditPhd.user.personalBirthCity : adminUniversityEditPhd.user.personalCitizenship1)}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="userPhdCitizenship1IdNumber"
+									value="#{msgs.userPhdCitizenship1IdNumber}" />
+								<h:inputText id="userPhdCitizenship1IdNumber"
+									styleClass="inputTextFormat"
+									value="#{adminUniversityEditPhd.user.personalCitizenship1IdNumber}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="userPhdCitizenship2" value="#{msgs.userPhdCitizenship2}" />
+								<p:autoComplete id="userPhdCitizenship2"
+									value="#{adminUniversityEditPhd.countryCitizenship2}"
+									completeMethod="#{adminUniversityEditPhd.completeCountry}"
+									var="mes" itemLabel="#{mes.mesName}" itemValue="#{mes}"
+									converter="countryConverter" forceSelection="true"
+									dropdown="true" styleClass="inputTextAutocompleateFormat"
+									placeholder="#{adminUniversityEditPhd.user.personalCitizenship2}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="userPhdCitizenship2IdNumber"
+									value="#{msgs.userPhdCitizenship2IdNumber}" />
+								<h:inputText id="userPhdCitizenship2IdNumber"
+									styleClass="inputTextFormat"
+									value="#{adminUniversityEditPhd.user.personalCitizenship2IdNumber}" />
+							</h:panelGrid>
+						</h:panelGroup>
+					</h:panelGroup>
+					<h:panelGroup layout="block" styleClass="tr ac db"
+						style="margin-top:10px;">
+						<h:commandButton class="button tabMenuButtonStyle " type="submit"
+							action="#{adminUniversityEditPhd.saveUser()}"
+							value="#{msgs.save}">
+							<f:param name="userId" value="#{adminUniversityEditPhd.user.id}" />
+						</h:commandButton>
+						<h:commandButton styleClass="button tabMenuButtonStyle"
+							action="#{adminUniversityEditPhd.deleteUser()}" type="submit"
+							value="#{msgs.delete}">
+							<f:param name="userId" value="#{adminUniversityEditPhd.user.id}" />
+						</h:commandButton>
+					</h:panelGroup>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

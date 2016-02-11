@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="layoutPhd.xhtml">
+		<ui:define name="pagePath">
+			<h:outputText value="#{msgs.phdProfile}" />
+		</ui:define>
+		<ui:define name="tabProfile">
+			<h:form>
+
+				<div class="panelGroupCenter ac">
+					<h:panelGroup style="display:table-row">
+
+						<h:panelGroup layout="block" styleClass="formsPositionL formBox">
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel class="labelsInputInfo"
+									value="#{msgs.specialityTheme}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds">
+									<h:outputText
+										value="#{userPhdAcademicData.user.academicsSpecialityTheme}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel class="labelsInputInfo" value="#{msgs.duration}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds">
+									<h:outputText value="#{userPhdAcademicData.user.academicsDuration}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel class="labelsInputInfo"
+									value="#{msgs.formOfTraining}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds">
+									<h:outputText
+										value="#{userPhdAcademicData.user.academicsForm}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="formsPositionR formBox">
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel class="labelsInputInfo"
+									value="#{msgs.typeOfPayment}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds">
+									<h:outputText
+										value="#{userPhdAcademicData.user.academicsPayment}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel class="labelsInputInfo"
+									value="#{msgs.yearOfAdmission}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds">
+									<h:outputText
+										value="#{userPhdAcademicData.user.academicsYearOfAdmission}">
+										<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+									</h:outputText>
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel class="labelsInputInfo"
+									value="#{msgs.calendarYearOfAdmission}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds">
+									<h:outputText
+										value="#{userPhdAcademicData.user.academicsCalendarYearOfAdmission}">
+										<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+									</h:outputText>
+								</h:panelGroup>
+							</h:panelGrid>
+
+						</h:panelGroup>
+					</h:panelGroup>
+
+					<h:panelGroup style="display:table-row">
+
+						<h:panelGroup layout="block" styleClass="formsPositionL formBox">
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel class="labelsInputInfo"
+									value="#{msgs.scholarship}" />
+								<h:graphicImage value="/resources/images/icons/false.png"
+									rendered="#{userPhdAcademicData.user.academicsScholarship eq false}" />
+								<h:graphicImage value="/resources/images/icons/true.png"
+									rendered="#{userPhdAcademicData.user.academicsScholarship eq true}" />
+							</h:panelGrid>
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="formsPositionR formBox">
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel class="labelsInputInfo" value="#{msgs.hostel}" />
+								<h:graphicImage value="/resources/images/icons/false.png"
+									rendered="#{userPhdAcademicData.user.academicsHostel eq false}" />
+								<h:graphicImage value="/resources/images/icons/true.png"
+									rendered="#{userPhdAcademicData.user.academicsHostel eq true}" />
+							</h:panelGrid>
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="formsPositionL"
+							style="visibility: hidden;">
+							<h:panelGrid>
+								<h:outputLabel styleClass="labelsInputInfo" />
+								<h:inputText styleClass="inputTextFormat" />
+							</h:panelGrid>
+						</h:panelGroup>
+
+					</h:panelGroup>
+
+				</div>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

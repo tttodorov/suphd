@@ -1,0 +1,305 @@
+package com.dao;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import com.model.Log;
+import com.model.User;
+
+@Stateless
+public class UserDAO extends GenericDAO<User> {
+
+	private final static String UNIT_NAME = "PhdPU";
+
+	@PersistenceContext(unitName = UNIT_NAME)
+	private EntityManager em;
+
+	public UserDAO() {
+		super(User.class);
+	}
+
+	public User getById(Integer userId) {
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("userId", userId);
+		String query = "SELECT u FROM User u WHERE u.id = :userId";
+		return super.findOneResult(query, parameters);
+	}
+
+	public User findByUsername(String username) {
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("username", username);
+		parameters.put("isActive", true);
+		String query = "SELECT u FROM User u WHERE u.isActive = :isActive AND u.profileUsername = :username";
+		return super.findOneResult(query, parameters);
+	}
+
+	public User findByUsernamePassword(String username, String password) {
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("username", username);
+		parameters.put("password", password);
+		String query = "SELECT u FROM User u WHERE u.profileUsername = :username AND u.profilePassword = :password";
+		return super.findOneResult(query, parameters);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<User> getAllUserPhd() {
+		List<User> result = new ArrayList<User>();
+		try {
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("phd", true);
+			parameters.put("isActive", true);
+			String namedQuery = "SELECT u FROM User u WHERE u.rolePhd = :phd AND u.isActive = :isActive";
+			Query query = em.createQuery(namedQuery);
+			if (parameters != null && !parameters.isEmpty()) {
+				populateQueryParameters(query, parameters);
+			}
+			result = (List<User>) query.getResultList();
+		} catch (Exception e) {
+			@SuppressWarnings("unused")
+			Log log = new Log(
+					"ERROR UserDAO.getAllUserPhd: Error while running query: "
+							+ e.getMessage());
+		}
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<User> getAllUserPhdReportMes() {
+		List<User> result = new ArrayList<User>();
+		Calendar c = Calendar.getInstance();
+
+		Integer currentYear = c.get(Calendar.YEAR);
+		Integer currentMonth = c.get(Calendar.MONTH);
+		Integer currentDay = c.get(Calendar.DAY_OF_MONTH);
+
+		Integer termStartYear = currentYear;
+		Integer termStartMonth = 3;
+		Integer termStartDay = 1;
+		if (currentMonth < 3) {
+			termStartYear = currentYear - 1;
+			termStartMonth = 10;
+		} else if (currentMonth == 3) {
+			if (currentDay <= 15) {
+				termStartYear = currentYear - 1;
+				termStartMonth = 10;
+			}
+		} else if (currentMonth == 10) {
+			if (currentDay > 15) {
+				termStartMonth = 10;
+			}
+		} else if (currentMonth > 10) {
+			termStartMonth = 10;
+		}
+		
+		c.set(termStartYear, termStartMonth, termStartDay);
+		Date termStart = c.getTime();
+		try {
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("phd", true);
+			parameters.put("isActive", true);
+			parameters.put("termStart", termStart);
+			parameters.put("academicsReadyForReportMes", true);
+			String namedQuery = "SELECT u FROM User u WHERE u.rolePhd = :phd AND u.isActive = :isActive AND :termStart <= u.academicsYearOfGraduation AND u.academicsReadyForReportMes = :academicsReadyForReportMes ORDER BY u.personalIdNumber ASC";
+			Query query = em.createQuery(namedQuery);
+			if (parameters != null && !parameters.isEmpty()) {
+				populateQueryParameters(query, parameters);
+			}
+			result = (List<User>) query.getResultList();
+		} catch (Exception e) {
+			@SuppressWarnings("unused")
+			Log log = new Log(
+					"ERROR UserDAO.getAllUserPhdReportMes: Error while running query: "
+							+ e.getMessage());
+		}
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<User> getAllUserPhdForeign() {
+		List<User> result = new ArrayList<User>();
+		Calendar c = Calendar.getInstance();
+
+		Integer currentYear = c.get(Calendar.YEAR);
+		Integer currentMonth = c.get(Calendar.MONTH);
+		Integer currentDay = c.get(Calendar.DAY_OF_MONTH);
+
+		Integer termStartYear = currentYear;
+		Integer termStartMonth = 3;
+		Integer termStartDay = 1;
+		if (currentMonth < 3) {
+			termStartYear = currentYear - 1;
+			termStartMonth = 10;
+		} else if (currentMonth == 3) {
+			if (currentDay <= 15) {
+				termStartYear = currentYear - 1;
+				termStartMonth = 10;
+			}
+		} else if (currentMonth == 10) {
+			if (currentDay > 15) {
+				termStartMonth = 10;
+			}
+		} else if (currentMonth > 10) {
+			termStartMonth = 10;
+		}
+
+		c.set(termStartYear, termStartMonth, termStartDay);
+		Date termStart = c.getTime();
+		try {
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("phd", true);
+			parameters.put("isActive", true);
+			parameters.put("termStart", termStart);
+			parameters.put("personalIdNumberType", 0);
+			String namedQuery = "SELECT u FROM User u WHERE u.rolePhd = :phd AND u.isActive = :isActive AND :termStart <= u.academicsYearOfGraduation AND u.academicsReadyForReportMes = :academicsReadyForReportMes AND u.personalIdNumberType != :personalIdNumberType";
+			Query query = em.createQuery(namedQuery);
+			if (parameters != null && !parameters.isEmpty()) {
+				populateQueryParameters(query, parameters);
+			}
+			result = (List<User>) query.getResultList();
+		} catch (Exception e) {
+			@SuppressWarnings("unused")
+			Log log = new Log(
+					"ERROR UserDAO.getAllUserPhdForeign: Error while running query: "
+							+ e.getMessage());
+		}
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<User> getAllUserPhdForeignReportMes() {
+		List<User> result = new ArrayList<User>();
+		Calendar c = Calendar.getInstance();
+
+		Integer currentYear = c.get(Calendar.YEAR);
+		Integer currentMonth = c.get(Calendar.MONTH);
+		Integer currentDay = c.get(Calendar.DAY_OF_MONTH);
+
+		Integer termStartYear = currentYear;
+		Integer termStartMonth = 3;
+		Integer termStartDay = 1;
+		if (currentMonth < 3) {
+			termStartYear = currentYear - 1;
+			termStartMonth = 10;
+		} else if (currentMonth == 3) {
+			if (currentDay <= 15) {
+				termStartYear = currentYear - 1;
+				termStartMonth = 10;
+			}
+		} else if (currentMonth == 10) {
+			if (currentDay > 15) {
+				termStartMonth = 10;
+			}
+		} else if (currentMonth > 10) {
+			termStartMonth = 10;
+		}
+		c.set(termStartYear, termStartMonth, termStartDay);
+		Date termStart = c.getTime();
+		try {
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("phd", true);
+			parameters.put("isActive", true);
+			parameters.put("termStart", termStart);
+			parameters.put("academicsReadyForReportMes", true);
+			parameters.put("personalIdNumberType", 0);
+			String namedQuery = "SELECT u FROM User u WHERE u.rolePhd = :phd AND u.isActive = :isActive AND :termStart <= u.academicsYearOfGraduation AND u.academicsReadyForReportMes = :academicsReadyForReportMes AND u.personalIdNumberType > :personalIdNumberType";
+			Query query = em.createQuery(namedQuery);
+			if (parameters != null && !parameters.isEmpty()) {
+				populateQueryParameters(query, parameters);
+			}
+			result = (List<User>) query.getResultList();
+		} catch (Exception e) {
+			@SuppressWarnings("unused")
+			Log log = new Log(
+					"ERROR UserDAO.getAllUserPhdForeignReportMes: Error while running query: "
+							+ e.getMessage());
+		}
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<User> findAllUserAdmin() {
+		List<User> result = new ArrayList<User>();
+		try {
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("admin", true);
+			parameters.put("adminUniversity", true);
+			parameters.put("inspectorFaculty", true);
+			parameters.put("inspectorHostel", true);
+			parameters.put("inspectorScholarships", true);
+			parameters.put("supervisor", true);
+			String namedQuery = "SELECT u FROM User u WHERE u.roleAdmin = :admin  OR u.roleAdminUniversity = :adminUniversity OR u.roleInspectorFaculty = :inspectorFaculty OR u.roleInspectorHostel = :inspectorHostel OR u.roleInspectorScholarships = :inspectorScholarships  OR u.roleSupervisor = :supervisor ";
+			Query query = em.createQuery(namedQuery);
+			if (parameters != null && !parameters.isEmpty()) {
+				populateQueryParameters(query, parameters);
+			}
+			result = (List<User>) query.getResultList();
+		} catch (Exception e) {
+			@SuppressWarnings("unused")
+			Log log = new Log(" ERROR UserDAO: Error while running query: "
+					+ e.getMessage());
+		}
+		return result;
+	}
+
+	// Inspector Faculty
+	public User findByGroupAccess(Integer groupAccess, Integer faculty) {
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("groupAccess", groupAccess);
+		parameters.put("faculty", faculty);
+		String query = "SELECT u FROM User u WHERE u.profileGroupAccess = :groupAccess";
+		return super.findOneResult(query, parameters);
+	}
+
+	public User getLast() {
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("phd", true);
+		String query = "SELECT u FROM User u WHERE u.rolePhd = :phd ORDER BY u.id DESC";
+		User result = (User) super.findOneResult(query, parameters);
+		return result;
+	}
+
+	public User getNextById(Integer userId) {
+		User user = new User();
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("userId", userId);
+		parameters.put("isActive", true);
+		parameters.put("rolePhd", true);
+		try {
+			String query = "SELECT u FROM User u WHERE u.isActive = :isActive AND u.id > :userId AND u.rolePhd = :rolePhd";
+			user = super.findOneResult(query, parameters);
+		} catch (Exception e) {
+			@SuppressWarnings("unused")
+			Log log = new Log(
+					" ERROR UserDAO.getPreviousById: Error while running query: "
+							+ e.getMessage());
+		}
+		return user;
+	}
+
+	public User getPreviousById(Integer userId) {
+		User user = new User();
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("userId", userId);
+		parameters.put("isActive", true);
+		parameters.put("rolePhd", true);
+		try {
+			String query = "SELECT u FROM User u WHERE u.isActive = :isActive AND u.id < :userId AND u.rolePhd = :rolePhd";
+			user = super.findOneResult(query, parameters);
+		} catch (Exception e) {
+			@SuppressWarnings("unused")
+			Log log = new Log(
+					" ERROR UserDAO.getPreviousById: Error while running query: "
+							+ e.getMessage());
+		}
+		return user;
+	}
+}

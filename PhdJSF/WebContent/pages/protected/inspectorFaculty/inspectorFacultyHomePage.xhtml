@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="../../layout.xhtml">
+
+		<ui:define name="pagePath">
+			<h:outputText value="#{msgs.inspectorFaculty}" />
+		</ui:define>
+		<hr />
+		<ui:define name="tabProfile">
+
+			<h:form>
+				<p:dataScroller value="#{inspectorFacultyHomePage.faculties}"
+					var="groups" chunkSize="5">
+
+					<f:facet name="header">
+						<h:inputText value="#{msgs.facultyList}" />
+					</f:facet>
+
+					<h:panelGrid columns="2" style="width:100%"
+						columnClasses="logo,detail">
+						<!--  <p:graphicImage name="demo/images/car/#{car.brand}-big.gif" />-->
+
+						<p:outputPanel>
+							<h:panelGrid columns="2" cellpadding="5">
+								<h:outputText value="#{groups.name}" style="font-weight: bold" />
+							</h:panelGrid>
+						</p:outputPanel>
+
+					</h:panelGrid>
+
+				</p:dataScroller>
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

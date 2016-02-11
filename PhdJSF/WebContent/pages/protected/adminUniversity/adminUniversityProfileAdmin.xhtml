@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="../../layout.xhtml">
+
+		<ui:define name="pagePath">
+			<h:form>
+				<h:outputText value="#{msgs.administratorUniversity} / " />
+				<h:commandLink styleClass="tabHeaderFont ac"
+					action="#{adminUniversityProfileAdmin.moveToListAllAdmins()}"
+					value="#{msgs.listAllAdmins} / " />
+				<h:outputText value="#{msgs.profileSettings}" />
+			</h:form>
+		</ui:define>
+
+		<ui:define name="tab">
+			<h:form>
+				<div class="panelGroupCenter">
+
+					<h:panelGroup styleClass="tr">
+
+						<h:panelGroup layout="block" styleClass="formsPositionL formBox">
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel value="#{msgs.UserName}"
+									styleClass="labelsInputInfo" />
+								<h:panelGroup layout="block" styleClass="disabledFileds">
+									<h:outputText
+										value="#{adminUniversityProfileAdmin.user.profileUsername}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="userPhdNameFirst"
+									value="#{msgs.userPhdNameFirst}" styleClass="labelsInputInfo" />
+								<h:inputText id="userPhdNameFirst"
+									value="#{adminUniversityProfileAdmin.user.personalNameFirst}"
+									styleClass="inputTextFormat" />
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="userPhdNameFirstLatin"
+									value="#{msgs.userPhdNameFirstLatin}"
+									styleClass="labelsInputInfo" />
+								<h:inputText id="userPhdNameFirstLatin"
+									value="#{adminUniversityProfileAdmin.user.personalNameFirstLatin}"
+									styleClass="inputTextFormat" />
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="userPhdNameThird"
+									value="#{msgs.userPhdNameThird}" styleClass="labelsInputInfo" />
+								<h:inputText id="userPhdNameThird"
+									value="#{adminUniversityProfileAdmin.user.personalNameThird}"
+									styleClass="inputTextFormat" />
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="userPhdNameThirdLatin"
+									value="#{msgs.userPhdNameThirdLatin}"
+									styleClass="labelsInputInfo" />
+								<h:inputText id="userPhdNameThirdLatin"
+									value="#{adminUniversityProfileAdmin.user.personalNameThirdLatin}"
+									styleClass="inputTextFormat" />
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="userPhdIdNumberType"
+									value="#{msgs.userPhdIdNumberType}"
+									styleClass="labelsInputInfo" />
+								<h:selectOneMenu id="userPhdIdNumberType"
+									value="#{adminUniversityProfileAdmin.user.personalIdNumberType}"
+									styleClass="inputTextFormat">
+									<f:selectItem itemValue="0"
+										itemLabel="#{msgs.userPhdIdNumberType}" />
+									<f:selectItem itemValue="EГН" itemLabel="#{msgs.PIN}" />
+									<f:selectItem itemValue="ЛНЧ" itemLabel="#{msgs.personalId}" />
+									<f:selectItem itemValue="служебен" itemLabel="#{msgs.service}" />
+								</h:selectOneMenu>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="userPhdIdNumber"
+									value="#{msgs.userPhdIdNumber}" styleClass="labelsInputInfo" />
+								<h:inputText id="userPhdIdNumber"
+									value="#{adminUniversityProfileAdmin.user.personalIdNumber}" />
+							</h:panelGrid>
+
+						</h:panelGroup>
+						<h:panelGroup styleClass="formsPositionR formBox">
+
+							<h:panelGrid styleClass="checkboxCenter newLine10">
+								<h:outputLabel for="administratorFaculty"
+									value="#{msgs.inspectorFaculty}" styleClass="labelsInputInfo" />
+								<h:selectBooleanCheckbox id="administratorFaculty"
+									value="#{adminUniversityProfileAdmin.user.roleInspectorFaculty}" />
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter newLine10">
+								<h:outputLabel for="administratorUniversity"
+									value="#{msgs.administratorUniversity}"
+									styleClass="labelsInputInfo" />
+								<h:selectBooleanCheckbox id="administratorUniversity"
+									value="#{adminUniversityProfileAdmin.user.roleAdminUniversity}" />
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter newLine10">
+								<h:outputLabel for="inspectorScholarships"
+									value="#{msgs.inspectorScholarships}"
+									styleClass="labelsInputInfo" />
+								<h:selectBooleanCheckbox id="inspectorScholarships"
+									value="#{adminUniversityProfileAdmin.user.roleInspectorScholarships}" />
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter newLine10">
+								<h:outputLabel for="inspectorHostel"
+									value="#{msgs.inspectorHostel}" styleClass="labelsInputInfo" />
+								<h:selectBooleanCheckbox id="inspectorHostel"
+									value="#{adminUniversityProfileAdmin.user.roleInspectorHostel}" />
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter newLine10">
+								<h:outputLabel for="supervisor" value="#{msgs.supervisor}"
+									styleClass="labelsInputInfo" />
+								<h:selectBooleanCheckbox id="supervisor"
+									value="#{adminUniversityProfileAdmin.user.roleSupervisor}" />
+							</h:panelGrid>
+						</h:panelGroup>
+
+						<h:panelGroup styleClass="formsPositionL"
+							style="visibility: hidden;">
+							<h:panelGrid>
+								<h:outputLabel styleClass="labelsInputInfo" />
+								<h:inputText styleClass="inputTextFormat" />
+							</h:panelGrid>
+						</h:panelGroup>
+
+					</h:panelGroup>
+
+					<h:panelGroup id="center" styleClass="tr ac db"
+						style="margin-top:10px;">
+						<h:commandButton class="button tabMenuButtonStyle ac"
+							type="submit"
+							action="#{adminUniversityProfileAdmin.updateUser()}"
+							value="#{msgs.save}">
+							<f:param name="userId"
+								value="#{adminUniversityProfileAdmin.user.id}" />
+						</h:commandButton>
+					</h:panelGroup>
+
+				</div>
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+</h:body>
+</h:html>

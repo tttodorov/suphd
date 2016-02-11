@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/pages/public/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/pages/public/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>help</from-outcome>
+			<to-view-id>/pages/public/help.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>selectRole</from-outcome>
+			<to-view-id>/pages/protected/selectRole.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<!-- Admin System -->
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>adminSystemHome</from-outcome>
+			<to-view-id>/pages/protected/adminSystemHome.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>adminSystemEditUser</from-outcome>
+			<to-view-id>/pages/protected/adminSystemEditUser.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<!-- Admin University -->
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>adminUniversityHome</from-outcome>
+			<to-view-id>/pages/protected/adminUniversityHome.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>adminUniversityListPhds</from-outcome>
+			<to-view-id>/pages/protected/adminUniversityListPhds.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>adminUniversityEditPhdNew</from-outcome>
+			<to-view-id>/pages/protected/adminUniversityEditPhdNew.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>adminUniversityEditPhdPersonalData</from-outcome>
+			<to-view-id>/pages/protected/adminUniversityEditPhdPersonalData.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>adminUniversityEditPhdCitizenship</from-outcome>
+			<to-view-id>/pages/protected/adminUniversityEditPhdCitizenship.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>adminUniversityEditPhdContacts</from-outcome>
+			<to-view-id>/pages/protected/adminUniversityEditPhdContacts.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>adminUniversityEditPhdEducation</from-outcome>
+			<to-view-id>/pages/protected/adminUniversityEditPhdEducation.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>adminUniversityEditPhdSpeciality</from-outcome>
+			<to-view-id>/pages/protected/adminUniversityEditPhdSpeciality.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>adminUniversityEditPhdAcademicData</from-outcome>
+			<to-view-id>/pages/protected/adminUniversityEditPhdAcademicData.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>adminUniversityListAdmins</from-outcome>
+			<to-view-id>/pages/protected/adminUniversityListAdmins.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>adminUniversityReports</from-outcome>
+			<to-view-id>/pages/protected/adminUniversityReports.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>adminUniversityReportMesExcel</from-outcome>
+			<to-view-id>/pages/protected/adminUniversityReportMesExcel.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>userPhdAcademicData</from-outcome>
+			<to-view-id>/pages/protected/phd/userPhdAcademicData.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>userPhdCitizenship</from-outcome>
+			<to-view-id>/pages/protected/phd/userPhdCitizenship.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>userPhdContacts</from-outcome>
+			<to-view-id>/pages/protected/phd/userPhdContacts.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>userPhdEducation</from-outcome>
+			<to-view-id>/pages/protected/phd/userPhdEducation.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>userPhdLinks</from-outcome>
+			<to-view-id>/pages/protected/phd/userPhdLinks.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>userPhdPersonalData</from-outcome>
+			<to-view-id>/pages/protected/phd/userPhdPersonalData.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>userPhdReport</from-outcome>
+			<to-view-id>/pages/protected/phd/userPhdReport.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>userPhdSpecialty</from-outcome>
+			<to-view-id>/pages/protected/phd/userPhdSpecialty.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>userProfile</from-outcome>
+			<to-view-id>/pages/protected/user/userProfile.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>selectRole</from-outcome>
+			<to-view-id>/pages/protected/selectRole.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listAllUsers</from-outcome>
+			<to-view-id>/pages/protected/adminSystemHome.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>userScholarshipsPhd</from-outcome>
+			<to-view-id>/pages/protected/inspectorScholarships/userScholarshipsPhd.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>userHostelPhd</from-outcome>
+			<to-view-id>/pages/protected/inspectorHostel/userHostelPhd.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>adminUniversityListAllAdmins</from-outcome>
+			<to-view-id>/pages/protected/adminUniversity/listAllAdmins.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>adminUniversityProfileAdmin</from-outcome>
+			<to-view-id>/pages/protected/adminUniversity/adminUniversityProfileAdmin.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>supervisorListAllPhd</from-outcome>
+			<to-view-id>/pages/protected/supervisor/supervisorListAllPhd.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>reviewsPhd</from-outcome>
+			<to-view-id>/pages/protected/supervisor/reviewsPhd.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>inspectorFacultyHomePage</from-outcome>
+			<to-view-id>/pages/protected/inspectorFaculty/inspectorFacultyHomePage.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>inspectorFacultyProfilePhdPersonalData</from-outcome>
+			<to-view-id>/pages/protected/inspectorFaculty/inspectorFacultyProfilePhd/inspectorFacultyProfilePhdPersonalData.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<application>
+		<resource-bundle>
+			<base-name>messages</base-name>
+			<var>msgs</var>
+		</resource-bundle>
+		<message-bundle>messages_bg</message-bundle>
+	</application>
+</faces-config>

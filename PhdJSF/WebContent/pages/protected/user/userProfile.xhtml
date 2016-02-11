@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="../../layout.xhtml">
+		<ui:define name="menuButtons">
+			<ul class="mainMenuLine">
+				<h:commandButton action="#{userPhdProfile.moveToSelectRole()}"
+					value="#{msgs.home}" styleClass=" mainMenuButtonStyle"
+					style="position: absolute; border-right:1px solid black;" />
+			</ul>
+		</ui:define>>
+
+		<ui:define name="tabProfile">
+
+			<div class=" " style="cursor: crosshair;">
+				<div class="photoButtons">
+					<h:form id="formPhotoUpload" enctype="multipart/form-data"
+						prependId="false">
+						<div class="ac">
+
+							<h:graphicImage
+								value="/resources/images/userPhoto.png"
+								style="width:150px ; height:150px" />
+							<br />
+
+							<p:fileUpload styleClass="tabMenuButtonStyle fileUpload"
+								value="#{userProfile.file}" mode="simple" skinSimple="true"
+								allowTypes="/(\.|\/)(gif|jpe?g|png)$/">
+							</p:fileUpload>
+
+
+							<h:panelGroup layout="block" styleClass="tr ac db"
+								style="margin-top:10px;">
+								<h:commandButton class="button tabMenuButtonStyle "
+									actionListener="#{userProfile.upload()}" ajax="false"
+									value="#{msgs.addPhoto}" />
+							</h:panelGroup>
+						</div>
+					</h:form>
+				</div>
+			</div>
+
+			<br />
+
+			<h:panelGroup layout="block" styleClass="center formBox">
+				<h:panelGrid styleClass="checkboxCenter">
+					<h:outputLabel styleClass="labelsInputInfo" for="oldPassword"
+						value="#{msgs.oldPassword}" />
+					<h:inputSecret id="oldPassword" styleClass="inputTextFormat"
+						value="#{userProfile.oldPassword}" required="true" />
+				</h:panelGrid>
+
+				<h:panelGrid styleClass="checkboxCenter">
+					<h:outputLabel styleClass="labelsInputInfo" for="newPassword"
+						value="#{msgs.newPassword}" />
+					<h:inputSecret id="newPassword" styleClass="inputTextFormat"
+						value="#{userProfile.newPassword}" required="true" />
+				</h:panelGrid>
+
+				<h:panelGrid style="margin-bottom:30px;" styleClass="checkboxCenter">
+					<h:outputLabel styleClass="labelsInputInfo"
+						for="newPasswordConfirm" value="#{msgs.newPasswordConfirm}" />
+					<h:inputSecret id="newPasswordConfirm" styleClass="inputTextFormat"
+						value="#{userProfile.newPasswordConfirm}" required="true" />
+				</h:panelGrid>
+
+				<h:panelGroup layout="block" styleClass="tr ac db"
+					style="margin-top:10px;">
+					<h:commandButton class="button tabMenuButtonStyle "
+						action="#{userProfile.confirmChangePassword()}" type="submit"
+						value="#{msgs.changeThePassword}" />
+				</h:panelGroup>
+
+			</h:panelGroup>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="layoutFacultyProfilePhd.xhtml">
+		<ui:define name="tabProfile">
+			<div id="wrapper" class="main-login_1">
+				<h:form class="ac form">
+
+					<h:outputLabel class="labelsInputInfo" for="country"
+						value="#{msgs.countryOfResidence}" />
+					<h:selectOneMenu id="country"
+						value="#{userPhdCitizenship.user.personalIdNumberCountry}"
+						rendered="#{userPhdAcademicData.user.academicsBanned eq true}">
+						<f:selectItem itemValue="избери" itemLabel="#{msgs.selectCountry}" />
+						<f:selectItem itemValue="Бължгария" itemLabel="България" />
+						<f:selectItem itemValue="друга" itemLabel="друга" />
+					</h:selectOneMenu>
+					<h:panelGroup layout="block" styleClass="disabledFileds"
+						rendered="#{userPhdAcademicData.user.academicsBanned eq false}">
+						<h:outputText value="#{userPhdCitizenship.user.personalIdNumberCountry}" />
+					</h:panelGroup>
+					<br />
+
+
+
+					<h:outputLabel class="labelsInputInfo" for="city"
+						value="#{msgs.cityOfResidence}" />
+					<h:inputText id="city"
+						value="#{userPhdContacts.user.contactCity}"
+						rendered="#{userPhdAcademicData.user.academicsBanned eq true}" />
+					<h:panelGroup layout="block" styleClass="disabledFileds"
+						rendered="#{userPhdAcademicData.user.academicsBanned eq false}">
+						<h:outputText value="#{userPhdContacts.user.contactCity}" />
+					</h:panelGroup>
+
+					<br />
+
+
+					<h:outputLabel class="labelsInputInfo" for="residenceStreet"
+						value="#{msgs.residenceStreet}" />
+					<h:inputText id="residenceStreet"
+						value="#{userPhdContacts.user.contactStreet}"
+						rendered="#{userPhdAcademicData.user.academicsBanned eq true}" />
+					<h:panelGroup layout="block" styleClass="disabledFileds"
+						rendered="#{userPhdAcademicData.user.academicsBanned eq false}">
+						<h:outputText value="#{userPhdContacts.user.contactStreet}" />
+					</h:panelGroup>
+					<br />
+
+
+					<h:outputLabel class="labelsInputInfo" for="streetNumber"
+						value="#{msgs.streetNumber}" />
+					<h:inputText id="streetNumber"
+						value="#{userPhdContacts.user.contactStreetNumber}"
+						rendered="#{userPhdAcademicData.user.academicsBanned eq true}" />
+					<h:panelGroup layout="block" styleClass="disabledFileds"
+						rendered="#{userPhdAcademicData.user.academicsBanned eq false}">
+						<h:outputText value="#{userPhdContacts.user.contactStreetNumber}" />
+					</h:panelGroup>
+
+					<br />
+
+
+					<h:outputLabel class="labelsInputInfo" for="residenceFloor"
+						value="#{msgs.residenceFloor}" />
+					<h:inputText id="residenceFloor"
+						value="#{userPhdContacts.user.contactFloor}"
+						rendered="#{userPhdAcademicData.user.academicsBanned eq true}" />
+					<h:panelGroup layout="block" styleClass="disabledFileds"
+						rendered="#{userPhdAcademicData.user.academicsBanned eq false}">
+						<h:outputText value="#{userPhdContacts.user.contactFloor}" />
+					</h:panelGroup>
+
+					<br />
+
+
+					<h:outputLabel class="labelsInputInfo" for="residenceApartment"
+						value="#{msgs.residenceApartment}" />
+					<h:inputText id="residenceApartment"
+						value="#{userPhdContacts.user.contactApartment}"
+						rendered="#{userPhdAcademicData.user.academicsBanned eq true}" />
+					<h:panelGroup layout="block" styleClass="disabledFileds"
+						rendered="#{userPhdAcademicData.user.academicsBanned eq false}">
+						<h:outputText value="#{userPhdContacts.user.contactApartment}" />
+					</h:panelGroup>
+
+					<br />
+
+
+					<h:outputLabel class="labelsInputInfo" for="email"
+						value="#{msgs.email}" />
+					<h:inputText id="email" value="#{userPhdContacts.user.profileEmail}"
+						rendered="#{userPhdAcademicData.user.academicsBanned eq true}" />
+					<h:panelGroup layout="block" styleClass="disabledFileds"
+						rendered="#{userPhdAcademicData.user.academicsBanned eq false}">
+						<h:outputText value="#{userPhdContacts.user.profileEmail}" />
+					</h:panelGroup>
+
+					<br />
+
+
+					<h:outputLabel class="labelsInputInfo" for="phone"
+						value="#{msgs.phone}" />
+					<h:inputText id="phone" value="#{userPhdContacts.user.contactPhone}"
+						rendered="#{userPhdAcademicData.user.academicsBanned eq true}" />
+					<h:panelGroup layout="block" styleClass="disabledFileds"
+						rendered="#{userPhdAcademicData.user.academicsBanned eq false}">
+						<h:outputText value="#{userPhdContacts.user.contactPhone}" />
+					</h:panelGroup>
+
+					<br />
+
+					<h:outputLabel class="labelsInputInfo" for="phone2"
+						value="#{msgs.phone2}" />
+					<h:inputText id="phone2" value="#{userPhdContacts.user.contactPhone2}"
+						rendered="#{userPhdAcademicData.user.academicsBanned eq true}" />
+					<h:panelGroup layout="block" styleClass="disabledFileds"
+						rendered="#{userPhdAcademicData.user.academicsBanned eq false}">
+						<h:outputText value="#{userPhdContacts.user.contactPhone2}" />
+					</h:panelGroup>
+					<br />
+
+
+					<h:outputLabel class="labelsInputInfo" for="facebook"
+						value="Facebook" />
+					<h:inputText id="facebook" value="#{userPhdContacts.user.contactFacebook}"
+						rendered="#{userPhdAcademicData.user.academicsBanned eq true}" />
+					<h:panelGroup layout="block" styleClass="disabledFileds"
+						rendered="#{userPhdAcademicData.user.academicsBanned eq false}">
+						<h:outputText value="#{userPhdContacts.user.contactFacebook}" />
+					</h:panelGroup>
+					<br />
+
+
+					<h:outputLabel class="labelsInputInfo" for="twitter" value="Twitter" />
+					<h:inputText id="twitter" value="#{userPhdContacts.user.contactTwitter}"
+						rendered="#{userPhdAcademicData.user.academicsBanned eq true}" />
+					<h:panelGroup layout="block" styleClass="disabledFileds"
+						rendered="#{userPhdAcademicData.user.academicsBanned eq false}">
+						<h:outputText value="#{userPhdContacts.user.contactTwitter}" />
+					</h:panelGroup>
+
+					<br />
+
+
+					<h:outputLabel class="labelsInputInfo" for="skype" value="Skype" />
+					<h:inputText id="skype" value="#{userPhdContacts.user.contactSkype}"
+						rendered="#{userPhdAcademicData.user.academicsBanned eq true}" />
+					<h:panelGroup layout="block" styleClass="disabledFileds"
+						rendered="#{userPhdAcademicData.user.academicsBanned eq false}">
+						<h:outputText value="#{userPhdContacts.user.contactSkype}" />
+					</h:panelGroup>
+
+					<br />
+
+					<div id="center">
+						<br />
+						<h:commandButton class="button tabMenuButtonStyle"
+							rendered="#{userPhdAcademicData.user.academicsBanned eq true}"
+							action="#{userPhdContacts.updateUser()}" type="submit"
+							value="#{msgs.save}" />
+					</div>
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

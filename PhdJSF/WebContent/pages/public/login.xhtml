@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="../layout.xhtml">
+		<h:messages layout="table" errorStyle="background: red;"
+			infoStyle="background: #AFEEEE;" globalOnly="true" />
+			
+		<ui:define name="profilePicture"></ui:define>
+
+		<!-- MENUS -->
+		<ui:define name="menu">
+			<ul class="mainMenuLine">
+				<h:commandButton action="#{login.moveToHelpPage()}"
+					value="#{msgs.help}" styleClass="mainMenuButtonStyle "
+					style="position: absolute; right:13%; border-left:1px solid black; "
+					target="_blank" />
+			</ul>
+		</ui:define>
+
+		<!-- Content -->
+		<ui:define name="tab">
+			<div class="textBox ac">
+				<h4>
+					#{msgs.loginInfoBox1} <br /> #{msgs.loginInfoBox2}
+				</h4>
+			</div>
+			<h:form>
+				<h:panelGroup>
+					<h:outputLabel styleClass="headerText"
+						value="#{msgs.loginForm}" />
+					<h:panelGrid styleClass="checkboxCenter">
+						<h:outputLabel styleClass="labelsInputInfo" for="username"
+							value="#{msgs.loginUserName}:" />
+						<h:inputText id="username" value="#{auth.username}"
+							styleClass="inputTextFormat" name="username" required="true"
+							requiredMessage="#{msgs.loginNoUsername}" />
+					</h:panelGrid>
+					<h:panelGrid styleClass="checkboxCenter">
+						<h:outputLabel styleClass="labelsInputInfo" for="password"
+							value="#{msgs.loginPassword}:" />
+						<h:inputSecret id="password" value="#{auth.password}"
+							styleClass="inputTextFormat" name="password" required="true"
+							requiredMessage="#{msgs.loginNoPassword}" />
+					</h:panelGrid>
+				</h:panelGroup>
+				<h:panelGroup layout="block" styleClass="tr ac db"
+					style="margin-top:10px;">
+					<h:commandButton action="#{auth.login}"
+						class="button tabMenuButtonStyle loginButton"
+						value="#{msgs.loginConfirm}" />
+				</h:panelGroup>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

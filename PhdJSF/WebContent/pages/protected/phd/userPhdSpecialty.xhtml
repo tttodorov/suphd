@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="layoutPhd.xhtml">
+		<ui:define name="pagePath">
+			<h:outputText value="#{msgs.phdProfile}" />
+		</ui:define>
+		<ui:define name="tabProfile">
+			<h:form>
+				<div class="panelGroupCenter">
+
+					<h:panelGroup styleClass="tr">
+
+						<h:panelGroup layout="block" styleClass="formsPositionL formBox">
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									value="#{msgs.faculty}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds">
+									<h:outputText value="#{userPhdSpecialty.user.academicsFaculty}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									value="#{msgs.department}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds">
+									<h:outputText value="#{userPhdSpecialty.user.academicsDepartment}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									value="#{msgs.codeOfSpecialty}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds">
+									<h:outputText value="#{userPhdSpecialty.user.academicsSpeciality}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="formsPositionR formBox">
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									value="#{msgs.codeOfSpecialtyOld}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds">
+									<h:outputText
+										value="#{userPhdSpecialty.user.academicsSpecialityNSI}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									value="#{msgs.phdProgram}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds">
+									<h:outputText value="#{userPhdSpecialty.user.academicsInternationalProgram}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									value="#{msgs.topicOfPhd}" />
+							</h:panelGrid>
+
+						</h:panelGroup>
+					</h:panelGroup>
+
+					<h:panelGroup styleClass="tr">
+
+						<h:panelGroup styleClass="formsPositionL formBox">
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									value="#{msgs.jointDegreeWithAnotherUniversity}" />
+								<h:graphicImage value="/resources/images/icons/false.png"
+									rendered="#{userPhdAcademicData.user.academicsDegreeWithAnotherUniversity eq false}" />
+								<h:graphicImage value="/resources/images/icons/true.png"
+									rendered="#{userPhdAcademicData.user.academicsDegreeWithAnotherUniversity eq true}" />
+							</h:panelGrid>
+						</h:panelGroup>
+
+						<h:panelGroup styleClass="formsPositionR formBox">
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									value="#{msgs.newSpecialtyToTheSameExtent}" />
+								<h:graphicImage value="/resources/images/icons/false.png"
+									rendered="#{userPhdAcademicData.user.academicsNewSpecialty eq false}" />
+								<h:graphicImage value="/resources/images/icons/true.png"
+									rendered="#{userPhdAcademicData.user.academicsNewSpecialty eq true}" />
+							</h:panelGrid>
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="formsPositionL"
+							style="visibility: hidden;">
+							<h:panelGrid>
+								<h:outputLabel styleClass="labelsInputInfo" />
+								<h:inputText styleClass="inputTextFormat" />
+							</h:panelGrid>
+						</h:panelGroup>
+
+					</h:panelGroup>
+
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>
+

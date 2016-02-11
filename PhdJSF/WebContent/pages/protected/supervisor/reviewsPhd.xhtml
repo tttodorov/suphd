@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="../../layout.xhtml">
+
+		<ui:define name="pagePath">
+			<h:form>
+				<h:commandLink styleClass="tabHeaderFont ac"
+					action="#{supervisorReviewsPhd.moveTosupervisorListAllPhd()}"
+					value="#{msgs.supervisor} / " />
+				<h:outputText value="#{msgs.reviewPhd}" />
+				<br />
+				<br />
+				<h:outputText styleClass="tabHeaderFont"
+					style="font-weight:bold; font-size:18px;"
+					value="#{supervisorReviewsPhd.user.personalNameFirst} #{supervisorReviewsPhd.user.personalNameThird}" />
+			</h:form>
+		</ui:define>
+
+		<ui:define name="tabProfile">
+			<h:form>
+
+				<h:panelGroup styleClass="ac newLine10"
+					style="display:table; margin: 0 auto;">
+
+					<h:commandLink rendered="#{supervisorReviewsPhd.prev eq true}"
+						action="#{supervisorReviewsPhd.getPreviousUserPhdReport}">
+						<h:graphicImage value="/resources/images/icons/pageBack.jpg"
+							styleClass="forwardBackButtons" />
+						<f:param name="userId" value="#{supervisorReviewsPhd.user.id}" />
+					</h:commandLink>
+					<h:commandLink rendered="#{supervisorReviewsPhd.prev eq false}"> disabled="true">
+						<h:graphicImage value="/resources/images/icons/pageBackOff.jpg"
+							styleClass="forwardBackButtons" />
+					</h:commandLink>
+
+					<h:panelGroup styleClass="ellipse">
+						<h:outputText
+							value=" #{supervisorReviewsPhd.currentPhdReportName} " />
+					</h:panelGroup>
+
+					<h:commandLink rendered="#{supervisorReviewsPhd.next eq true}"
+						action="#{supervisorReviewsPhd.getNextUserPhdReport}">
+						<h:graphicImage value="/resources/images/icons/pageForward.jpg"
+							styleClass="forwardBackButtons" />
+						<f:param name="userId" value="#{supervisorReviewsPhd.user.id}" />
+					</h:commandLink>
+					<h:commandLink rendered="#{supervisorReviewsPhd.next eq false}"
+						disabled="true">
+						<h:graphicImage value="/resources/images/icons/pageForwardOff.jpg"
+							styleClass="forwardBackButtons" />
+					</h:commandLink>
+
+				</h:panelGroup>
+
+				<h1 class="headers">#{msgs.report}</h1>
+				<p:editor disabled="true" styleClass="newLine10"
+					value="#{supervisorReviewsPhd.userPhdReport.content}">
+				</p:editor>
+
+				<h1 class="headers">#{msgs.review}</h1>
+				<p:editor value="#{supervisorReviewsPhd.userPhdReport.review}">
+				</p:editor>
+
+				<div id="center">
+					<br />
+					<h:commandButton class="button tabMenuButtonStyle "
+						action="#{supervisorReviewsPhd.saveReview()}" type="submit"
+						value="#{msgs.save}">
+						<f:param name="userId" value="#{supervisorReviewsPhd.user.id}" />
+					</h:commandButton>
+				</div>
+
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+</h:body>
+</h:html>

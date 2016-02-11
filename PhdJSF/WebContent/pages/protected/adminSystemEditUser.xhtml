@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="../layout.xhtml">
+		<h:messages layout="table" errorStyle="background: red;"
+			infoStyle="background: #AFEEEE;" globalOnly="true" />
+
+		<!-- Content -->
+		<ui:define name="tab">
+			<p:panel styleClass="pageTitle ac">
+				<h2>
+					<h:form>
+						<span class="fl"> <h:commandLink
+								action="#{navigation.moveToSelectRole()}"
+								value="#{msgs.pageTitleSelectRole}"
+								styleClass=" mainMenuButtonStyle dropdownWidth " />
+						</span>
+						<span class="fl delimiter">/</span>
+						<span class="fl"> <h:commandLink
+								action="#{navigation.moveToAdminSystemHome()}"
+								value="#{msgs.pageTitleAdminSystemHome}"
+								styleClass=" mainMenuButtonStyle dropdownWidth " />
+						</span>
+						<span class="fl delimiter">/</span>
+						<h:outputText rendered="#{adminSystemEditUser.user.id == null}"
+							styleClass="fl" value="#{msgs.pageTitleAdminSystemAddUser}" />
+						<h:outputText rendered="#{adminSystemEditUser.user.id != null}"
+							styleClass="fl" value="#{msgs.pageTitleAdminSystemEditUser}" />
+					</h:form>
+				</h2>
+			</p:panel>
+			<h:form>
+				<div class="panelGroupCenter">
+					<h:panelGroup styleClass="tr">
+						<h:panelGroup styleClass="formsPositionL formBox">
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo" for="UserName"
+									value="#{msgs.UserName}">
+									<h:outputText rendered="#{adminSystemEditUser.user.id == null}"
+										style="color:red; font-size:15px;" value=" *" />
+								</h:outputLabel>
+								<h:inputText id="UserName" styleClass="inputTextFormat"
+									value="#{adminSystemEditUser.user.profileUsername}"
+									required="#{adminSystemEditUser.user.id == null}" />
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="userPhdNameFirst" value="#{msgs.userPhdNameFirst}">
+									<h:outputText rendered="#{adminSystemEditUser.user.id == null}"
+										style="color:red; font-size:15px;" value=" *" />
+								</h:outputLabel>
+								<h:inputText id="userPhdNameFirst" styleClass="inputTextFormat"
+									value="#{adminSystemEditUser.user.personalNameFirst}"
+									required="#{adminSystemEditUser.user.id == null}" />
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="userPhdNameFirstLatin"
+									value="#{msgs.userPhdNameFirstLatin}">
+									<h:outputText rendered="#{adminSystemEditUser.user.id == null}"
+										style="color:red; font-size:15px;" value=" *" />
+								</h:outputLabel>
+								<h:inputText id="userPhdNameFirstLatin"
+									styleClass="inputTextFormat"
+									value="#{adminSystemEditUser.user.personalNameFirstLatin}"
+									required="#{adminSystemEditUser.user.id == null}" />
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="userPhdNameThird" value="#{msgs.userPhdNameThird}">
+									<h:outputText rendered="#{adminSystemEditUser.user.id == null}"
+										style="color:red; font-size:15px;" value=" *" />
+								</h:outputLabel>
+								<h:inputText id="userPhdNameThird" styleClass="inputTextFormat"
+									value="#{adminSystemEditUser.user.personalNameThird}"
+									required="#{adminSystemEditUser.user.id == null}" />
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="userPhdNameThirdLatin"
+									value="#{msgs.userPhdNameThirdLatin}">
+									<h:outputText rendered="#{adminSystemEditUser.user.id == null}"
+										style="color:red; font-size:15px;" value=" *" />
+								</h:outputLabel>
+								<h:inputText id="userPhdNameThirdLatin"
+									styleClass="inputTextFormat"
+									value="#{adminSystemEditUser.user.personalNameThirdLatin}"
+									required="#{adminSystemEditUser.user.id == null}" />
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="userPhdIdNumberType"
+									value="#{msgs.userPhdIdNumberType}"
+									styleClass="labelsInputInfo">
+									<h:outputText rendered="#{adminSystemEditUser.user.id == null}"
+										style="color:red; font-size:15px;" value=" *" />
+								</h:outputLabel>
+								<h:selectOneMenu id="userPhdIdNumberType"
+									value="#{adminSystemEditUser.user.personalIdNumberType}"
+									styleClass="inputTextFormat"
+									required="#{adminSystemEditUser.user.id == null}">
+									<f:selectItem itemValue="null" itemLabel="#{msgs.select}" />
+									<f:selectItem itemValue="0" itemLabel="#{msgs.PIN}" />
+									<f:selectItem itemValue="1" itemLabel="#{msgs.personalId}" />
+									<f:selectItem itemValue="2" itemLabel="#{msgs.service}" />
+								</h:selectOneMenu>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="userPhdIdNumber" value="#{msgs.userPhdIdNumber}">
+									<h:outputText rendered="#{adminSystemEditUser.user.id == null}"
+										style="color:red; font-size:15px;" value=" *" />
+								</h:outputLabel>
+								<h:inputText id="userPhdIdNumber" styleClass="inputTextFormat"
+									value="#{adminSystemEditUser.user.personalIdNumber}"
+									required="#{adminSystemEditUser.user.id == null}" />
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo" for="password"
+									value="#{msgs.password}">
+								</h:outputLabel>
+								<h:inputSecret id="password" styleClass="inputTextFormat"
+									value="#{adminSystemEditUser.password}" />
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="passwordConfirm" value="#{msgs.newPasswordConfirm}">
+								</h:outputLabel>
+								<h:inputSecret id="passwordConfirm" styleClass="inputTextFormat"
+									value="#{adminSystemEditUser.passwordConfirm}" />
+							</h:panelGrid>
+
+						</h:panelGroup>
+						<h:panelGroup styleClass="formsPositionR formBox">
+							<h:panelGrid styleClass="checkboxCenter newLine10">
+								<h:outputLabel for="phd" value="#{msgs.phd}"
+									styleClass="labelsInputInfo" />
+								<h:selectBooleanCheckbox id="phd"
+									value="#{adminSystemEditUser.user.rolePhd}" />
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter newLine10">
+								<h:outputLabel for="administratorSystem"
+									value="#{msgs.administratorSystem}"
+									styleClass="labelsInputInfo" />
+								<h:selectBooleanCheckbox id="administratorSystem"
+									value="#{adminSystemEditUser.user.roleAdmin}" />
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter newLine10">
+								<h:outputLabel for="administratorUniversity"
+									value="#{msgs.administratorUniversity}"
+									styleClass="labelsInputInfo" />
+								<h:selectBooleanCheckbox id="administratorUniversity"
+									value="#{adminSystemEditUser.user.roleAdminUniversity}" />
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter newLine10">
+								<h:outputLabel for="inspectorFaculty"
+									value="#{msgs.inspectorFaculty}" styleClass="labelsInputInfo" />
+								<h:selectBooleanCheckbox id="inspectorFaculty"
+									value="#{adminSystemEditUser.user.roleInspectorFaculty}" />
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter newLine10">
+								<h:outputLabel for="inspectorScholarships"
+									value="#{msgs.inspectorScholarships}"
+									styleClass="labelsInputInfo" />
+								<h:selectBooleanCheckbox id="inspectorScholarships"
+									value="#{adminSystemEditUser.user.roleInspectorScholarships}" />
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter newLine10">
+								<h:outputLabel for="inspectorHostel"
+									value="#{msgs.inspectorHostel}" styleClass="labelsInputInfo" />
+								<h:selectBooleanCheckbox id="inspectorHostel"
+									value="#{adminSystemEditUser.user.roleInspectorHostel}" />
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter newLine10">
+								<h:outputLabel for="supervisor" value="#{msgs.supervisor}"
+									styleClass="labelsInputInfo" />
+								<h:selectBooleanCheckbox id="supervisor"
+									value="#{adminSystemEditUser.user.roleSupervisor}" />
+							</h:panelGrid>
+
+						</h:panelGroup>
+					</h:panelGroup>
+					<br />
+					<h:panelGroup styleClass="tr ac db">
+						<h:commandButton styleClass="button tabMenuButtonStyle"
+							action="#{adminSystemEditUser.saveUser()}" type="submit"
+							value="#{msgs.save}">
+							<f:param name="userId" value="#{adminSystemEditUser.user.id}" />
+						</h:commandButton>
+					</h:panelGroup>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

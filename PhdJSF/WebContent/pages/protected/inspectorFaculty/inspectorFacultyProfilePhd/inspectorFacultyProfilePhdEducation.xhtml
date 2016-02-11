@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="layoutFacultyProfilePhd.xhtml">
+		<ui:define name="tabProfile">
+			<div id="wrapper" class="form main-login_1 ac" style="overflow: hidden;">
+				<h:form>
+
+					<h:outputLabel styleClass="labelsInputInfo" for="countryOfCompletedMaster"
+						value="#{msgs.countryOfCompletedMaster}" />
+					<h:selectOneMenu id="countryOfCompletedMaster"
+						rendered="#{userPhdEducation.user.academicsBanned eq true}"
+						value="#{userPhdEducation.user.masterCountry}">
+						<f:selectItem itemValue="избери" itemLabel="#{msgs.selectCountry}" />
+						<f:selectItem itemValue="България" itemLabel="България" />
+						<f:selectItem itemValue="друга" itemLabel="друга" />
+					</h:selectOneMenu>
+					<h:panelGroup layout="block" styleClass="disabledFileds"
+						rendered="#{userPhdEducation.user.academicsBanned eq false}">
+						<h:outputText
+							value="#{userPhdEducation.user.masterCountry}" />
+					</h:panelGroup>
+					<br />
+
+					<h:outputLabel styleClass="labelsInputInfo" for="cityOfCompletedMaster"
+						value="#{msgs.cityOfCompletedMaster}" />
+					<h:inputText id="cityOfCompletedMaster"
+						value="#{userPhdEducation.user.masterCity}"
+						rendered="#{userPhdEducation.user.academicsBanned eq true}" />
+					<h:panelGroup layout="block" styleClass="disabledFileds"
+						rendered="#{userPhdEducation.user.academicsBanned eq false}">
+						<h:outputText
+							value="#{userPhdEducation.user.masterCity}" />
+					</h:panelGroup>
+					<br />
+
+					<h:outputLabel styleClass="labelsInputInfo" for="universityOfCompletedMaster"
+						value="#{msgs.universityOfCompletedMaster}" />
+					<h:inputText id="universityOfCompletedMaster"
+						value="#{userPhdEducation.user.masterUniversityName}"
+						rendered="#{userPhdEducation.user.academicsBanned eq true}" />
+					<h:panelGroup layout="block" styleClass="disabledFileds"
+						rendered="#{userPhdEducation.user.academicsBanned eq false}">
+						<h:outputText
+							value="#{userPhdEducation.user.masterUniversityName}" />
+					</h:panelGroup>
+					<br />
+
+					<h:outputLabel styleClass="labelsInputInfo" for="acquiredSpecialtyOfMasters"
+						value="#{msgs.acquiredSpecialtyOfMasters}" />
+					<h:inputText id="acquiredSpecialtyOfMasters"
+						value="#{userPhdEducation.user.masterSpeciality}"
+						rendered="#{userPhdEducation.user.academicsBanned eq true}" />
+					<h:panelGroup layout="block" styleClass="disabledFileds"
+						rendered="#{userPhdEducation.user.academicsBanned eq false}">
+						<h:outputText
+							value="#{userPhdEducation.user.masterSpeciality}" />
+					</h:panelGroup>
+					<br />
+
+					<h:outputLabel styleClass="labelsInputInfo" for="numberOfDegreeOfMaster"
+						value="#{msgs.numberOfDegreeOfMaster}" />
+					<h:inputText id="numberOfDegreeOfMaster"
+						value="#{userPhdEducation.user.masterDiplomaNumber}"
+						rendered="#{userPhdEducation.user.academicsBanned eq true}" />
+					<h:panelGroup layout="block" styleClass="disabledFileds"
+						rendered="#{userPhdEducation.user.academicsBanned eq false}">
+						<h:outputText
+							value="#{userPhdEducation.user.masterDiplomaNumber}" />
+					</h:panelGroup>
+					<br />
+
+					<h:outputLabel styleClass="labelsInputInfo" for="dateOfCompletionOfTheMaster"
+						value="#{msgs.dateOfCompletionOfTheMaster}" />
+					<p:calendar id="dateOfCompletionOfTheMaster" locale="ru"
+						navigator="true" pattern="dd-mm-yyyy"
+						value="#{userPhdEducation.user.masterDiplomaDate}"
+						rendered="#{userPhdEducation.user.academicsBanned eq true}" />
+					<h:panelGroup layout="block" styleClass="disabledFileds"
+						rendered="#{userPhdEducation.user.academicsBanned eq false}">
+						<h:outputText
+							value="#{userPhdEducation.user.masterDiplomaDate}">
+							<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+						</h:outputText>
+					</h:panelGroup>
+
+					<div id="center">
+						<br />
+
+						<h:commandButton class="button tabMenuButtonStyle "
+							action="#{userPhdEducation.updateUser()}" type="submit"
+							value="#{msgs.save}"
+							rendered="#{userPhdEducation.user.academicsBanned eq true}" />
+					</div>
+				</h:form>
+			</div>
+			<br />
+		</ui:define>
+
+
+	</ui:composition>
+</h:body>
+</h:html>

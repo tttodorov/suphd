@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="layoutPhd.xhtml">
+		<ui:define name="pagePath">
+			<h:outputText value="#{msgs.phdProfile}" />
+		</ui:define>
+		<ui:define name="tabProfile">
+			<h:form>
+
+				<div class="panelGroupCenter ac">
+
+					<h:panelGroup style="display: table-row">
+
+						<h:panelGroup layout="block" styleClass="formsPositionL formBox">
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel class="labelsInputInfo" for="userPhdIdNumberType"
+									value="#{msgs.userPhdIdNumberType}" />
+								<h:selectOneMenu id="userPhdIdNumberType"
+									styleClass="inputTextFormat"
+									value="#{userPhdCitizenship.user.personalIdNumberType}"
+									rendered="#{userPhdCitizenship.user.academicsBanned eq true}">
+									<f:selectItem itemValue="0"
+										itemLabel="#{msgs.userPhdIdNumberType}" />
+									<f:selectItem itemValue="ЕГН" itemLabel="#{msgs.PIN}" />
+									<f:selectItem itemValue="ЛНЧ" itemLabel="#{msgs.personalId}" />
+									<f:selectItem itemValue="служебен номер"
+										itemLabel="#{msgs.service}" />
+								</h:selectOneMenu>
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdEducation.user.academicsBanned eq false}">
+									<h:outputText value="#{userPhdCitizenship.user.personalIdNumberType}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel class="labelsInputInfo"
+									for="userPhdIdNumberCountry"
+									value="#{msgs.userPhdIdNumberCountry}" />
+								<p:autoComplete id="userPhdIdNumberCountry"
+									styleClass="inputTextAutocompleateFormat" dropdown="true"
+									value="#{userPhdCitizenship.user.personalIdNumberCountry}"
+									completeMethod="#{userPhdCitizenship.completeCountry}"
+									rendered="#{userPhdCitizenship.user.academicsBanned eq true}">
+								</p:autoComplete>
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdEducation.user.academicsBanned eq false}">
+									<h:outputText
+										value="#{userPhdCitizenship.user.personalIdNumberCountry}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter"
+								style="margin-bottom:70px;">
+								<h:outputLabel class="labelsInputInfo" for="userPhdIdNumber"
+									value="#{msgs.userPhdIdNumber}" />
+								<h:inputText id="userPhdIdNumber" styleClass="inputTextFormat"
+									value="#{userPhdCitizenship.user.personalIdNumber}"
+									rendered="#{userPhdCitizenship.user.academicsBanned eq true}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdEducation.user.academicsBanned eq false}">
+									<h:outputText value="#{userPhdCitizenship.user.personalIdNumber}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="formsPositionR formBox ">
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel class="labelsInputInfo" for="userPhdCitizenship1"
+									value="#{msgs.userPhdCitizenship1}" />
+								<h:inputText id="userPhdCitizenship1"
+									styleClass="inputTextFormat"
+									value="#{userPhdCitizenship.user.personalCitizenship1}"
+									rendered="#{userPhdCitizenship.user.academicsBanned eq true}"
+									disabled="true" />
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdEducation.user.academicsBanned eq false}">
+									<h:outputText value="#{userPhdCitizenship.user.personalCitizenship1}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel class="labelsInputInfo"
+									for="userPhdCitizenship1IdNumber"
+									value="#{msgs.userPhdCitizenship1IdNumber}" />
+								<h:inputText id="userPhdCitizenship1IdNumber"
+									styleClass="inputTextFormat"
+									value="#{userPhdCitizenship.user.personalCitizenship1IdNumber}"
+									rendered="#{userPhdCitizenship.user.academicsBanned eq true}"
+									disabled="true" />
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdEducation.user.academicsBanned eq false}">
+									<h:outputText
+										value="#{userPhdCitizenship.user.personalCitizenship1IdNumber}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel class="labelsInputInfo" for="userPhdCitizenship2"
+									value="#{msgs.userPhdCitizenship2}" />
+								<p:autoComplete id="userPhdCitizenship2"
+									styleClass="inputTextAutocompleateFormat" dropdown="true"
+									value="#{userPhdCitizenship.user.personalCitizenship2}"
+									completeMethod="#{userPhdCitizenship.completeCountry}"
+									rendered="#{userPhdCitizenship.user.academicsBanned eq true}">
+								</p:autoComplete>
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdEducation.user.academicsBanned eq false}">
+									<h:outputText value="#{userPhdCitizenship.user.personalCitizenship2}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel class="labelsInputInfo"
+									for="userPhdCitizenship2IdNumber"
+									value="#{msgs.userPhdCitizenship2IdNumber}" />
+								<h:inputText id="userPhdCitizenship2IdNumber"
+									styleClass="inputTextFormat"
+									value="#{userPhdCitizenship.user.personalCitizenship2IdNumber}"
+									rendered="#{userPhdCitizenship.user.academicsBanned eq true}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdEducation.user.academicsBanned eq false}">
+									<h:outputText
+										value="#{userPhdCitizenship.user.personalCitizenship2IdNumber}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+						</h:panelGroup>
+
+
+						<h:panelGroup layout="block" styleClass="formsPositionL formBox"
+							style="visibility: hidden;">
+							<h:panelGrid>
+								<h:outputLabel class="labelsInputInfo" />
+								<h:inputText styleClass="inputTextFormat" />
+							</h:panelGrid>
+						</h:panelGroup>
+
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="tr ac db"
+						style="margin-top:10px;">
+						<h:commandButton class="button tabMenuButtonStyle"
+							rendered="#{userPhdCitizenship.user.academicsBanned eq true}"
+							action="#{userPhdCitizenship.updateUser()}" type="submit"
+							value="#{msgs.save}" />
+					</h:panelGroup>
+
+				</div>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

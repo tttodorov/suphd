@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="layoutPhd.xhtml">
+		<ui:define name="pagePath">
+			<h:outputText value="#{msgs.phdProfile}" />
+		</ui:define>
+		<ui:define name="tabProfile">
+			<h:form class="panelGroupCenter">
+				<div class="panelGroupCenter">
+
+					<h:panelGroup styleClass="tr">
+
+						<h:panelGroup layout="block" styleClass="formsPositionL formBox">
+
+							<h:panelGrid layout="block" style="visibility: hidden;">
+								<h:inputText styleClass="inputTextFormatHidden" />
+							</h:panelGrid>
+
+							<h:panelGrid style="margin-top:-40px;"
+								styleClass="checkboxCenter">
+
+								<h:panelGrid>
+									<h:outputLabel styleClass="labelsInputInfo"
+										for="countryOfCompletedMaster"
+										value="#{msgs.countryOfCompletedMaster}" />
+									<p:autoComplete id="countryOfCompletedMaster"
+										styleClass="inputTextAutocompleateFormat" dropdown="true"
+										value="#{userPhdEducation.user.masterCountry}"
+										completeMethod="#{userPhdEducation.completeCountry}"
+										rendered="#{userPhdEducation.user.academicsBanned eq true}">
+									</p:autoComplete>
+									<h:panelGroup layout="block" styleClass="disabledFileds"
+										rendered="#{userPhdEducation.user.academicsBanned eq false}">
+										<h:outputText
+											value="#{userPhdEducation.user.masterCountry}" />
+									</h:panelGroup>
+								</h:panelGrid>
+
+								<h:panelGrid>
+									<h:outputLabel styleClass="labelsInputInfo"
+										for="cityOfCompletedMaster"
+										value="#{msgs.cityOfCompletedMaster}" />
+									<p:autoComplete id="cityOfCompletedMaster"
+										styleClass="inputTextAutocompleateFormat" dropdown="true"
+										value="#{userPhdEducation.user.masterCity}"
+										completeMethod="#{userPhdEducation.completeCity}"
+										rendered="#{userPhdEducation.user.academicsBanned eq true}">
+									</p:autoComplete>
+									<h:panelGroup layout="block" styleClass="disabledFileds"
+										rendered="#{userPhdEducation.user.academicsBanned eq false}">
+										<h:outputText
+											value="#{userPhdEducation.user.masterCity}" />
+									</h:panelGroup>
+								</h:panelGrid>
+
+								<h:panelGrid>
+									<h:outputLabel styleClass="labelsInputInfo "
+										for="universityOfCompletedMaster"
+										value="#{msgs.universityOfCompletedMaster}" />
+									<p:autoComplete id="universityOfCompletedMaster"
+										styleClass="inputTextAutocompleateFormat" dropdown="true"
+										value="#{userPhdEducation.user.masterUniversityName}"
+										completeMethod="#{userPhdEducation.completeUniversity}"
+										rendered="#{userPhdEducation.user.academicsBanned eq true}">
+									</p:autoComplete>
+									<h:panelGroup layout="block" styleClass="disabledFileds"
+										rendered="#{userPhdEducation.user.academicsBanned eq false}">
+										<h:outputText
+											value="#{userPhdEducation.user.masterUniversityName}" />
+									</h:panelGroup>
+								</h:panelGrid>
+
+							</h:panelGrid>
+
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="formsPositionR formBox">
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="acquiredSpecialtyOfMasters"
+									value="#{msgs.acquiredSpecialtyOfMasters}" />
+								<h:inputText id="acquiredSpecialtyOfMasters"
+									styleClass="inputTextFormat"
+									value="#{userPhdEducation.user.masterSpeciality}"
+									rendered="#{userPhdEducation.user.academicsBanned eq true}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdEducation.user.academicsBanned eq false}">
+									<h:outputText
+										value="#{userPhdEducation.user.masterSpeciality}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="numberOfDegreeOfMaster"
+									value="#{msgs.numberOfDegreeOfMaster}" />
+								<h:inputText id="numberOfDegreeOfMaster"
+									styleClass="inputTextFormat"
+									value="#{userPhdEducation.user.masterDiplomaNumber}"
+									rendered="#{userPhdEducation.user.academicsBanned eq true}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdEducation.user.academicsBanned eq false}">
+									<h:outputText
+										value="#{userPhdEducation.user.masterDiplomaNumber}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid style="margin-bottom:30px;"
+								styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="dateOfCompletionOfTheMaster"
+									value="#{msgs.dateOfCompletionOfTheMaster}" />
+								<p:calendar id="dateOfCompletionOfTheMaster" locale="ru"
+									navigator="true" pattern="dd-mm-yyyy"
+									value="#{userPhdEducation.user.masterDiplomaDate}"
+									rendered="#{userPhdEducation.user.academicsBanned eq true}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdEducation.user.academicsBanned eq false}">
+									<h:outputText
+										value="#{userPhdEducation.user.masterDiplomaDate}">
+										<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+									</h:outputText>
+								</h:panelGroup>
+							</h:panelGrid>
+
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="formsPositionL"
+							style="visibility: hidden;">
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo" />
+								<h:inputText styleClass="inputTextFormat" />
+							</h:panelGrid>
+						</h:panelGroup>
+
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="tr ac db"
+						style="margin-top:10px;">
+						<h:commandButton class="button tabMenuButtonStyle "
+							rendered="#{userPhdEducation.user.academicsBanned eq true}"
+							action="#{userPhdEducation.updateUser()}" type="submit"
+							value="#{msgs.save}" />
+					</h:panelGroup>
+				</div>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

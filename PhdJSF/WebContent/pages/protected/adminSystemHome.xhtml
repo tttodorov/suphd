@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="../layout.xhtml">
+		<h:messages layout="table" errorStyle="background: red;"
+			infoStyle="background: #AFEEEE;" globalOnly="true" />
+
+		<!-- Content -->
+		<ui:define name="tab">
+			<p:panel styleClass="pageTitle ac">
+				<h2>
+					<h:form>
+						<span class="fl"> <h:commandLink
+								action="#{navigation.moveToSelectRole()}"
+								value="#{msgs.pageTitleSelectRole}" styleClass="mainMenuButtonStyle" />
+						</span>
+						<span class="fl delimiter">/</span>
+						<span class="fl">#{msgs.pageTitleAdminSystemHome}</span>
+					</h:form>
+				</h2>
+			</p:panel>
+			<br />
+			<h:form>
+				<div style="overflow: auto;">
+					<div
+						style="width: 1600px; margin-left: auto; margin-right: auto; text-align: center">
+						<p:dataTable id="allUsers" styleClass="allUsers" var="user"
+							value="#{adminSystemHome.listAllUsers}" rows="10"
+							paginator="true" widgetVar="usersTable"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}">
+
+							<f:facet name="header">
+								<p:outputPanel styleClass="al">
+									<h:outputText value="#{msgs.listAllUsers}:&nbsp;#{msgs.adminSystemHomeSearchAllFields}&nbsp;" />
+									<p:inputText id="globalFilter"
+										onkeyup="PF('usersTable').filter()" style="width:200px"
+										placeholder="#{msgs.adminSystemHomeSearchPlaceholder}" />
+									<p:inputText id="globalFilter2" styleClass="fr"
+										onkeyup="PF('usersTable').filter()" style="width:200px"
+										placeholder="#{msgs.adminSystemHomeSearchPlaceholder}" />
+									<h:outputText styleClass="fr"
+										value="#{msgs.adminSystemHomeSearchAllFields}:&nbsp;" />
+								</p:outputPanel>
+							</f:facet>
+
+							<f:facet name="{Exporters}">
+								&nbsp;
+								<h:commandLink>
+									<p:outputLabel>#{msgs.exportXls}</p:outputLabel>
+									<p:dataExporter type="csv" target="allUsers" fileName="users" />
+								</h:commandLink>
+								&nbsp;
+								<h:commandLink>
+									<p:graphicImage name="/images/icons/xls.png" />
+									<p:dataExporter type="csv" target="allUsers" fileName="users" />
+								</h:commandLink>
+							</f:facet>
+
+							<p:column filterBy="#{user.profileUsername}" filterMatchMode="contains"
+								headerText="#{msgs.user}" sortBy="#{user.profileUsername}">
+								<h:outputText style="text-align:left" class="tableFont"
+									value="#{user.profileUsername}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{user.personalNameFirst},#{user.personalNameSecond},#{user.personalNameThird}"
+								filterMatchMode="contains" headerText="#{msgs.name}"
+								style="text-align:center; width:250px"
+								sortBy="#{user.personalNameFirst}">
+								<h:button styleClass="tableFontLink"
+									value="#{user.personalNameFirst} #{user.personalNameSecond} #{user.personalNameThird}"
+									outcome="#{navigation.moveToAdminSystemEditUser()}">
+									<f:param name="userId" value="#{user.id}" />
+								</h:button>
+							</p:column>
+
+							<p:column filterBy="#{user.roleAdmin}"
+								headerText="#{msgs.administratorSystem}" sortBy="#{user.roleAdmin}"
+								filterMatchMode="equals">
+								<f:facet name="filter">
+									<p:selectOneButton onchange="PF('usersTable').filter()">
+										<f:converter converterId="javax.faces.Boolean" />
+										<f:selectItem itemLabel="#{msgs.btnAll}" itemValue="" />
+										<f:selectItem itemLabel="#{msgs.btnYes}" itemValue="true" />
+										<f:selectItem itemLabel="#{msgs.btnNo}" itemValue="false" />
+									</p:selectOneButton>
+								</f:facet>
+								<h:outputText value="#{user.roleAdmin ? msgs.btnYes : msgs.btnNo}" />
+							</p:column>
+
+							<p:column filterBy="#{user.roleAdminUniversity}"
+								headerText="#{msgs.administratorUniversity}"
+								sortBy="#{user.roleAdminUniversity}" filterMatchMode="equals">
+								<f:facet name="filter">
+									<p:selectOneButton onchange="PF('usersTable').filter()">
+										<f:converter converterId="javax.faces.Boolean" />
+										<f:selectItem itemLabel="#{msgs.btnAll}" itemValue="" />
+										<f:selectItem itemLabel="#{msgs.btnYes}" itemValue="true" />
+										<f:selectItem itemLabel="#{msgs.btnNo}" itemValue="false" />
+									</p:selectOneButton>
+								</f:facet>
+								<h:outputText
+									value="#{user.roleAdminUniversity ? msgs.btnYes : msgs.btnNo}" />
+							</p:column>
+
+							<p:column filterBy="#{user.roleInspectorFaculty}"
+								headerText="#{msgs.inspectorFaculty}"
+								sortBy="#{user.roleInspectorFaculty}" filterMatchMode="equals">
+								<f:facet name="filter">
+									<p:selectOneButton onchange="PF('usersTable').filter()">
+										<f:converter converterId="javax.faces.Boolean" />
+										<f:selectItem itemLabel="#{msgs.btnAll}" itemValue="" />
+										<f:selectItem itemLabel="#{msgs.btnYes}" itemValue="true" />
+										<f:selectItem itemLabel="#{msgs.btnNo}" itemValue="false" />
+									</p:selectOneButton>
+								</f:facet>
+								<h:outputText
+									value="#{user.roleInspectorFaculty ? msgs.btnYes : msgs.btnNo}" />
+							</p:column>
+
+							<p:column filterBy="#{user.roleInspectorScholarships}"
+								headerText="#{msgs.inspectorScholarships}"
+								sortBy="#{user.roleInspectorScholarships}" filterMatchMode="equals">
+								<f:facet name="filter">
+									<p:selectOneButton onchange="PF('usersTable').filter()">
+										<f:converter converterId="javax.faces.Boolean" />
+										<f:selectItem itemLabel="#{msgs.btnAll}" itemValue="" />
+										<f:selectItem itemLabel="#{msgs.btnYes}" itemValue="true" />
+										<f:selectItem itemLabel="#{msgs.btnNo}" itemValue="false" />
+									</p:selectOneButton>
+								</f:facet>
+								<h:outputText
+									value="#{user.roleInspectorScholarships ? msgs.btnYes : msgs.btnNo}" />
+							</p:column>
+
+							<p:column filterBy="#{user.roleInspectorHostel}"
+								headerText="#{msgs.inspectorHostel}"
+								sortBy="#{user.roleInspectorHostel}" filterMatchMode="equals">
+								<f:facet name="filter">
+									<p:selectOneButton onchange="PF('usersTable').filter()">
+										<f:converter converterId="javax.faces.Boolean" />
+										<f:selectItem itemLabel="#{msgs.btnAll}" itemValue="" />
+										<f:selectItem itemLabel="#{msgs.btnYes}" itemValue="true" />
+										<f:selectItem itemLabel="#{msgs.btnNo}" itemValue="false" />
+									</p:selectOneButton>
+								</f:facet>
+								<h:outputText
+									value="#{user.roleInspectorHostel ? msgs.btnYes : msgs.btnNo}" />
+							</p:column>
+
+							<p:column filterBy="#{msgs.supervisor}"
+								headerText="#{msgs.supervisor}" sortBy="#{user.roleSupervisor}"
+								filterMatchMode="equals">
+								<f:facet name="filter">
+									<p:selectOneButton onchange="PF('usersTable').filter()">
+										<f:converter converterId="javax.faces.Boolean" />
+										<f:selectItem itemLabel="#{msgs.btnAll}" itemValue="" />
+										<f:selectItem itemLabel="#{msgs.btnYes}" itemValue="true" />
+										<f:selectItem itemLabel="#{msgs.btnNo}" itemValue="false" />
+									</p:selectOneButton>
+								</f:facet>
+								<h:outputText
+									value="#{user.roleSupervisor ? msgs.btnYes : msgs.btnNo}" />
+							</p:column>
+
+							<p:column filterBy="#{user.rolePhd}" headerText="#{msgs.phd}"
+								sortBy="#{user.rolePhd}" filterMatchMode="equals">
+								<f:facet name="filter">
+									<p:selectOneButton onchange="PF('usersTable').filter()">
+										<f:converter converterId="javax.faces.Boolean" />
+										<f:selectItem itemLabel="#{msgs.btnAll}" itemValue="" />
+										<f:selectItem itemLabel="#{msgs.btnYes}" itemValue="true" />
+										<f:selectItem itemLabel="#{msgs.btnNo}" itemValue="false" />
+									</p:selectOneButton>
+								</f:facet>
+								<h:outputText value="#{user.rolePhd ? msgs.btnYes : msgs.btnNo}" />
+							</p:column>
+						</p:dataTable>
+					</div>
+				</div>
+
+				<h3 style="margin-top: 20px;">
+					#{msgs.exportPageDataOnly}
+					<h:commandLink>
+						<p:graphicImage name="/images/icons/xls.png" />
+						<p:dataExporter type="csv" target="allUsers" fileName="users"
+							pageOnly="true" />
+					</h:commandLink>
+				</h3>
+
+				<div id="center">
+					<br />
+					<h:commandButton class="button tabMenuButtonStyle "
+						action="#{navigation.moveToAdminSystemEditUser()}"
+						value="#{msgs.createNewUser}" />
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

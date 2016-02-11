@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="../layout.xhtml">
+		<ui:define name="logout"></ui:define>
+
+		<ui:define name="profilePicture"></ui:define>
+
+		<!-- MENUS -->
+		<ui:define name="menu">
+			<ul class="mainMenuLine">
+				<h:commandButton action="#{help.moveToLoginPage()}"
+					value="#{msgs.home}" styleClass="mainMenuButtonStyle"
+					style="position: absolute; right:13%; border-left:1px solid black;"
+					rendered="#{auth.user.id == null}" >
+				</h:commandButton>
+				<h:commandButton action="#{help.moveToSelectRolePage()}"
+					value="#{msgs.home}" styleClass="mainMenuButtonStyle"
+					style="position: absolute; right:13%; border-left:1px solid black;"
+					rendered="#{auth.user.id != null}" >
+				</h:commandButton>
+			</ul>
+		</ui:define>
+
+		<!-- Content -->
+		<ui:define name="tab">
+			<div class="textBox ac">#{msgs.helpInfoBox1}</div>
+			<div class="textBox al">&nbsp; &nbsp; &nbsp;
+				#{msgs.helpInfoBox2}</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

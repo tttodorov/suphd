@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="layoutFacultyProfilePhd.xhtml">
+		<ui:define name="tabProfile">
+			<div class="ac" style="overflow: hidden;">
+
+
+				<!-- The Form -->
+
+				<div id="wrapper" class="main-login_1" style="overflow: hidden;">
+					<h:form class="form ac">
+
+						<h:outputLabel styleClass="labelsInputInfo" for="userPhdNameFirst"
+							value="#{msgs.userPhdNameFirst}" />
+						<h:inputText id="userPhdNameFirst"
+							value="#{userPhdPersonalData.user.personalNameFirst}"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq true}" />
+						<h:panelGroup layout="block" styleClass="disabledFileds"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq false}">
+							<h:outputText value="#{userPhdPersonalData.user.personalNameFirst}" />
+						</h:panelGroup>
+						<br />
+
+						<h:outputLabel styleClass="labelsInputInfo" for="userPhdNameFirstLatin"
+							value="#{msgs.userPhdNameFirstLatin}" />
+						<h:inputText id="userPhdNameFirstLatin"
+							value="#{userPhdPersonalData.user.personalNameFirstLatin}"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq true}" />
+						<h:panelGroup layout="block" styleClass="disabledFileds"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq false}">
+							<h:outputText value="#{userPhdPersonalData.user.personalNameFirstLatin}" />
+						</h:panelGroup>
+						<br />
+
+						<h:outputLabel styleClass="labelsInputInfo" for="userPhdNameSecond"
+							value="#{msgs.userPhdNameSecond}" />
+						<h:inputText id="userPhdNameSecond"
+							value="#{userPhdPersonalData.user.personalNameSecond}"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq true}" />
+						<h:panelGroup layout="block" styleClass="disabledFileds"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq false}">
+							<h:outputText value="#{userPhdPersonalData.user.personalNameSecond}" />
+						</h:panelGroup>
+						<br />
+
+						<h:outputLabel styleClass="labelsInputInfo" for="userPhdNameSecondLatin"
+							value="#{msgs.userPhdNameSecondLatin}" />
+						<h:inputText id="userPhdNameSecondLatin"
+							value="#{userPhdPersonalData.user.personalNameSecondLatin}"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq true}" />
+						<h:panelGroup layout="block" styleClass="disabledFileds"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq false}">
+							<h:outputText value="#{userPhdPersonalData.user.personalNameSecondLatin}" />
+						</h:panelGroup>
+						<br />
+
+						<h:outputLabel styleClass="labelsInputInfo" for="userPhdNameThird"
+							value="#{msgs.userPhdNameThird}" />
+						<h:inputText id="userPhdNameThird"
+							value="#{userPhdPersonalData.user.personalNameThird}"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq true}" />
+						<h:panelGroup layout="block" styleClass="disabledFileds"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq false}">
+							<h:outputText value="#{userPhdPersonalData.user.personalNameThird}" />
+						</h:panelGroup>
+						<br />
+
+						<h:outputLabel styleClass="labelsInputInfo" for="userPhdNameThirdLatin"
+							value="#{msgs.userPhdNameThirdLatin}" />
+						<h:inputText id="userPhdNameThirdLatin"
+							value="#{userPhdPersonalData.user.personalNameThirdLatin}"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq true}" />
+						<h:panelGroup layout="block" styleClass="disabledFileds"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq false}">
+							<h:outputText value="#{userPhdPersonalData.user.personalNameThirdLatin}" />
+						</h:panelGroup>
+						<br />
+
+						<h:outputLabel styleClass="labelsInputInfo" for="userPhdNameOther"
+							value="#{msgs.userPhdNameOther}" />
+						<h:inputText id="userPhdNameOther"
+							value="#{userPhdPersonalData.user.personalNameOther}"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq true}" />
+						<h:panelGroup layout="block" styleClass="disabledFileds"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq false}">
+							<h:outputText value="#{userPhdPersonalData.user.personalNameOther}" />
+						</h:panelGroup>
+						<br />
+
+						<h:outputLabel styleClass="labelsInputInfo" for="userPhdNameOtherLatin"
+							value="#{msgs.userPhdNameOtherLatin}" />
+						<h:inputText id="userPhdNameOtherLatin"
+							value="#{userPhdPersonalData.user.personalNameOtherLatin}"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq true}" />
+						<h:panelGroup layout="block" styleClass="disabledFileds"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq false}">
+							<h:outputText value="#{userPhdPersonalData.user.personalNameOtherLatin}" />
+						</h:panelGroup>
+						<br />
+
+						<h:outputLabel styleClass="labelsInputInfo" for="userPhdGender" value="#{msgs.userPhdGender}" />
+						<h:selectOneMenu id="userPhdGender"
+							value="#{userPhdPersonalData.user.personalGender}"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq true}">
+							<f:selectItem itemValue="0" itemLabel="#{msgs.userPhdGender}" />
+							<f:selectItem itemValue="1" itemLabel="#{msgs.man}" />
+							<f:selectItem itemValue="2" itemLabel="#{msgs.woman}" />
+						</h:selectOneMenu>
+						<h:panelGroup layout="block" styleClass="disabledFileds"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq false}">
+							<h:outputText value="#{userPhdPersonalData.user.personalGender}" />
+						</h:panelGroup>
+						<br />
+
+						<h:outputLabel styleClass="labelsInputInfo" for="userPhdBirthCountry"
+							value="#{msgs.userPhdBirthCountry}" />
+						<h:selectOneMenu id="userPhdBirthCountry"
+							value="#{userPhdPersonalData.user.personalBirthCountry}"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq true}">
+							<f:selectItem itemValue="0" itemLabel="#{msgs.selectCountry}" />
+							<f:selectItem itemValue="1" itemLabel="България" />
+							<f:selectItem itemValue="2" itemLabel="друга" />
+						</h:selectOneMenu>
+						<h:panelGroup layout="block" styleClass="disabledFileds"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq false}">
+							<h:outputText value="#{userPhdPersonalData.user.personalBirthCountry}" />
+						</h:panelGroup>
+						<br />
+
+						<h:outputLabel styleClass="labelsInputInfo" for="userPhdBirthCity"
+							value="#{msgs.userPhdBirthCity}" />
+						<h:inputText id="userPhdBirthCity"
+							value="#{userPhdPersonalData.user.personalBirthCity}"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq true}" />
+						<h:panelGroup layout="block" styleClass="disabledFileds"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq false}">
+							<h:outputText value="#{userPhdPersonalData.user.personalBirthCity}" />
+						</h:panelGroup>
+						<br />
+
+						<h:outputLabel styleClass="labelsInputInfo" for="userPhdBirthDate"
+							value="#{msgs.userPhdBirthDate}" />
+						<p:calendar id="userPhdBirthDate" locale="bg" effect="explode"
+							navigator="true" pattern="dd-mm-yyyy"
+							value="#{userPhdPersonalData.user.personalBirthDate}"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq true}" />
+						<h:panelGroup layout="block" styleClass="disabledFileds"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq false}">
+							<h:outputText value="#{userPhdPersonalData.user.personalBirthDate}">
+								<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+							</h:outputText>
+						</h:panelGroup>
+						<br />
+
+						<div id="center">
+
+							<h:commandButton class="button tabMenuButtonStyle"
+								action="#{userPhdPersonalData.updateUser()}" type="submit"
+								value="#{msgs.save}"
+								rendered="#{userPhdPersonalData.user.academicsBanned eq true}" />
+						</div>
+					</h:form>
+					<br />
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

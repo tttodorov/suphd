@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="../layout.xhtml">
+		<h:messages layout="table" errorStyle="background: red;"
+			infoStyle="background: #AFEEEE;" globalOnly="true" />
+
+		<!-- Content -->
+		<ui:define name="tab">
+			<p:panel styleClass="pageTitle ac">
+				<h2>
+					<h:form rendered="#{adminUniversityHome.user.roleAdminUniversity}">
+						<span class="fl"> <h:commandLink
+								action="#{navigation.moveToSelectRole()}"
+								value="#{msgs.pageTitleSelectRole}"
+								styleClass="mainMenuButtonStyle" />
+						</span>
+						<span class="fl delimiter">/</span>
+						<span class="fl"> <h:commandLink
+								action="#{navigation.moveToAdminUniversityHome()}"
+								value="#{msgs.administratorUniversity}"
+								styleClass="mainMenuButtonStyle dropdownWidth" />
+						</span>
+						<span class="fl delimiter">/</span>
+						<span class="fl">#{msgs.pageTitleAdminUniversityReports}</span>
+					</h:form>
+				</h2>
+			</p:panel>
+			<br />
+			<h:form>
+				<div class="center">
+					<h:commandButton styleClass="button tabMenuButtonStyle"
+						action="#{adminUniversityReports.generateReportMes()}"
+						value="#{msgs.reportMesUpdate}" />
+				</div>
+				<div class="center">
+					<h:outputLink target="_blank"
+						styleClass="button tabMenuButtonStyle"
+						value="#{navigation.redirectToRoot()}/files/#{adminUniversityReports.universityCode}_#{adminUniversityReports.year}_#{adminUniversityReports.term}_PhD.txt">#{msgs.reportMesTxt}</h:outputLink>
+				</div>
+				<div class="center">
+					<h:commandButton styleClass="button tabMenuButtonStyle"
+						action="#{navigation.moveToAdminUniversityReportMesExcel()}"
+						value="#{msgs.reportMesExcel}" />
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="layoutPhd.xhtml">
+
+		<ui:define name="tabmenu">
+		</ui:define>
+
+		<ui:define name="pagePath">
+			<h:outputText value="#{msgs.links}" />
+		</ui:define>
+
+		<ui:define name="tab">
+			<div class="links">
+				<h:outputLink
+					value="https://www.uni-sofia.bg/index.php/bul/content/download/54350/453322/version/6/file/PUDSU+2014+04.pdf">
+					<h:outputText styleClass="links" value="#{msgs.rules}" />
+				</h:outputLink>
+				
+				<h:outputLink
+					value="https://www.uni-sofia.bg/index.php/bul/studenti/administrativno_obsluzhvane/zdravno_osiguryavane">
+					<h:outputText styleClass="links" value="#{msgs.healthInsurance}" />
+				</h:outputLink>
+
+				<h:outputLink
+					value="https://www.uni-sofia.bg/index.php/bul/studenti/uchebni_proceduri_i_srokove/prek_svane_na_obuchenieto">
+					<h:outputText styleClass="links" value="#{msgs.interruptionOfStudies}" />
+				</h:outputLink>
+
+				<h:outputLink value="">
+					<h:outputText styleClass="links" value="#{msgs.maritalName}" />
+				</h:outputLink>
+
+				<h:outputLink
+					value="https://inetdec.nra.bg/index.html#/goto:rep.HealthStatus.home">
+					<h:outputText styleClass="links" value="#{msgs.documentSamples}" />
+				</h:outputLink>
+
+				<h:outputLink
+					value="https://www.uni-sofia.bg/index.php/bul/universitet_t/administraciya/otdel_obschestveni_por_chki/obschestveni_por_chki_dogovori">
+					<h:outputText styleClass="links" value="#{msgs.contractsForProcurement}" />
+				</h:outputLink>
+
+				<h:outputLink value="">
+					<h:outputText styleClass="links" value="#{msgs.protocolExamPhD}" />
+				</h:outputLink>
+
+				<h:outputLink value="">
+					<h:outputText styleClass="links" value="#{msgs.examDatesForLanguage}" />
+				</h:outputLink>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

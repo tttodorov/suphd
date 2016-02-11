@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="./adminUniversityEditPhdLayout.xhtml">
+		<h:messages layout="table" errorStyle="background: red;"
+			infoStyle="background: #AFEEEE;" globalOnly="true" />
+
+		<!-- Edit Phd Content -->
+		<ui:define name="tabEditPhd">
+			<h:form>
+				<div class="panelGroupCenter">
+					<h:panelGroup styleClass="tr">
+						<h:panelGroup styleClass="formsPositionL formBox">
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="specialityTheme" class="labelsInputInfo "
+									value="#{msgs.specialityTheme}" />
+								<h:inputText id="specialityTheme" styleClass="inputTextFormat"
+									value="#{adminUniversityEditPhd.user.academicsSpecialityTheme}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="reasonForAcc" styleClass="labelsInputInfo"
+									value="#{msgs.reasonForAcception}" />
+								<p:autoComplete id="reasonForAcc"
+									value="#{adminUniversityEditPhd.educationReasonForAcc}"
+									completeMethod="#{adminUniversityEditPhd.completeEducationReasonForAcc}"
+									var="mes" itemLabel="#{mes.mesName}" itemValue="#{mes}"
+									converter="educationReasonForAccConverter" forceSelection="true"
+									dropdown="true" styleClass="inputTextAutocompleateFormat"
+									placeholder="#{mesService.getEducationReasonForAccNameById(adminUniversityEditPhd.user.academicsReasonsForAcc)}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="duration" styleClass="labelsInputInfo"
+									value="#{msgs.educationDuration}" />
+								<p:autoComplete id="duration"
+									value="#{adminUniversityEditPhd.educationDuration}"
+									completeMethod="#{adminUniversityEditPhd.completeEducationDuration}"
+									var="mes" itemLabel="#{mes.mesName}" itemValue="#{mes}"
+									converter="educationDurationConverter" forceSelection="true"
+									dropdown="true" styleClass="inputTextAutocompleateFormat"
+									placeholder="#{mesService.getEducationDurationNameById(adminUniversityEditPhd.user.academicsDuration)}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="formOfTraining" class="labelsInputInfo"
+									value="#{msgs.formOfTraining}" />
+								<p:autoComplete id="formOfTraining"
+									value="#{adminUniversityEditPhd.educationForm}"
+									completeMethod="#{adminUniversityEditPhd.completeEducationForm}"
+									var="mes" itemLabel="#{mes.mesName}" itemValue="#{mes}"
+									converter="educationFormConverter" forceSelection="true"
+									dropdown="true" styleClass="inputTextAutocompleateFormat"
+									placeholder="#{mesService.getEducationFormNameById(adminUniversityEditPhd.user.academicsForm)}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="typeOfPayment" class="labelsInputInfo"
+									value="#{msgs.typeOfPayment}" />
+								<p:autoComplete id="typeOfPayment"
+									value="#{adminUniversityEditPhd.educationPayment}"
+									completeMethod="#{adminUniversityEditPhd.completeEducationPayment}"
+									var="mes" itemLabel="#{mes.mesName}" itemValue="#{mes}"
+									converter="educationPaymentConverter" forceSelection="true"
+									dropdown="true" styleClass="inputTextAutocompleateFormat"
+									placeholder="#{mesService.getEducationPaymentNameById(adminUniversityEditPhd.user.academicsPayment)}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="course" class="labelsInputInfo"
+									value="#{msgs.phdCourse}" />
+								<p:autoComplete id="course"
+									value="#{adminUniversityEditPhd.suClass}"
+									completeMethod="#{adminUniversityEditPhd.completeSuClass}"
+									var="mes" itemLabel="#{mes.mesName}" itemValue="#{mes}"
+									converter="suClassConverter" forceSelection="true"
+									dropdown="true" styleClass="inputTextAutocompleateFormat"
+									placeholder="#{mesService.getSuClassNameById(adminUniversityEditPhd.user.academicsCourse)}" />
+							</h:panelGrid>
+						</h:panelGroup>
+						<h:panelGroup styleClass="formsPositionR formBox ">
+							<h:panelGrid styleClass="checkboxCenter"
+								style="color: #163358; border-bottom: 2px solid #163358; margin-bottom: 20px;">
+								<h2 style="text-transform: capitalize;">#{msgs.enrollment}</h2>
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="yearOfAdmission" class="labelsInputInfo" style="text-transform: capitalize;"
+									value="#{msgs.orderDate}" />
+								<p:calendar id="yearOfAdmission" styleClass="inputTextFormat"
+									style="border: none; box-shadow:none; padding: 0px;"
+									value="#{adminUniversityEditPhd.user.academicsYearOfAdmission}"
+									navigator="true" pattern="dd.MM.yyyy" />
+								<br />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter"
+								style="margin-bottom:15px;">
+								<h:outputLabel for="calendarYearOfAdmission"
+									class="labelsInputInfo" value="#{msgs.enrollmentStartDate}" />
+								<p:calendar id="calendarYearOfAdmission"
+									styleClass="inputTextFormat"
+									style="border: none; box-shadow:none; padding: 0px;"
+									value="#{adminUniversityEditPhd.user.academicsCalendarYearOfAdmission}"
+									navigator="true" pattern="dd.MM.yyyy" />
+							</h:panelGrid>
+						</h:panelGroup>
+						<h:panelGroup styleClass="formsPositionR formBox ">
+							<h:panelGrid styleClass="checkboxCenter"
+								style="color: #163358; border-bottom: 2px solid #163358; margin-bottom: 20px;">
+								<h2 style="text-transform: capitalize;">#{msgs.deduction}</h2>
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter"
+								style="margin-bottom:33px;">
+								<h:outputLabel for="calendarYearOfGraduation"
+									class="labelsInputInfo" value="#{msgs.deductionDate}" />
+								<p:calendar id="calendarYearOfGraduation"
+									styleClass="inputTextFormat"
+									style="border: none; box-shadow:none; padding: 0px;"
+									value="#{adminUniversityEditPhd.user.academicsYearOfGraduation}"
+									navigator="true" pattern="dd.MM.yyyy" />
+							</h:panelGrid>
+						</h:panelGroup>
+					</h:panelGroup>
+					<h:panelGroup styleClass="tr">
+						<h:panelGroup styleClass="formsPositionL formBox">
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="scholarship" class="labelsInputInfo"
+									value="#{msgs.scholarship}" />
+								<h:selectBooleanCheckbox id="scholarship"
+									styleClass="checkboxCenter"
+									value="#{adminUniversityEditPhd.user.academicsScholarship}" />
+							</h:panelGrid>
+						</h:panelGroup>
+						<h:panelGroup styleClass="formsPositionR formBox">
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="hostel" class="labelsInputInfo"
+									value="#{msgs.hostel}" />
+								<h:panelGroup layout="block">
+									<h:selectBooleanCheckbox id="hostel"
+										styleClass="checkboxCenter"
+										value="#{adminUniversityEditPhd.user.academicsHostel}" />
+								</h:panelGroup>
+							</h:panelGrid>
+						</h:panelGroup>
+						<h:panelGroup styleClass="formsPositionR formBox">
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel for="readyForReportMes" class="labelsInputInfo"
+									value="#{msgs.readyForReportMes}" />
+								<h:panelGroup layout="block">
+									<h:selectBooleanCheckbox id="readyForReportMes"
+										styleClass="checkboxCenter"
+										value="#{adminUniversityEditPhd.user.academicsReadyForReportMes}" />
+								</h:panelGroup>
+							</h:panelGrid>
+						</h:panelGroup>
+					</h:panelGroup>
+					<h:panelGroup styleClass="tr ac db">
+						<h:commandButton class="button tabMenuButtonStyle"
+							action="#{adminUniversityEditPhd.saveUser()}" type="submit"
+							value="#{msgs.save}">
+							<f:param name="userId" value="#{adminUniversityEditPhd.user.id}" />
+						</h:commandButton>
+						<h:commandButton styleClass="button tabMenuButtonStyle"
+							action="#{adminUniversityEditPhd.deleteUser()}" type="submit"
+							value="#{msgs.delete}">
+							<f:param name="userId" value="#{adminUniversityEditPhd.user.id}" />
+						</h:commandButton>
+					</h:panelGroup>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

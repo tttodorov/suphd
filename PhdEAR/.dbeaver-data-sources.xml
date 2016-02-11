@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-sources>
+	<data-source id="postgresql-15076a12f07-73c97f6a1da142be" provider="generic" driver="postgresql" name="PostgreSQL - PhdDB" create-date="1445099312343" save-password="true" show-system-objects="true" read-only="false">
+		<connection host="localhost" port="5432" server="" database="PhdDB" url="jdbc:postgresql://localhost:5432/PhdDB" user="postgres" password="AwsVNEZRQQVl8w==" type="dev">
+			<property name="loginTimeout" value="10"/>
+			<network-handler type="TUNNEL" id="ssh_tunnel" enabled="false" user="" save-password="false">
+				<property name="port" value="22"/>
+				<property name="host" value=""/>
+				<property name="keyPath" value=""/>
+				<property name="authType" value="PASSWORD"/>
+			</network-handler>
+			<network-handler type="PROXY" id="socks_proxy" enabled="false" user="" save-password="false">
+				<property name="socks-host" value=""/>
+				<property name="socks-port" value="1080"/>
+			</network-handler>
+			<bootstrap/>
+		</connection>
+	</data-source>
+	<data-source id="mysql5-15076afaeb6-4a160e6106b817bf" provider="mysql" driver="mysql5" name="MySQL - localhost" create-date="1445100254685" save-password="true" show-system-objects="true" read-only="false">
+		<connection host="localhost" port="3306" server="" database="" url="jdbc:mysql://localhost:3306/" user="root" password="OhRedBQGTC8bR2bf" home="/usr" type="dev">
+			<property name="@dbeaver-ssl@" value="false"/>
+			<network-handler type="TUNNEL" id="ssh_tunnel" enabled="false" user="" save-password="false">
+				<property name="port" value="22"/>
+				<property name="host" value=""/>
+				<property name="keyPath" value=""/>
+				<property name="authType" value="PASSWORD"/>
+			</network-handler>
+			<network-handler type="PROXY" id="socks_proxy" enabled="false" user="" save-password="false">
+				<property name="socks-host" value=""/>
+				<property name="socks-port" value="1080"/>
+			</network-handler>
+			<bootstrap/>
+		</connection>
+	</data-source>
+	<data-source id="msaccess_ucanaccess-15076b04e8b-2b38810b0d72f4d5" provider="generic" driver="msaccess_ucanaccess" name="MS Access - PhdData_be.mdb" create-date="1445100360869" save-password="true" show-system-objects="true" read-only="false">
+		<connection server="" database="/media/ttodorov/storage/projects/phd/controls/20151009/PhdData_be.mdb" url="jdbc:ucanaccess:///media/ttodorov/storage/projects/phd/controls/20151009/PhdData_be.mdb" user="" type="dev">
+			<bootstrap/>
+		</connection>
+	</data-source>
+</data-sources>

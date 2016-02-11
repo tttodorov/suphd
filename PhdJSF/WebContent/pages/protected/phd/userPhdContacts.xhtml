@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="layoutPhd.xhtml">
+		<ui:define name="pagePath">
+			<h:outputText value="#{msgs.phdProfile}" />
+		</ui:define>
+		<ui:define name="tabProfile">
+			<h:form>
+				<h:panelGroup layout="block" class="panelGroupCenter">
+
+					<h:panelGroup styleClass="tr">
+
+						<h:panelGroup styleClass="formsPositionL formBox">
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="userPhdBirthCountry" value="#{msgs.countryOfResidence}" />
+								<p:autoComplete id="userPhdBirthCountry"
+									styleClass="inputTextAutocompleateFormat" dropdown="true"
+									value="#{userPhdContacts.user.personalIdNumberCountry}"
+									completeMethod="#{userPhdContacts.completeCountry}"
+									rendered="#{userPhdContacts.user.academicsBanned eq true}">
+								</p:autoComplete>
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdContacts.user.academicsBanned eq false}">
+									<h:outputText value="#{userPhdContacts.user.personalIdNumberCountry}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo" for="city"
+									value="#{msgs.cityOfResidence}" />
+								<p:autoComplete id="city" dropdown="true"
+									styleClass="inputTextAutocompleateFormat"
+									value="#{userPhdContacts.user.contactCity}"
+									completeMethod="#{userPhdContacts.completeCity}"
+									rendered="#{userPhdContacts.user.academicsBanned eq true}">
+								</p:autoComplete>
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdContacts.user.academicsBanned eq false}">
+									<h:outputText value="#{userPhdContacts.user.contactCity}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="residenceStreet" value="#{msgs.residenceStreet}" />
+								<h:inputText id="residenceStreet" styleClass="inputTextFormat"
+									value="#{userPhdContacts.user.contactStreet}"
+									rendered="#{userPhdContacts.user.academicsBanned eq true}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdContacts.user.academicsBanned eq false}">
+									<h:outputText value="#{userPhdContacts.user.contactStreet}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+
+							<h:panelGroup>
+
+								<h:panelGroup styleClass="threeElementsInline">
+									<h:outputLabel styleClass="labelsInputInfoInline"
+										for="streetNumber" value="#{msgs.streetNumber}" />
+									<h:inputText id="streetNumber"
+										styleClass="inputTextFormatInline"
+										value="#{userPhdContacts.user.contactStreetNumber}"
+										rendered="#{userPhdContacts.user.academicsBanned eq true}" />
+									<h:panelGroup layout="block" styleClass="disabledFiledsInline"
+										rendered="#{userPhdContacts.user.academicsBanned eq false}">
+										<h:outputText value="#{userPhdContacts.user.contactStreetNumber}" />
+									</h:panelGroup>
+								</h:panelGroup>
+
+								<h:panelGroup styleClass="threeElementsInline">
+									<h:outputLabel styleClass="labelsInputInfoInline"
+										for="residenceFloor" value="#{msgs.residenceFloor}" />
+									<h:inputText id="residenceFloor"
+										styleClass="inputTextFormatInline"
+										value="#{userPhdContacts.user.contactFloor}"
+										rendered="#{userPhdContacts.user.academicsBanned eq true}" />
+									<h:panelGroup layout="block" styleClass="disabledFiledsInline"
+										rendered="#{userPhdContacts.user.academicsBanned eq false}">
+										<h:outputText value="#{userPhdContacts.user.contactFloor}" />
+									</h:panelGroup>
+								</h:panelGroup>
+
+								<h:panelGroup styleClass="threeElementsInline">
+									<h:outputLabel styleClass="labelsInputInfoInline"
+										for="residenceApartment" value="#{msgs.residenceApartment}" />
+									<h:inputText id="residenceApartment"
+										styleClass="inputTextFormatInline"
+										value="#{userPhdContacts.user.contactApartment}"
+										rendered="#{userPhdContacts.user.academicsBanned eq true}" />
+									<h:panelGroup layout="block" styleClass="disabledFiledsInline"
+										rendered="#{userPhdContacts.user.academicsBanned eq false}">
+										<h:outputText
+											value="#{userPhdContacts.user.contactApartment}" />
+									</h:panelGroup>
+								</h:panelGroup>
+
+							</h:panelGroup>
+
+						</h:panelGroup>
+						<h:panelGroup styleClass="formsPositionR formBox">
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo" for="email"
+									value="#{msgs.email}" />
+								<h:inputText id="email" styleClass="inputTextFormat"
+									value="#{userPhdContacts.user.profileEmail}"
+									rendered="#{userPhdContacts.user.academicsBanned eq true}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdContacts.user.academicsBanned eq false}">
+									<h:outputText value="#{userPhdContacts.user.profileEmail}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo" for="phone"
+									value="#{msgs.phone}" />
+								<h:inputText id="phone" styleClass="inputTextFormat"
+									value="#{userPhdContacts.user.contactPhone}"
+									rendered="#{userPhdContacts.user.academicsBanned eq true}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdContacts.user.academicsBanned eq false}">
+									<h:outputText value="#{userPhdContacts.user.contactPhone}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo" for="phone2"
+									value="#{msgs.phone2}" />
+								<h:inputText id="phone2" styleClass="inputTextFormat"
+									value="#{userPhdContacts.user.contactPhone2}"
+									rendered="#{userPhdContacts.user.academicsBanned eq true}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdContacts.user.academicsBanned eq false}">
+									<h:outputText value="#{userPhdContacts.user.contactPhone2}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo" for="facebook"
+									value="Facebook" />
+								<h:inputText id="facebook" styleClass="inputTextFormat"
+									value="#{userPhdContacts.user.contactFacebook}"
+									rendered="#{userPhdContacts.user.academicsBanned eq true}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdContacts.user.academicsBanned eq false}">
+									<h:outputText value="#{userPhdContacts.user.contactFacebook}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo" for="twitter"
+									value="Twitter" />
+								<h:inputText id="twitter" styleClass="inputTextFormat"
+									value="#{userPhdContacts.user.contactTwitter}"
+									rendered="#{userPhdContacts.user.academicsBanned eq true}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdContacts.user.academicsBanned eq false}">
+									<h:outputText value="#{userPhdContacts.user.contactTwitter}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo" for="skype"
+									value="Skype" />
+								<h:inputText id="skype" styleClass="inputTextFormat"
+									value="#{userPhdContacts.user.contactSkype}"
+									rendered="#{userPhdContacts.user.academicsBanned eq true}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdContacts.user.academicsBanned eq false}">
+									<h:outputText value="#{userPhdContacts.user.contactSkype}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+						</h:panelGroup>
+
+						<h:panelGroup layout="block"
+							styleClass="formsPositionL checkboxCenter"
+							style="visibility: hidden;">
+							<h:panelGrid>
+								<h:outputLabel styleClass="labelsInputInfo" />
+								<h:inputText styleClass="inputTextFormat" />
+							</h:panelGrid>
+						</h:panelGroup>
+
+					</h:panelGroup>
+
+
+					<h:panelGroup layout="block" styleClass="tr ac db"
+						style="margin-top:10px;">
+						<h:commandButton styleClass="button tabMenuButtonStyle"
+							rendered="#{userPhdContacts.user.academicsBanned eq true}"
+							action="#{userPhdContacts.updateUser()}" type="submit"
+							value="#{msgs.save}" />
+					</h:panelGroup>
+
+				</h:panelGroup>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

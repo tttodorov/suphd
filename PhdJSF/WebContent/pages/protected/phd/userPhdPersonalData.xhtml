@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="layoutPhd.xhtml">
+		<ui:define name="pagePath">
+			<h:outputText value="#{msgs.phdProfile}" />
+		</ui:define>
+		<ui:define name="tabProfile">
+			<h:form>
+				<div class="panelGroupCenter">
+
+					<h:panelGroup styleClass="tr">
+
+						<h:panelGroup styleClass="formsPositionL formBox">
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="userPhdNameFirst" value="#{msgs.userPhdNameFirst}" />
+								<h:inputText id="userPhdNameFirst" styleClass="inputTextFormat"
+									value="#{userPhdPersonalData.user.personalNameFirst}"
+									rendered="#{userPhdPersonalData.user.academicsBanned eq true}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdPersonalData.user.academicsBanned eq false}">
+									<h:outputText value="#{userPhdPersonalData.user.personalNameFirst}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="userPhdNameSecond" value="#{msgs.userPhdNameSecond}" />
+								<h:inputText id="userPhdNameSecond" styleClass="inputTextFormat"
+									value="#{userPhdPersonalData.user.personalNameSecond}"
+									rendered="#{userPhdPersonalData.user.academicsBanned eq true}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdPersonalData.user.academicsBanned eq false}">
+									<h:outputText value="#{userPhdPersonalData.user.personalNameSecond}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="userPhdNameThird" value="#{msgs.userPhdNameThird}" />
+								<h:inputText id="userPhdNameThird" styleClass="inputTextFormat"
+									value="#{userPhdPersonalData.user.personalNameThird}"
+									rendered="#{userPhdPersonalData.user.academicsBanned eq true}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdPersonalData.user.academicsBanned eq false}">
+									<h:outputText value="#{userPhdPersonalData.user.personalNameThird}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="userPhdNameOther" value="#{msgs.userPhdNameOther}" />
+								<h:inputText id="userPhdNameOther" styleClass="inputTextFormat"
+									value="#{userPhdPersonalData.user.personalNameOther}"
+									rendered="#{userPhdPersonalData.user.academicsBanned eq true}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdPersonalData.user.academicsBanned eq false}">
+									<h:outputText value="#{userPhdPersonalData.user.personalNameOther}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+						</h:panelGroup>
+						<h:panelGroup styleClass="formsPositionR formBox">
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="userPhdNameFirstLatin"
+									value="#{msgs.userPhdNameFirstLatin}" />
+								<h:inputText id="userPhdNameFirstLatin"
+									styleClass="inputTextFormat"
+									value="#{userPhdPersonalData.user.personalNameFirstLatin}"
+									rendered="#{userPhdPersonalData.user.academicsBanned eq true}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdPersonalData.user.academicsBanned eq false}">
+									<h:outputText
+										value="#{userPhdPersonalData.user.personalNameFirstLatin}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="userPhdNameSecondLatin"
+									value="#{msgs.userPhdNameSecondLatin}" />
+								<h:inputText id="userPhdNameSecondLatin"
+									styleClass="inputTextFormat"
+									value="#{userPhdPersonalData.user.personalNameSecondLatin}"
+									rendered="#{userPhdPersonalData.user.academicsBanned eq true}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdPersonalData.user.academicsBanned eq false}">
+									<h:outputText
+										value="#{userPhdPersonalData.user.personalNameSecondLatin}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="userPhdNameThirdLatin"
+									value="#{msgs.userPhdNameThirdLatin}" />
+								<h:inputText id="userPhdNameThirdLatin"
+									styleClass="inputTextFormat"
+									value="#{userPhdPersonalData.user.personalNameThirdLatin}"
+									rendered="#{userPhdPersonalData.user.academicsBanned eq true}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdPersonalData.user.academicsBanned eq false}">
+									<h:outputText
+										value="#{userPhdPersonalData.user.personalNameThirdLatin}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="userPhdNameOtherLatin"
+									value="#{msgs.userPhdNameOtherLatin}" />
+								<h:inputText id="userPhdNameOtherLatin"
+									styleClass="inputTextFormat"
+									value="#{userPhdPersonalData.user.personalNameOtherLatin}"
+									rendered="#{userPhdPersonalData.user.academicsBanned eq true}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdPersonalData.user.academicsBanned eq false}">
+									<h:outputText
+										value="#{userPhdPersonalData.user.personalNameOtherLatin}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+						</h:panelGroup>
+						<h:panelGroup styleClass="formsPositionL formBox">
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="userPhdBirthCountry" value="#{msgs.userPhdBirthCountry}" />
+								<p:autoComplete id="userPhdBirthCountry"
+									styleClass="inputTextAutocompleateFormat" dropdown="true"
+									value="#{userPhdPersonalData.user.personalBirthCountry}"
+									completeMethod="#{userPhdPersonalData.completeCountry}"
+									rendered="#{userPhdPersonalData.user.academicsBanned eq true}">
+								</p:autoComplete>
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdPersonalData.user.academicsBanned eq false}">
+									<h:outputText value="#{userPhdPersonalData.user.personalBirthCountry}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="userPhdBirthCity" value="#{msgs.userPhdBirthCity}" />
+								<p:autoComplete id="userPhdBirthCity"
+									styleClass="inputTextAutocompleateFormat" dropdown="true"
+									value="#{userPhdPersonalData.user.personalBirthCity}"
+									completeMethod="#{userPhdPersonalData.completeCity}"
+									rendered="#{userPhdPersonalData.user.academicsBanned eq true}">
+								</p:autoComplete>
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdPersonalData.user.academicsBanned eq false}">
+									<h:outputText value="#{userPhdPersonalData.user.personalBirthCity}" />
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="userPhdBirthDate" value="#{msgs.userPhdBirthDate}" />
+								<p:calendar id="userPhdBirthDate" locale="bg" effect="explode"
+									navigator="true" pattern="dd-mm-yyyy"
+									value="#{userPhdPersonalData.user.personalBirthDate}"
+									rendered="#{userPhdPersonalData.user.academicsBanned eq true}" />
+								<h:panelGroup layout="block" styleClass="disabledFileds"
+									rendered="#{userPhdPersonalData.user.academicsBanned eq false}">
+									<h:outputText value="#{userPhdPersonalData.user.personalBirthDate}">
+										<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+									</h:outputText>
+								</h:panelGroup>
+							</h:panelGrid>
+
+						</h:panelGroup>
+
+						<h:panelGroup styleClass="formsPositionR formBox">
+							<h:panelGroup styleClass="ac">
+								<p:outputLabel styleClass="labelsInputInfo checkboxCenter"
+									for="userPhdGender" value="#{msgs.userPhdGender}:" />
+								<h:selectOneRadio id="userPhdGender"
+									styleClass="labelsInputInfoRadio"
+									value="#{userPhdPersonalData.user.personalGender}"
+									rendered="#{userPhdPersonalData.user.academicsBanned eq true}">
+									<f:selectItem itemValue="1" itemLabel="#{msgs.man}" />
+									<f:selectItem itemValue="2" itemLabel="#{msgs.woman}" />
+								</h:selectOneRadio>
+								<h:panelGroup layout="block"
+									rendered="#{userPhdPersonalData.user.academicsBanned eq false}">
+									<h:panelGroup layout="block" styleClass="fl ">
+										<h:outputLabel class="fl radioInfo " value="#{msgs.man}" />
+										<h:graphicImage value="/resources/images/icons/false.png"
+											rendered="#{userPhdPersonalData.user.personalGender eq 2}" />
+										<h:graphicImage value="/resources/images/icons/true.png"
+											rendered="#{userPhdPersonalData.user.personalGender eq 1}" />
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="fr">
+										<h:outputLabel class="fl radioInfo " value="#{msgs.woman}" />
+										<h:graphicImage value="/resources/images/icons/false.png"
+											rendered="#{userPhdPersonalData.user.personalGender eq 1}" />
+										<h:graphicImage value="/resources/images/icons/true.png"
+											rendered="#{userPhdPersonalData.user.personalGender eq 2}" />
+									</h:panelGroup>
+								</h:panelGroup>
+							</h:panelGroup>
+						</h:panelGroup>
+
+					</h:panelGroup>
+
+					<h:panelGroup id="center" styleClass="tr ac db"
+						style="margin-top:10px;">
+						<h:commandButton styleClass="button tabMenuButtonStyle"
+							action="#{userPhdPersonalData.updateUser()}" type="submit"
+							value="#{msgs.save}"
+							rendered="#{userPhdPersonalData.user.academicsBanned eq true}" />
+					</h:panelGroup>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

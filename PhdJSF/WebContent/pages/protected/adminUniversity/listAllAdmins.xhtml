@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="../../layout.xhtml">
+
+		<ui:define name="pagePath">
+
+			<h:form>
+				<h:outputText value="#{msgs.administratorUniversity} / " />
+				<h:outputText value="#{msgs.listAllAdmins}" />
+			</h:form>
+
+		</ui:define>
+
+		<ui:define name="content">
+			<h:form>
+				<div style="overflow: auto;">
+					<div class="centerTable">
+						<p:dataTable id="tbl" var="user"
+							value="#{adminUniversityListAllAdmins.listAllUserAdmin}"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+							paginator="true" rows="10" style="margin-bottom:20px;"
+							paginatorPosition="bottom">
+
+							<f:facet name="header">
+								<h:outputText value="#{msgs.listAllAdmins}" />
+							</f:facet>
+
+							<f:facet name="{Exporters}">
+								<!-- 						<h:commandLink>
+							<p:graphicImage name="/images/icons/xls.png"  />
+							<p:dataExporter type="xls" target="tbl" fileName="users" />
+						</h:commandLink>
+
+						<h:commandLink>
+							<p:graphicImage name="/images/icons/pdf.png"  />
+							<p:dataExporter type="pdf" target="tbl" fileName="users" />
+						</h:commandLink>
+ -->
+								<h:commandLink>
+									<p:graphicImage name="/images/icons/csv.png" />
+									<p:dataExporter type="csv" target="tbl" fileName="users" />
+								</h:commandLink>
+
+								<h:commandLink>
+									<p:graphicImage name="/images/icons/xml.png" />
+									<p:dataExporter type="xml" target="tbl" fileName="users" />
+								</h:commandLink>
+							</f:facet>
+
+							<p:column style="width:70px;"
+								headerText="#{msgs.userPhdIdNumberType}"
+								sortBy="#{user.personalIdNumberType}">
+								<h:outputText class="tableFont" value="#{user.personalIdNumberType}" />
+							</p:column>
+
+							<p:column sortBy="#{user.personalIdNumber}" style="width:110px"
+								headerText="#{msgs.userPhdIdNumber}">
+								<h:outputText class="tableFont" style="text-align:left"
+									value="#{user.personalIdNumber}" />
+							</p:column>
+
+							<p:column headerText="#{msgs.name}" style="text-align:center"
+								sortBy="#{user.personalNameFirst}">
+								<h:button styleClass="tableFontLink"
+									value="#{user.personalNameFirst} #{user.personalNameSecond} #{user.personalNameThird}"
+									outcome="#{adminUniversityListAllAdmins.moveToProfileAdmin()}">
+									<f:param name="userId" value="#{user.id}" />
+								</h:button>
+							</p:column>
+
+							<p:column style="width:80px" sortBy="#{user.academicsFaculty}"
+								headerText="#{msgs.faculty}">
+								<h:outputText class="tableFont" value="#{user.academicsFaculty}" />
+							</p:column>
+
+						</p:dataTable>
+					</div>
+				</div>
+
+				<h3>#{msgs.exportPageDataOnly}</h3>
+				<!-- 		<h:commandLink>
+					<p:graphicImage  name="/images/icons/xls.png" />
+					<p:dataExporter type="xls" target="tbl" fileName="users"
+						pageOnly="true" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<p:graphicImage  name="/images/icons/pdf.png" />
+					<p:dataExporter type="pdf" target="tbl" fileName="users"
+						pageOnly="true" />
+				</h:commandLink>
+ -->
+				<h:commandLink>
+					<p:graphicImage name="/images/icons/csv.png" />
+					<p:dataExporter type="csv" target="tbl" fileName="users"
+						pageOnly="true" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<p:graphicImage name="/images/icons/xml.png" />
+					<p:dataExporter type="xml" target="tbl" fileName="users"
+						pageOnly="true" />
+				</h:commandLink>
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+</h:body>
+</h:html>

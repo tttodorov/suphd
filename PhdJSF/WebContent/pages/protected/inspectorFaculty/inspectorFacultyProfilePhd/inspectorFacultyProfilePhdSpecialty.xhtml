@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="layoutFacultyProfilePhd.xhtml">
+		<ui:define name="tabProfile">
+			<div id="wrapper" class="main-login_1">
+				<h:form class="ac form">
+
+					<h:outputLabel styleClass="labelsInputInfo" value="#{msgs.faculty}" />
+					<div class="disabledFileds">#{userPhdSpecialty.user.academicsFaculty}</div>
+					<br />
+
+					<h:outputLabel styleClass="labelsInputInfo" value="#{msgs.department}" />
+					<div class="disabledFileds">
+						#{userPhdSpecialty.user.academicsDepartment}</div>
+					<br />
+
+					<h:outputLabel styleClass="labelsInputInfo" value="#{msgs.codeOfSpecialty}" />
+					<div class="disabledFileds">#{userPhdSpecialty.user.academicsSpeciality}</div>
+					<br />
+
+					<h:outputLabel styleClass="labelsInputInfo" value="#{msgs.codeOfSpecialtyOld}" />
+					<div class="disabledFileds">#{userPhdSpecialty.user.academicsSpecialityNSI}</div>
+					<br />
+
+					<h:outputLabel styleClass="labelsInputInfo" value="#{msgs.phdProgram}" />
+					<div class="disabledFileds">#{userPhdSpecialty.user.academicsInternationalProgram}</div>
+					<br />
+
+					<h:outputLabel styleClass="labelsInputInfo" value="#{msgs.workingLanguage}" />
+					<h:panelGroup layout="block" class="disabledFileds"
+						value="#{userPhdSpecialty.user.academicsWorkingLanguage}" />
+					<br />
+
+					<h:outputLabel styleClass="labelsInputInfo" value="#{msgs.jointDegreeWithAnotherUniversity}" />
+					<h:graphicImage value="/resources/images/icons/false.png"
+						rendered="#{userPhdAcademicData.user.academicsDegreeWithAnotherUniversity eq false}" />
+					<h:graphicImage value="/resources/images/icons/true.png"
+						rendered="#{userPhdAcademicData.user.academicsDegreeWithAnotherUniversity eq true}" />
+					<br />
+					<br />
+
+					<h:outputLabel styleClass="labelsInputInfo" value="#{msgs.newSpecialtyToTheSameExtent}" />
+					<h:graphicImage value="/resources/images/icons/false.png"
+						rendered="#{userPhdAcademicData.user.academicsNewSpecialty eq false}" />
+					<h:graphicImage value="/resources/images/icons/true.png"
+						rendered="#{userPhdAcademicData.user.academicsNewSpecialty eq true}" />
+
+				</h:form>
+			</div>
+			<br />
+			<br />
+			<br />
+		</ui:define>
+
+	</ui:composition>
+</h:body>
+</h:html>
+

@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="../../../layout.xhtml">
+
+		<!-- This is the Second Menu -->
+		<ui:define name="tabmenu">
+
+			<h:outputText class="tabHeaderFont ac"
+				value="#{msgs.administratorUniversity} / #{msgs.listAllPhd} / #{msgs.phdProfile}" />
+			<h:outputText class="tabHeaderFont ac" style="color:red"
+				value="#{user.nameFirst} #{user.nameThird}" />
+
+			<h:form>
+				<div>
+					<div class="content ac" style="padding: 5px; margin-top: 2px;">
+
+						<h:button styleClass="button tabMenuButtonStyle"
+							value="#{msgs.userPhdPersonalData}"
+							outcome="#{adminUniversitLlistAllPhd.moveToProfilePhdPersonalData()}"
+							style=" margin-top:5px; margin-right: 5px; #{userPhdProfile.pageName eq 'adminUniversityProfilePhdPersonalData.xhtml'? 'background:#c6d1d9;color: #20497f; disabled:true ' : ''}">
+							<f:param name="userId"
+								value="#{adminUniversityProfilePhdPersonalData.user.id}" />
+						</h:button>
+						<h:button styleClass="button tabMenuButtonStyle"
+							value="#{msgs.userPhdCitizenship}"
+							outcome="#{layoutAdminUniversityProfilePhd.moveToProfilePhdCitizenship()}"
+							style=" margin-top:5px; margin-right: 5px; #{userPhdProfile.pageName eq 'adminUniversityProfilePhdCitizenship.xhtml'? 'background:#c6d1d9;color: #20497f; disabled:true ' : ''}" >
+							<f:param name="userId"
+								value="#{adminUniversityProfilePhdCitizenship.user.id}" />
+						</h:button>
+						<h:button styleClass="button tabMenuButtonStyle"
+							value="#{msgs.userPhdContacts}"
+							outcome="#{layoutAdminUniversityProfilePhd.moveToProfilePhdContacts()}"
+							style=" margin-top:5px; margin-right: 5px; #{userPhdProfile.pageName eq 'adminUniversityProfilePhdContacts.xhtml'? 'background:#c6d1d9;color: #20497f; disabled:true ' : ''}" >
+							<f:param name="userId"
+								value="#{adminUniversityProfilePhdContacts.user.id}" />
+						</h:button>
+						<h:button styleClass="button tabMenuButtonStyle"
+							value="#{msgs.userPhdEducation}"
+							outcome="#{layoutAdminUniversityProfilePhd.moveToProfilePhdEducation()}"
+							style=" margin-top:5px; margin-right: 5px; #{userPhdProfile.pageName eq 'adminUniversityProfilePhdEducation.xhtml'? 'background:#c6d1d9;color: #20497f; disabled:true ' : ''}" >
+							<f:param name="userId"
+								value="#{adminUniversityProfilePhdEducation.user.id}" />
+						</h:button>
+						<h:button styleClass="button tabMenuButtonStyle"
+							value="#{msgs.userPhdAcademicData}"
+							outcome="#{layoutAdminUniversityProfilePhd.moveToProfilePhdAcademicData()}"
+							style=" margin-top:5px; margin-right: 5px; #{userPhdProfile.pageName eq 'adminUniversityProfilePhdAcademicData.xhtml'? 'background:#c6d1d9;color: #20497f; disabled:true ' : ''}" >
+							<f:param name="userId"
+								value="#{adminUniversityProfilePhdAcademicData.user.id}" />
+						</h:button>
+						<h:button styleClass="button tabMenuButtonStyle"
+							value="#{msgs.userPhdSpecialty}"
+							outcome="#{layoutAdminUniversityProfilePhd.moveToProfilePhdSpecialty()}"
+							style=" margin-top:5px; margin-right: 5px;  #{userPhdProfile.pageName eq 'adminUniversityProfilePhdSpecialty.xhtml'? 'background:#c6d1d9;color: #20497f; disabled:true ' : ''}" >
+							<f:param name="userId"
+								value="#{adminUniversityProfilePhdSpecialty.user.id}" />
+						</h:button>
+					</div>
+				</div>
+			</h:form>
+		</ui:define>
+
+		<!-- This is the Main Box -->
+		<ui:define name="tab">
+
+			<div>
+				<ui:insert name="tabProfile">
+				</ui:insert>
+			</div>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>
+

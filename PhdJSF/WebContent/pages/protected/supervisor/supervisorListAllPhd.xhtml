@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="../../layout.xhtml">
+
+		<ui:define name="pagePath">
+			<h:outputText value="#{msgs.supervisor}" />
+		</ui:define>
+
+		<ui:define name="tabProfile">
+			<h:form>
+				<div style="overflow: auto;">
+					<div class="centerTable">
+						<p:dataTable id="tbl" var="user"
+							value="#{inspectorHostelUserHostelPhd.listAllUserPhd}"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+							paginator="true" rows="20" style="margin-bottom:20px"
+							paginatorPosition="bottom">
+
+							<f:facet name="{Exporters}">
+								<!-- 						<h:commandLink>
+							<p:graphicImage name="/images/icons/xls.png"  />
+							<p:dataExporter type="xls" target="tbl" fileName="users" />
+						</h:commandLink>
+
+						<h:commandLink>
+							<p:graphicImage name="/images/icons/pdf.png"  />
+							<p:dataExporter type="pdf" target="tbl" fileName="users" />
+						</h:commandLink>
+ -->
+								<h:commandLink>
+									<p:graphicImage name="/images/icons/csv.png" />
+									<p:dataExporter type="csv" target="tbl" fileName="users" />
+								</h:commandLink>
+
+								<h:commandLink>
+									<p:graphicImage name="/images/icons/xml.png" />
+									<p:dataExporter type="xml" target="tbl" fileName="users" />
+								</h:commandLink>
+							</f:facet>
+
+							<p:column style="width:70px;"
+								headerText="#{msgs.userPhdIdNumberType}"
+								sortBy="#{user.personalIdNumberType}">
+								<h:outputText class="tableFont" value="#{user.personalIdNumberType}" />
+							</p:column>
+
+							<p:column style="width:110px;" sortBy="#{user.personalIdNumber}"
+								headerText="#{msgs.userPhdIdNumber}">
+								<h:outputText style="text-align:left" class="tableFont"
+									value="#{user.personalIdNumber}" />
+							</p:column>
+
+							<p:column style="text-align:center">
+								<f:facet name="header">
+									<h:outputText class="tableFontHeader" value="#{msgs.name}" />
+								</f:facet>
+								<h:button styleClass="tableFontLink"
+									value="#{user.personalNameFirst} #{user.personalNameSecond} #{user.personalNameThird}"
+									outcome="#{supervisorListAllPhd.moveToReviewsPhd()}">
+									<f:param name="userId" value="#{user.id}" />
+								</h:button>
+							</p:column>
+
+							<p:column style="text-align:center; width:60px; "
+								sortBy="#{user.academicsFaculty}" headerText="#{msgs.faculty}">
+								<h:outputText class="tableFont" value="#{user.academicsFaculty}" />
+							</p:column>
+
+							<p:column style="text-align:center; width:80px;"
+								headerText="#{msgs.specialityTheme}"
+								sortBy="#{user.academicsSpecialityTheme}">
+								<h:outputText class="tableFont" value="#{user.academicsSpecialityTheme}" />
+							</p:column>
+
+						</p:dataTable>
+					</div>
+
+				</div>
+				<h3>#{msgs.exportPageDataOnly}</h3>
+				<!-- 		<h:commandLink>
+					<p:graphicImage  name=" /images/icons/xls.png" />
+						<p:dataExporter type="xls" target="tbl" fileName="users"
+							pageOnly="true" />
+						</h:commandLink>
+
+						<h:commandLink>
+							<p:graphicImage name="/images/icons/pdf.png" />
+							<p:dataExporter type="pdf" target="tbl" fileName="users"
+								pageOnly="true" />
+						</h:commandLink>
+ -->
+				<h:commandLink>
+					<p:graphicImage name="/images/icons/csv.png" />
+					<p:dataExporter type="csv" target="tbl" fileName="users"
+						pageOnly="true" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<p:graphicImage name="/images/icons/xml.png" />
+					<p:dataExporter type="xml" target="tbl" fileName="users"
+						pageOnly="true" />
+				</h:commandLink>
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+</h:body>
+</h:html>

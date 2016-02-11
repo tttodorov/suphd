@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="../../layout.xhtml">
+
+		<ui:define name="pagePath">
+			<h:outputText value="#{msgs.inspectorScholarships}" />
+		</ui:define>
+
+		<ui:define name="tabProfile">
+
+			<div class="textBox ac">
+				<h4>#{msgs.pushSaveButton}</h4>
+			</div>
+			<br />
+
+			<h:form>
+				<div style="overflow: auto;">
+					<div class="centerTable">
+						<p:dataTable id="tbl" var="user"
+							value="#{inspectorScholarshipsUserScholarshipsPhd.listAllUserPhd}"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+							paginator="true" rows="20" style="margin-bottom:20px"
+							paginatorPosition="bottom">
+
+							<f:facet name="{Exporters}">
+								<!-- 						<h:commandLink>
+							<p:graphicImage name="/images/icons/xls.png"  />
+							<p:dataExporter type="xls" target="tbl" fileName="listScholarships" />
+						</h:commandLink>
+
+						<h:commandLink>
+							<p:graphicImage name="/images/icons/pdf.png"  />
+							<p:dataExporter type="pdf" target="tbl" fileName="listScholarships" />
+						</h:commandLink>
+ -->
+								<h:commandLink>
+									<p:graphicImage name="/images/icons/csv.png" />
+									<p:dataExporter type="csv" target="tbl"
+										fileName="listScholarships" />
+								</h:commandLink>
+
+								<h:commandLink>
+									<p:graphicImage name="/images/icons/xml.png" />
+									<p:dataExporter type="xml" target="tbl"
+										fileName="listScholarships" />
+								</h:commandLink>
+							</f:facet>
+
+							<div style="min-width: 115px; overflow: hidden;">
+
+								<p:column headerText="#{msgs.userPhdIdNumber}"
+									style="width:110px;" sortBy="#{user.personalIdNumber}">
+									<h:outputText style="text-align:left" class="tableFont"
+										value="#{user.personalIdNumber}" />
+								</p:column>
+							</div>
+
+							<p:column style="width:70px;"
+								headerText="#{msgs.userPhdIdNumberType}"
+								sortBy="#{user.personalIdNumberType}">
+								<h:outputText class="tableFont" value="#{user.personalIdNumberType}" />
+							</p:column>
+
+							<p:column sortBy="#{user.personalNameFirst}" headerText="#{msgs.name}">
+								<h:outputText class="tableFont" style="text-align:left"
+									value="#{user.personalNameFirst} #{user.personalNameSecond} #{user.personalNameThird}" />
+							</p:column>
+
+							<p:column style="text-align:center; width:60px; "
+								sortBy="#{user.academicsFaculty}" headerText="#{msgs.faculty}">
+								<h:outputText class="tableFont" value="#{user.academicsFaculty}" />
+							</p:column>
+
+							<p:column style="text-align:center; width:80px; "
+								sortBy="#{user.academicsSpecialityTheme}"
+								headerText="#{msgs.specialityTheme}">
+								<h:outputText class="tableFont" value="#{user.academicsSpecialityTheme}" />
+							</p:column>
+
+							<p:column style="text-align:center; width:60px; "
+								headerText="#{msgs.scholarship}" sortBy="#{user.academicsScholarship}">
+								<h:selectBooleanCheckbox id="scholarship"
+									value="#{user.academicsScholarship}" />
+							</p:column>
+
+						</p:dataTable>
+					</div>
+				</div>
+
+				<div id="center">
+					<br />
+					<h:commandButton class="button tabMenuButtonStyle "
+						action="#{inspectorScholarshipsUserScholarshipsPhd.update()}"
+						value="#{msgs.save}" />
+				</div>
+
+				<h3>#{msgs.exportPageDataOnly}</h3>
+				<!-- 		<h:commandLink>
+					<p:graphicImage  name="/images/icons/xls.png" />
+					<p:dataExporter type="xls" target="tbl" fileName="users"
+						pageOnly="true" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<p:graphicImage  name="/images/icons/pdf.png" />
+					<p:dataExporter type="pdf" target="tbl" fileName="users"
+						pageOnly="true" />
+				</h:commandLink>
+ -->
+				<h:commandLink>
+					<p:graphicImage name="/images/icons/csv.png" />
+					<p:dataExporter type="csv" target="tbl" fileName="users"
+						pageOnly="true" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<p:graphicImage name="/images/icons/xml.png" />
+					<p:dataExporter type="xml" target="tbl" fileName="users"
+						pageOnly="true" />
+				</h:commandLink>
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

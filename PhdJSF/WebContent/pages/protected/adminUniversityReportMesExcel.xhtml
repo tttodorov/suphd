@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="../layout.xhtml">
+		<h:messages layout="table" errorStyle="background: red;"
+			infoStyle="background: #AFEEEE;" globalOnly="true" />
+
+		<!-- Content -->
+		<ui:define name="tab">
+			<p:panel styleClass="pageTitle ac">
+				<h2>
+					<h:form rendered="#{adminUniversityHome.user.roleAdminUniversity}">
+						<span class="fl"> <h:commandLink
+								action="#{navigation.moveToSelectRole()}"
+								value="#{msgs.pageTitleSelectRole}"
+								styleClass="mainMenuButtonStyle" />
+						</span>
+						<span class="fl delimiter">/</span>
+						<span class="fl"> <h:commandLink
+								action="#{navigation.moveToAdminUniversityHome()}"
+								value="#{msgs.administratorUniversity}"
+								styleClass="mainMenuButtonStyle dropdownWidth" />
+						</span>
+						<span class="fl delimiter">/</span>
+						<span class="fl"> <h:commandLink
+								action="#{navigation.moveToAdminUniversityReports()}"
+								value="#{msgs.pageTitleAdminUniversityReports}"
+								styleClass="mainMenuButtonStyle dropdownWidth"
+								style="min-width: 0px;" />
+						</span>
+						<span class="fl delimiter">/</span>
+						<span class="fl">#{msgs.reportMesExcel}</span>
+					</h:form>
+				</h2>
+			</p:panel>
+			<br />
+			<h:form>
+				<div style="overflow: auto;">
+					<div
+						style="width: 4400px; margin-left: auto; margin-right: auto; text-align: center">
+						<p:dataTable id="allUsers" styleClass="allUsers" var="user"
+							value="#{adminUniversityReportMesExcel.allUserPhdReportMes}"
+							rows="10" paginator="true" widgetVar="usersTable"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}">
+
+							<f:facet name="header">
+								<p:outputPanel styleClass="al">
+									<h:outputText
+										value="#{msgs.adminSystemHomeSearchAllFields}:&nbsp;" />
+									<p:inputText id="globalFilter"
+										onkeyup="PF('usersTable').filter()" style="width:200px"
+										placeholder="#{msgs.adminSystemHomeSearchPlaceholder}" />
+									<p:inputText id="globalFilter2" styleClass="fr"
+										onkeyup="PF('usersTable').filter()" style="width:200px"
+										placeholder="#{msgs.adminSystemHomeSearchPlaceholder}" />
+									<h:outputText styleClass="fr"
+										value="#{msgs.adminSystemHomeSearchAllFields}:&nbsp;" />
+								</p:outputPanel>
+							</f:facet>
+
+							<f:facet name="{Exporters}">
+								&nbsp;
+								<h:commandLink>
+									<p:outputLabel>#{msgs.exportXls}</p:outputLabel>
+									<p:dataExporter type="csv" target="allUsers" fileName="users" />
+								</h:commandLink>
+								&nbsp;
+								<h:commandLink>
+									<p:graphicImage name="/images/icons/xls.png" />
+									<p:dataExporter type="csv" target="allUsers" fileName="users" />
+								</h:commandLink>
+							</f:facet>
+
+							<p:column filterBy="#{user.personalIdNumber}"
+								filterMatchMode="startsWith" headerText="1. #{msgs.idNumber}"
+								style="text-align:center;" sortBy="#{user.personalIdNumber}">
+								<h:button styleClass="tableFontLink"
+									value="#{user.personalIdNumber}"
+									outcome="#{navigation.moveToAdminUniversityEditPhdPersonalData()}">
+									<f:param name="userId" value="#{user.id}" />
+								</h:button>
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getIdNumberTypeName(user.personalIdNumberType)}"
+								filterMatchMode="startsWith"
+								headerText="2. #{msgs.idNumberType}" style="text-align:center;"
+								sortBy="#{adminUniversityReportMesExcel.getIdNumberTypeName(user.personalIdNumberType)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getIdNumberTypeName(user.personalIdNumberType)}" />
+							</p:column>
+
+							<p:column filterBy="#{user.personalNameFirst}"
+								filterMatchMode="contains"
+								headerText="3. #{msgs.userPhdNameFirst}" styleClass="ac"
+								sortBy="#{user.personalNameFirst}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{user.personalNameFirst}" />
+							</p:column>
+
+							<p:column filterBy="#{user.personalNameSecond}"
+								filterMatchMode="contains"
+								headerText="4. #{msgs.userPhdNameSecond}" styleClass="ac"
+								sortBy="#{user.personalNameSecond}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{user.personalNameSecond}" />
+							</p:column>
+
+							<p:column filterBy="#{user.personalNameThird}"
+								filterMatchMode="contains"
+								headerText="5. #{msgs.userPhdNameThird}" styleClass="ac"
+								sortBy="#{user.personalNameThird}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{user.personalNameThird}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getGenderName(user.personalGender)}"
+								filterMatchMode="contains" headerText="6. #{msgs.userPhdGender}"
+								styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getGenderName(user.personalGender)}">
+								<h:outputText
+									value="#{adminUniversityReportMesExcel.getGenderName(user.personalGender)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getLocationName(user.personalBirthCountry, user.personalBirthCity)}"
+								filterMatchMode="contains" headerText="7. #{msgs.birthPlace}"
+								styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getLocationName(user.personalBirthCountry, user.personalBirthCity)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getLocationName(user.personalBirthCountry, user.personalBirthCity)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getCountryName(user.personalCitizenship1)}"
+								filterMatchMode="contains"
+								headerText="8. #{msgs.userPhdCitizenship}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getCountryName(user.personalCitizenship1)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getCountryName(user.personalCitizenship1)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getCountryName(user.contactCountry)}"
+								filterMatchMode="contains"
+								headerText="9. #{msgs.countryOfResidence}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getCountryName(user.contactCountry)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getCountryName(user.contactCountry)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getEkkateName(user.contactCity)}"
+								filterMatchMode="contains"
+								headerText="10. #{msgs.cityOfResidence}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getEkkateName(user.contactCity)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getEkkateName(user.contactCity)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getDateString(user.personalBirthDate)}"
+								filterMatchMode="startsWith"
+								headerText="11. #{msgs.userPhdBirthDate}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getDateString(user.personalBirthDate)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getDateString(user.personalBirthDate)}" />
+							</p:column>
+
+							<p:column headerText="12. #{msgs.prevEducationType}"
+								styleClass="ac" sortBy="#{msgs.masterDegree}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{msgs.masterDegree}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getDateYearString(user.masterDiplomaDate)}"
+								filterMatchMode="startsWith"
+								headerText="13. #{msgs.prevEducationDiplomaDateYear}"
+								styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getDateYearString(user.masterDiplomaDate)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getDateYearString(user.masterDiplomaDate)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.checkString(user.masterUniversityName)}"
+								filterMatchMode="lte"
+								headerText="14. #{msgs.masterUniversityName}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.checkString(user.masterUniversityName)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.checkString(user.masterUniversityName)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.checkString(user.masterUniversityName)}"
+								filterMatchMode="contains"
+								headerText="15. #{msgs.prevEducationUniName}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.checkString(user.masterUniversityName)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.checkString(user.masterUniversityName)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.checkString(user.masterProfession)}"
+								filterMatchMode="contains"
+								headerText="16. #{msgs.prevEducationProfession}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.checkString(user.masterProfession)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.checkString(user.masterProfession)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getCountryName(user.masterCountry)}"
+								filterMatchMode="contains"
+								headerText="17. #{msgs.prevEducationCountry}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getCountryName(user.masterCountry)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getCountryName(user.masterCountry)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getIdNumberForeigner(user.personalIdNumberType, user.personalIdNumber)}"
+								filterMatchMode="contains"
+								headerText="18. #{msgs.idNumberForeigner}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getIdNumberForeigner(user.personalIdNumberType, user.personalIdNumber)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getIdNumberForeigner(user.personalIdNumberType, user.personalIdNumber)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getCountSpeciality(user.academicsNewSpecialty)}"
+								filterMatchMode="contains"
+								headerText="19. #{msgs.countSpeciality}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getCountSpeciality(user.academicsNewSpecialty)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getCountSpeciality(user.academicsNewSpecialty)}" />
+							</p:column>
+
+							<p:column headerText="20. #{msgs.phdUniversity}" styleClass="ac"
+								sortBy="#{msgs.suFullName}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{msgs.suFullName}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getFacultyMesId(user.academicsFaculty)}"
+								filterMatchMode="contains" headerText="21. #{msgs.faculty}"
+								styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getFacultyMesId(user.academicsFaculty)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getFacultyMesId(user.academicsFaculty)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getSpecialityMesId(user.academicsSpeciality)}"
+								filterMatchMode="contains"
+								headerText="22. #{msgs.phdSpeciality}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getSpecialityMesId(user.academicsSpeciality)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getSpecialityMesId(user.academicsSpeciality)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getCourseName(user.academicsCourse)}"
+								filterMatchMode="contains" headerText="23. #{msgs.phdCourse}"
+								styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getCourseName(user.academicsCourse)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getCourseName(user.academicsCourse)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.checkString(user.academicsFacultyNumber)}"
+								filterMatchMode="contains"
+								headerText="24. #{msgs.facultyNumber}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.checkString(user.academicsFacultyNumber)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.checkString(user.academicsFacultyNumber)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getEducationFormMesId(user.academicsForm)}"
+								filterMatchMode="contains"
+								headerText="25. #{msgs.educationForm}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getEducationFormMesId(user.academicsForm)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getEducationFormMesId(user.academicsForm)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getEducationDurationName(user.academicsDuration)}"
+								filterMatchMode="contains"
+								headerText="26. #{msgs.educationDuration}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getEducationDurationName(user.academicsDuration)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getEducationDurationName(user.academicsDuration)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getEducationPaymentName(user.academicsPayment)}"
+								filterMatchMode="contains"
+								headerText="27. #{msgs.educationPayment}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getEducationPaymentName(user.academicsPayment)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getEducationPaymentName(user.academicsPayment)}" />
+							</p:column>
+
+							<p:column headerText="28. #{msgs.masterType}" styleClass="ac"
+								sortBy="#{msgs.masterGraduated}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{msgs.masterGraduated}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getDateYearString(user.academicsYearOfAdmission)}"
+								filterMatchMode="lte" headerText="29. #{msgs.phdYearAdmission}"
+								styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getDateYearString(user.academicsYearOfAdmission)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getDateYearString(user.academicsYearOfAdmission)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getReasonForAccName(user.academicsReasonsForAcc)}"
+								filterMatchMode="contains"
+								headerText="30. #{msgs.phdReasonsForAcc}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getReasonForAccName(user.academicsReasonsForAcc)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getReasonForAccName(user.academicsReasonsForAcc)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getBoolean(user.academicsScholarship)}"
+								filterMatchMode="contains" headerText="31. #{msgs.scholarship}"
+								styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getBoolean(user.academicsScholarship)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getBoolean(user.academicsScholarship)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getStatusChangeDate(user.id)}"
+								filterMatchMode="contains"
+								headerText="32. #{msgs.changeStatusDate}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getStatusChangeDate(user.id)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getStatusChangeDate(user.id)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getStatusName(user.academicsStatus)}"
+								filterMatchMode="contains"
+								headerText="33. #{msgs.academicsStatus}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getStatusName(user.academicsStatus)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getStatusName(user.academicsStatus)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.checkString(user.masterUniversityName)}"
+								filterMatchMode="contains"
+								headerText="34. #{msgs.phdChangeUniversity}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.checkString(user.masterUniversityName)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.checkString(user.masterUniversityName)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.checkString(user.academicsStatusNotes)}"
+								filterMatchMode="contains"
+								headerText="35. #{msgs.phdStatusNotes}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.checkString(user.academicsStatusNotes)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.checkString(user.academicsStatusNotes)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getBoolean(user.academicsHostel)}"
+								filterMatchMode="contains" headerText="36. #{msgs.hostel}"
+								styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getBoolean(user.academicsHostel)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getBoolean(user.academicsHostel)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getBoolean(user.academicsHolidays)}"
+								filterMatchMode="contains" headerText="37. #{msgs.holidayCamps}"
+								styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getBoolean(user.academicsHolidays)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getBoolean(user.academicsHolidays)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getBoolean(user.academicsInternationalProgram)}"
+								filterMatchMode="contains"
+								headerText="38. #{msgs.attendInternationalPrograms}"
+								styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getBoolean(user.academicsInternationalProgram)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getBoolean(user.academicsInternationalProgram)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getDateString(user.academicsInternationalProgramStart)}"
+								filterMatchMode="contains" headerText="39. #{msgs.dateEnrolled}"
+								styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getDateString(user.academicsInternationalProgramStart)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getDateString(user.academicsInternationalProgramStart)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getDateString(user.academicsInternationalProgramEnd)}"
+								filterMatchMode="contains" headerText="40. #{msgs.dateFinished}"
+								styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getDateString(user.academicsInternationalProgramEnd)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getDateString(user.academicsInternationalProgramEnd)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.checkString(user.academicsStatusNotes)}"
+								filterMatchMode="contains"
+								headerText="41. #{msgs.notesDuration}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.checkString(user.academicsStatusNotes)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.checkString(user.academicsStatusNotes)}" />
+							</p:column>
+
+							<p:column headerText="42. #{msgs.prevEducationType}"
+								styleClass="ac" sortBy="#{msgs.masterDegree}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{msgs.masterDegree}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getDateYearString(user.masterDiplomaDate)}"
+								filterMatchMode="lte"
+								headerText="43. #{msgs.prevEducationDiplomaDate}"
+								styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getDateYearString(user.masterDiplomaDate)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getDateYearString(user.masterDiplomaDate)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.checkString(user.masterUniversityName)}"
+								filterMatchMode="contains"
+								headerText="44. #{msgs.prevEducationUniCode}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.checkString(user.masterUniversityName)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.checkString(user.masterUniversityName)}" />
+							</p:column>
+
+							<p:column filterBy="#{user.masterUniversityName}"
+								filterMatchMode="contains"
+								headerText="45. #{msgs.prevEducationUniName}" styleClass="ac"
+								sortBy="#{user.masterUniversityName}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{user.masterUniversityName}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getLocationName(user.masterCountry, user.masterCity)}"
+								filterMatchMode="contains"
+								headerText="46. #{msgs.prevEducationLocation}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getLocationName(user.masterCountry, user.masterCity)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getLocationName(user.masterCountry, user.masterCity)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.checkString(user.masterProfession)}"
+								filterMatchMode="contains"
+								headerText="47. #{msgs.prevEducationProfGroup}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.checkString(user.masterProfession)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.checkString(user.masterProfession)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.checkString(user.masterDiplomaNumber)}"
+								filterMatchMode="contains"
+								headerText="48. #{msgs.prevEducationDiplomaNumber}"
+								styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.checkString(user.masterDiplomaNumber)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.checkString(user.masterDiplomaNumber)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getDateString(user.masterDiplomaDate)}"
+								filterMatchMode="contains"
+								headerText="49. #{msgs.prevEducationDiplomaDate}"
+								styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getDateString(user.masterDiplomaDate)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getDateString(user.masterDiplomaDate)}" />
+							</p:column>
+
+							<p:column
+								filterBy="#{adminUniversityReportMesExcel.getBoolean(user.academicsNewSpecialty)}"
+								filterMatchMode="contains"
+								headerText="50. #{msgs.phdNewSpeciality}" styleClass="ac"
+								sortBy="#{adminUniversityReportMesExcel.getBoolean(user.academicsNewSpecialty)}">
+								<h:outputText styleClass="ac tableFont"
+									value="#{adminUniversityReportMesExcel.getBoolean(user.academicsNewSpecialty)}" />
+							</p:column>
+						</p:dataTable>
+					</div>
+				</div>
+				<h3 style="margin-top: 20px;">
+					#{msgs.exportPageDataOnly}
+					<h:commandLink>
+						<p:graphicImage name="/images/icons/xls.png" />
+						<p:dataExporter type="csv" target="allUsers" fileName="users"
+							pageOnly="true" />
+					</h:commandLink>
+				</h3>
+				<div id="center">
+					<br />
+					<h:commandButton class="button tabMenuButtonStyle "
+						action="#{navigation.moveToAdminUniversityEditPhdNew()}"
+						value="#{msgs.createNewPhd}" />
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

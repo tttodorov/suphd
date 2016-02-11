@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="layoutFacultyProfilePhd.xhtml">
+		<ui:define name="tabProfile">
+			<div id="wrapper" class="main-login_1">
+				<h:form class="form ac">
+
+					<h:outputLabel class="labelsInputInfo" value="#{msgs.specialityTheme}" />
+					<h:panelGroup layout="block" styleClass="disabledFileds">
+						<h:outputText value="#{userPhdAcademicData.user.academicsSpecialityTheme}" />
+					</h:panelGroup>
+					<br />
+
+					<h:outputLabel class="labelsInputInfo" value="#{msgs.duration}" />
+					<h:panelGroup layout="block" styleClass="disabledFileds">
+						<h:outputText value="#{userPhdAcademicData.user.academicsDuration}" />
+					</h:panelGroup>
+					<br />
+
+					<h:outputLabel class="labelsInputInfo" value="#{msgs.formOfTraining}" />
+					<h:panelGroup layout="block" styleClass="disabledFileds">
+						<h:outputText value="#{userPhdAcademicData.user.academicsForm}" />
+					</h:panelGroup>
+					<br />
+
+					<h:outputLabel class="labelsInputInfo" value="#{msgs.typeOfPayment}" />
+					<h:panelGroup layout="block" styleClass="disabledFileds">
+						<h:outputText value="#{userPhdAcademicData.user.academicsYearOfAdmission}" />
+					</h:panelGroup>
+					<br />
+
+					<h:outputLabel class="labelsInputInfo" value="#{msgs.yearOfAdmission}" />
+					<h:panelGroup layout="block" styleClass="disabledFileds">
+						<h:outputText value="#{userPhdAcademicData.user.academicsYearOfAdmission}">
+							<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+						</h:outputText>
+					</h:panelGroup>
+					<br />
+
+					<h:outputLabel class="labelsInputInfo" value="#{msgs.calendarYearOfAdmission}" />
+					<h:panelGroup layout="block" styleClass="disabledFileds">
+						<h:outputText
+							value="#{userPhdAcademicData.user.academicsCalendarYearOfAdmission}">
+							<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+						</h:outputText>
+					</h:panelGroup>
+					<br />
+
+					<h:outputLabel class="labelsInputInfo" value="#{msgs.scholarship}" />
+					<h:graphicImage value="/resources/images/icons/false.png"
+						rendered="#{userPhdAcademicData.user.academicsScholarship eq false}" />
+					<h:graphicImage value="/resources/images/icons/true.png"
+						rendered="#{userPhdAcademicData.user.academicsScholarship eq true}" />
+
+					<br />
+
+					<h:outputLabel class="labelsInputInfo" value="#{msgs.hostel}" />
+					<h:graphicImage value="/resources/images/icons/false.png"
+						rendered="#{userPhdAcademicData.user.academicsHostel eq false}" />
+					<h:graphicImage value="/resources/images/icons/true.png"
+						rendered="#{userPhdAcademicData.user.academicsHostel eq true}" />
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

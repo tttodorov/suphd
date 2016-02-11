@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="layoutPhd.xhtml">
+
+		<ui:define name="tabmenu">
+		</ui:define>
+
+		<ui:define name="pagePath">
+			<h:outputText value="#{msgs.report}" />
+		</ui:define>
+
+		<ui:define name="tab">
+			<h:form>
+
+				<h1 style="margin-top: 0; margin-bottom: 5px; color: #0066FF;">#{msgs.reportOld}</h1>
+
+				<p:tree value="#{userPhdReportBean.root}" var="node"
+					selectionMode="single" animate="true"
+					selection="#{userPhdReportBean.selectedNode}">
+					<p:treeNode>
+						<h:outputText value="#{node}" />
+					</p:treeNode>
+				</p:tree>
+
+				<!-- <br />
+				<h:commandButton value="#{msgs.edit}"
+					class="button tabMenuButtonStyle "
+					action="#{userPhdReportBean.moveToUserPhdReportEdit()}">
+					<f:param name="id" value="#{userPhdReportBean.userPhdReport.id}" />
+				</h:commandButton>
+ -->
+				<br />
+
+				<h:panelGroup styleClass="ac" style="display:table; margin: 0 auto;">
+
+					<h:commandLink rendered="#{userPhdReportBean.prev eq true}"
+						action="#{userPhdReportBean.getPreviousUserPhdReport}">
+						<h:graphicImage value="/resources/images/icons/pageBack.jpg"
+							styleClass="forwardBackButtons" />
+					</h:commandLink>
+					<h:commandLink disabled="true"
+						rendered="#{userPhdReportBean.prev eq false}">
+						<h:graphicImage value="/resources/images/icons/pageBackOff.jpg"
+							styleClass="forwardBackButtons" />
+					</h:commandLink>
+
+					<h:panelGroup styleClass="ellipse">
+						<h:outputText value=" #{userPhdReportBean.currentPhdReportName} " />
+					</h:panelGroup>
+
+					<h:commandLink rendered="#{userPhdReportBean.next eq true}"
+						action="#{userPhdReportBean.getNextUserPhdReport}">
+						<h:graphicImage value="/resources/images/icons/pageForward.jpg"
+							styleClass="forwardBackButtons" />
+					</h:commandLink>
+					<h:commandLink disabled="true"
+						rendered="#{userPhdReportBean.next eq false}">
+						<h:graphicImage value="/resources/images/icons/pageForwardOff.jpg"
+							styleClass="forwardBackButtons" />
+					</h:commandLink>
+
+				</h:panelGroup>
+
+				<h:panelGroup rendered="#{userPhdReportBean.editReport eq true}">
+					<h1 class="headers">#{msgs.reportNew}</h1>
+					<p:editor value="#{userPhdReportBean.content}">
+					</p:editor>
+				</h:panelGroup>
+
+				<h:panelGroup rendered="#{userPhdReportBean.editReport eq false}">
+					<h1 class="headers">#{msgs.report}</h1>
+					<p:editor value="#{userPhdReportBean.content}" disabled="true">
+					</p:editor>
+				</h:panelGroup>
+
+				<div id="center">
+					<br />
+					<h:commandButton rendered="#{userPhdReportBean.editReport eq true}"
+						class="button tabMenuButtonStyle "
+						action="#{userPhdReportBean.saveReport()}" type="submit"
+						value="#{msgs.save}">
+					</h:commandButton>
+				</div>
+
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+</h:body>
+</h:html>

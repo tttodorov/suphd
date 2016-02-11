@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="../../layout.xhtml">
+
+
+		<!-- This is the Main Menu -->
+
+		<ui:define name="menuButtons">
+			<li class="mainMenuLine"><h:commandButton
+					action="#{userPhdProfile.moveToPersonalData()}"
+					value="#{msgs.profile}" styleClass="mainMenuButtonStyle"
+					style=" position: absolute; border-rihgt: 1px solid black; #{userPhdProfile.pageName eq 'userPhdPersonalData.xhtml' or userPhdProfile.pageName eq 'userPhdCitizenship.xhtml' or userPhdProfile.pageName eq 'userPhdContacts.xhtml'or userPhdProfile.pageName eq 'userPhdAcademicData.xhtml' or userPhdProfile.pageName eq 'userPhdEducation.xhtml' or userPhdProfile.pageName eq 'userPhdSpecialty.xhtml' ? 'background:#c6d1d9;color: #20497f; disabled:true ; border: 1px solid #234;' : ''}" />
+			</li>
+			<li class="mainMenuLine"><h:commandButton
+					action="#{userPhdProfile.moveToReport()}" value="#{msgs.reports}"
+					styleClass="mainMenuButtonStyle"
+					style=" position: absolute; border-left: 1px solid black; #{userPhdProfile.pageName eq 'userPhdReport.xhtml'? 'background:#c6d1d9;color: #20497f; disabled:true; border: 1px solid #234;' : ''}">
+				</h:commandButton></li>
+			<li class="mainMenuLine"><h:commandButton
+					action="#{userPhdProfile.moveToLinks()}" value="#{msgs.links}"
+					styleClass="mainMenuButtonStyle"
+					style=" position: absolute; border-left:1px solid black; border-right:1px solid black; right; #{userPhdProfile.pageName eq 'userPhdLinks.xhtml'? 'background:#c6d1d9;color: #20497f; disabled:true ; border: 1px solid #234;' : ''}" />
+			</li>
+		</ui:define>
+
+		<ui:define name="dropdownMenuButtons">
+			<li><h:commandButton
+					action="#{userPhdProfile.moveToPersonalData()}"
+					value="#{msgs.profile}" styleClass=" mainMenuButtonStyle  " /></li>
+			<li><h:commandButton action="#{userPhdProfile.moveToReport()}"
+					value="#{msgs.report}" styleClass=" mainMenuButtonStyle  " /></li>
+			<li><h:commandButton action="#{userPhdProfile.moveToLinks()}"
+					value="#{msgs.links}" styleClass=" mainMenuButtonStyle  " /></li>
+		</ui:define>
+
+		<ui:define name="dropdownRolesMenuButtons"></ui:define>
+
+		<!-- This is the Second Menu -->
+		<ui:define name="pagePath">
+			<ui:insert name="pagePath">
+			</ui:insert>
+		</ui:define>
+
+		<ui:define name="tabmenu">
+
+			<h:form>
+				<div>
+					<div class="content ac"
+						style="padding: 5px; margin-top: 2px; margin-bottom: 15px;">
+
+						<h:commandButton action="#{userPhdProfile.moveToPersonalData()}"
+							value="#{msgs.userPhdPersonalData}"
+							styleClass="button tabMenuButtonStyle "
+							style=" margin-top:5px; margin-right: 5px; #{userPhdProfile.pageName eq 'userPhdPersonalData.xhtml'? 'background:#c6d1d9;color: #20497f; disabled:true ' : ''}" />
+						<h:commandButton action="#{userPhdProfile.moveToCitizenship()}"
+							value="#{msgs.userPhdCitizenship}"
+							styleClass="button tabMenuButtonStyle "
+							style=" margin-top:5px; margin-right: 5px; #{userPhdProfile.pageName eq 'userPhdCitizenship.xhtml'? 'background:#c6d1d9;color: #20497f; disabled:true ' : ''}" />
+						<h:commandButton action="#{userPhdProfile.moveToContacts()}"
+							value="#{msgs.userPhdContacts}"
+							styleClass="button tabMenuButtonStyle "
+							style=" margin-top:5px; margin-right: 5px; #{userPhdProfile.pageName eq 'userPhdContacts.xhtml'? 'background:#c6d1d9;color: #20497f; disabled:true ' : ''}" />
+						<h:commandButton action="#{userPhdProfile.moveToEducation()}"
+							value="#{msgs.userPhdEducation}"
+							styleClass="button tabMenuButtonStyle "
+							style=" margin-top:5px; margin-right: 5px; #{userPhdProfile.pageName eq 'userPhdEducation.xhtml'? 'background:#c6d1d9;color: #20497f; disabled:true ' : ''}" />
+						<h:commandButton action="#{userPhdProfile.moveToAcademicData()}"
+							value="#{msgs.userPhdAcademicData}"
+							styleClass="button tabMenuButtonStyle "
+							style=" margin-top:5px; margin-right: 5px; #{userPhdProfile.pageName eq 'userPhdAcademicData.xhtml'? 'background:#c6d1d9;color: #20497f; disabled:true ' : ''}" />
+						<h:commandButton action="#{userPhdProfile.moveToSpecialty()}"
+							value="#{msgs.userPhdSpecialty}"
+							styleClass="button tabMenuButtonStyle "
+							style=" margin-top:5px; margin-right: 5px;  #{userPhdProfile.pageName eq 'userPhdSpecialty.xhtml'? 'background:#c6d1d9;color: #20497f; disabled:true ' : ''}" />
+					</div>
+				</div>
+			</h:form>
+		</ui:define>
+
+
+		<!-- This is the Main Box -->
+		<ui:define name="tab">
+			<ui:insert name="tabProfile">
+			</ui:insert>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>
+

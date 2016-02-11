@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="./adminUniversityEditPhdLayout.xhtml">
+		<h:messages layout="table" errorStyle="background: red;"
+			infoStyle="background: #AFEEEE;" globalOnly="true" />
+
+		<!-- Edit Phd Content -->
+		<ui:define name="tabEditPhd">
+			<h:form>
+				<div class="panelGroupCenter">
+					<h:panelGroup styleClass="tr">
+						<h:panelGroup layout="block" styleClass="formsPositionL formBox">
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="countryOfCompletedMaster"
+									value="#{msgs.countryOfCompletedMaster}" />
+								<p:autoComplete id="countryOfCompletedMaster"
+									value="#{adminUniversityEditPhd.masterCountry}"
+									completeMethod="#{adminUniversityEditPhd.completeCountry}"
+									var="mes" itemLabel="#{mes.mesName}" itemValue="#{mes}"
+									converter="countryConverter" forceSelection="true"
+									dropdown="true" styleClass="inputTextAutocompleateFormat"
+									placeholder="#{mesService.getCountryNameById(adminUniversityEditPhd.user.masterCountry)}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="cityOfCompletedMaster"
+									value="#{msgs.cityOfCompletedMaster}" />
+								<p:autoComplete id="cityOfCompletedMaster"
+									value="#{adminUniversityEditPhd.masterEKATTE}"
+									completeMethod="#{adminUniversityEditPhd.completeCity}"
+									var="mes" itemLabel="#{mes.mesName}" itemValue="#{mes}"
+									converter="ekatteConverter" forceSelection="true"
+									dropdown="true" styleClass="inputTextAutocompleateFormat"
+									placeholder="#{mesService.getEkatteNameById(adminUniversityEditPhd.user.masterCity)}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo "
+									for="masterUniversity"
+									value="#{msgs.universityOfCompletedMaster}" />
+								<p:autoComplete id="masterUniversity"
+									value="#{adminUniversityEditPhd.masterUniversity}"
+									completeMethod="#{adminUniversityEditPhd.completeUniversity}"
+									var="mes" itemLabel="#{mes.mesName}" itemValue="#{mes}"
+									converter="universityConverter" forceSelection="true"
+									dropdown="true" styleClass="inputTextAutocompleateFormat"
+									placeholder="#{mesService.getUniversityNameById(adminUniversityEditPhd.user.masterUniversity)}">
+									<p:ajax event="itemSelect" listener="#{dropdownView.onUniversityChange}" update="masterUniversityName" />
+									<p:ajax event="change" listener="#{dropdownView.onUniversityChange}" update="masterUniversityName" />
+								</p:autoComplete>
+							</h:panelGrid>
+
+							<h:panelGrid id="masterUniversityNameBox"
+								styleClass="checkboxCenter" rendered="#{not empty adminUniversityEditPhd.masterUniversityName}">
+								<h:outputLabel styleClass="labelsInputInfo "
+									for="masterUniversityName" value="#{msgs.masterUniversityName}" />
+								<p:inputText id="masterUniversityName"
+									styleClass="inputTextAutocompleateFormat"
+									value="#{adminUniversityEditPhd.user.masterUniversityName}"
+									required="true" />
+							</h:panelGrid>
+						</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="formsPositionR formBox">
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="masterProfGroup"
+									value="#{msgs.masterProfGroup}" />
+								<p:autoComplete id="masterProfGroup"
+									value="#{adminUniversityEditPhd.masterProfGroup}"
+									completeMethod="#{adminUniversityEditPhd.completeProfGroup}"
+									var="mes" itemLabel="#{mes.mesName}" itemValue="#{mes}"
+									converter="educationProfGroupConverter" forceSelection="true"
+									dropdown="true" styleClass="inputTextAutocompleateFormat"
+									placeholder="#{mesService.getEducationProfGroupNameById(adminUniversityEditPhd.user.masterProfGroup)}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="masterSpeciality"
+									value="#{msgs.acquiredSpecialtyOfMasters}" />
+								<p:autoComplete id="masterSpeciality"
+									value="#{adminUniversityEditPhd.masterSpeciality}"
+									completeMethod="#{adminUniversityEditPhd.completeSpeciality}"
+									var="mes" itemLabel="#{mes.mesName}" itemValue="#{mes}"
+									converter="specialityConverter" forceSelection="true"
+									dropdown="true" styleClass="inputTextAutocompleateFormat"
+									placeholder="#{mesService.getCodeSpecialityNameById(adminUniversityEditPhd.user.masterSpeciality)}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="masterDiplomaNumber"
+									value="#{msgs.numberOfDegreeOfMaster}" />
+								<h:inputText id="masterDiplomaNumber"
+									styleClass="inputTextFormat"
+									value="#{adminUniversityEditPhd.user.masterDiplomaNumber}" />
+							</h:panelGrid>
+							<h:panelGrid styleClass="checkboxCenter"
+								style="margin-bottom:30px;">
+								<h:outputLabel styleClass="labelsInputInfo"
+									for="dateOfCompletionOfTheMaster"
+									value="#{msgs.dateOfCompletionOfTheMaster}" />
+								<p:calendar id="dateOfCompletionOfTheMaster"
+									styleClass="inputTextFormat"
+									style="border: none; box-shadow:none; padding: 0px;"
+									value="#{adminUniversityEditPhd.user.masterDiplomaDate}"
+									navigator="true" pattern="dd.MM.yyyy" />
+							</h:panelGrid>
+						</h:panelGroup>
+					</h:panelGroup>
+					<h:panelGroup layout="block" styleClass="tr ac db">
+						<h:commandButton class="button tabMenuButtonStyle "
+							action="#{adminUniversityEditPhd.saveUser()}" type="submit"
+							value="#{msgs.save}">
+							<f:param name="userId" value="#{adminUniversityEditPhd.user.id}" />
+						</h:commandButton>
+						<h:commandButton styleClass="button tabMenuButtonStyle"
+							action="#{adminUniversityEditPhd.deleteUser()}" type="submit"
+							value="#{msgs.delete}">
+							<f:param name="userId" value="#{adminUniversityEditPhd.user.id}" />
+						</h:commandButton>
+					</h:panelGroup>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

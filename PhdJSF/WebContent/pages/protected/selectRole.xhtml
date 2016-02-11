@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="../layout.xhtml">
+		<h:messages layout="table" errorStyle="background: red;"
+			infoStyle="background: #AFEEEE;" globalOnly="true" />
+
+		<!-- Content -->
+		<ui:define name="tab">
+			<p:panel styleClass="pageTitle ac">
+				<h2>
+					<h:form>
+						<h:outputText styleClass="ac" value="#{msgs.pageTitleSelectRole}" />
+					</h:form>
+				</h2>
+			</p:panel>
+			<div class="textBox ac">
+				<h4>
+					#{msgs.loginWellcome} #{auth.user.personalNameFirst}
+					#{auth.user.personalNameThird}.<br /> #{msgs.roleSelect}
+				</h4>
+			</div>
+			<br />
+			<h:form>
+				<h:panelGroup rendered="#{selectRole.user.roleAdmin}">
+					<div class="center">
+						<h:commandButton class="button tabMenuButtonStyle"
+							action="#{navigation.moveToAdminSystemHome()}"
+							value="#{msgs.administratorSystem}" />
+					</div>
+				</h:panelGroup>
+				<br />
+				<h:panelGroup rendered="#{selectRole.user.roleAdminUniversity}">
+					<div class="center">
+						<h:commandButton class="button tabMenuButtonStyle"
+							action="#{navigation.moveToAdminUniversityHome()}"
+							value="#{msgs.administratorUniversity}" />
+					</div>
+				</h:panelGroup>
+				<br />
+				<h:panelGroup rendered="#{selectRole.user.roleInspectorFaculty}">
+					<div class="center">
+						<h:commandButton class="button tabMenuButtonStyle"
+							action="#{selectRole.moveToInspectorFacultyHomePage()}"
+							value="#{msgs.inspectorFaculty}" />
+					</div>
+				</h:panelGroup>
+				<br />
+				<h:panelGroup
+					rendered="#{selectRole.user.roleInspectorScholarships}">
+					<div class="center">
+						<h:commandButton class="button tabMenuButtonStyle"
+							action="#{selectRole.moveToUserScholarshipsPhd()}"
+							value="#{msgs.inspectorScholarships}" />
+					</div>
+				</h:panelGroup>
+				<br />
+				<h:panelGroup rendered="#{selectRole.user.roleInspectorHostel}">
+					<div class="center">
+						<h:commandButton class="button tabMenuButtonStyle"
+							action="#{selectRole.moveToUserHostelPhd()}"
+							value="#{msgs.inspectorHostel}" />
+					</div>
+				</h:panelGroup>
+				<br />
+				<h:panelGroup rendered="#{selectRole.user.roleSupervisor}">
+					<div class="center">
+						<h:commandButton class="button tabMenuButtonStyle"
+							action="#{selectRole.moveToSupervisorListAllPhd()}"
+							value="#{msgs.supervisor}" />
+					</div>
+				</h:panelGroup>
+				<br />
+				<h:panelGroup rendered="#{selectRole.user.rolePhd}">
+					<div class="center">
+						<h:commandButton class="button tabMenuButtonStyle"
+							action="#{selectRole.moveToPersonalData()}" value="#{msgs.phd}" />
+					</div>
+				</h:panelGroup>
+			</h:form>
+			<p:panel styleClass="pageTitle ac"
+				rendered="#{!selectRole.user.roleAdmin 
+				and !selectRole.user.roleAdminUniversity 
+				and !selectRole.user.roleInspectorFaculty 
+				and !selectRole.user.roleInspectorHostel 
+				and !selectRole.user.roleInspectorScholarships 
+				and !selectRole.user.roleSupervisor 
+				and !selectRole.user.rolePhd}">
+				<h1>
+					<h:form>
+						<h:outputText style="color: #ea2a2f;" styleClass="ac"
+							value="#{msgs.youDoNotHaveAnyRoleAssigned}" />
+					</h:form>
+				</h1>
+			</p:panel>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="../layout.xhtml">
+		<h:messages layout="table" errorStyle="background: red;"
+			infoStyle="background: #AFEEEE;" globalOnly="true" />
+
+		<!-- Content -->
+		<ui:define name="tab">
+			<p:panel styleClass="pageTitle ac">
+				<h2>
+					<h:form rendered="#{adminUniversityHome.user.roleAdminUniversity}">
+						<span class="fl"> <h:commandLink
+								action="#{navigation.moveToSelectRole()}"
+								value="#{msgs.pageTitleSelectRole}"
+								styleClass="mainMenuButtonStyle" />
+						</span>
+						<span class="fl delimiter">/</span>
+						<span class="fl"> <h:commandLink
+								action="#{navigation.moveToAdminUniversityHome()}"
+								value="#{msgs.pageTitleAdminUniversityHome}"
+								styleClass=" mainMenuButtonStyle" />
+						</span>
+						<span class="fl delimiter">/</span>
+						<span class="fl"> <h:commandLink
+								action="#{navigation.moveToAdminUniversityListPhds()}"
+								value="#{msgs.pageTitleAdminUniversityListPhds}"
+								styleClass=" mainMenuButtonStyle" />
+						</span>
+						<span class="fl delimiter">/</span>
+						<h:outputText styleClass="fl"
+							value="#{msgs.pageTitleAdminUniversityEditPhd}" />
+					</h:form>
+				</h2>
+			</p:panel>
+
+			<div class="panelGroupCenter">
+				<h:panelGroup styleClass="tr" rendered="#{adminUniversityEditPhd.isForReportMesCurrent()}">
+					<h:panelGroup styleClass="formsPositionR formBox" style="border-color: #ea2a2f; background-color: #FCD6D7;">
+						<h:panelGrid styleClass="checkboxCenter">
+							<p:panel styleClass="pageTitle ac" style="background: none;">
+								<h2>
+									<h:form>
+										<h:outputText styleClass="ac"
+											value="#{msgs.forReportMesCurrent}" />
+									</h:form>
+								</h2>
+							</p:panel>
+						</h:panelGrid>
+					</h:panelGroup>
+				</h:panelGroup>
+			</div>
+
+			<!-- Tab Menu -->
+			<h:form rendered="#{adminUniversityEditPhd.user.id != null}">
+				<br />
+				<h:panelGroup>
+					<div class="center">
+						<h:commandButton
+							class="button #{adminUniversityEditPhd.fromOutcome eq 'adminUniversityEditPhdPersonalData' ? 'tabMenuButtonStyleSelected' : 'tabMenuButtonStyle'}"
+							action="#{adminUniversityEditPhd.moveToAdminUniversityEditPhdPersonalData( adminUniversityEditPhd.user.id )}"
+							value="#{msgs.userPhdPersonalData}">
+							<f:param name="userId" value="#{adminUniversityEditPhd.user.id}" />
+						</h:commandButton>
+						<h:commandButton
+							class="button #{adminUniversityEditPhd.fromOutcome eq 'adminUniversityEditPhdCitizenship' ? 'tabMenuButtonStyleSelected' : 'tabMenuButtonStyle'}"
+							action="#{adminUniversityEditPhd.moveToAdminUniversityEditPhdCitizenship( adminUniversityEditPhd.user.id )}"
+							value="#{msgs.userPhdCitizenship}">
+							<f:param name="userId" value="#{adminUniversityEditPhd.user.id}" />
+						</h:commandButton>
+					</div>
+				</h:panelGroup>
+				<br />
+				<h:panelGroup rendered="#{adminUniversityEditPhd.user.id != null}">
+					<div class="center">
+						<h:commandButton
+							class="button #{adminUniversityEditPhd.fromOutcome eq 'adminUniversityEditPhdContacts' ? 'tabMenuButtonStyleSelected' : 'tabMenuButtonStyle'}"
+							action="#{adminUniversityEditPhd.moveToAdminUniversityEditPhdContacts( adminUniversityEditPhd.user.id )}"
+							value="#{msgs.userPhdContacts}">
+							<f:param name="userId" value="#{adminUniversityEditPhd.user.id}" />
+						</h:commandButton>
+						<h:commandButton
+							class="button #{adminUniversityEditPhd.fromOutcome eq 'adminUniversityEditPhdEducation' ? 'tabMenuButtonStyleSelected' : 'tabMenuButtonStyle'}"
+							action="#{adminUniversityEditPhd.moveToAdminUniversityEditPhdEducation( adminUniversityEditPhd.user.id )}"
+							value="#{msgs.userPhdEducation}">
+							<f:param name="userId" value="#{adminUniversityEditPhd.user.id}" />
+						</h:commandButton>
+					</div>
+				</h:panelGroup>
+				<br />
+				<h:panelGroup rendered="#{adminUniversityEditPhd.user.id != null}">
+					<div class="center">
+						<h:commandButton
+							class="button #{adminUniversityEditPhd.fromOutcome eq 'adminUniversityEditPhdAcademicData' ? 'tabMenuButtonStyleSelected' : 'tabMenuButtonStyle'}"
+							action="#{adminUniversityEditPhd.moveToAdminUniversityEditPhdAcademicData( adminUniversityEditPhd.user.id )}"
+							value="#{msgs.userPhdAcademicData}">
+							<f:param name="userId" value="#{adminUniversityEditPhd.user.id}" />
+						</h:commandButton>
+						<h:commandButton
+							class="button #{adminUniversityEditPhd.fromOutcome eq 'adminUniversityEditPhdSpeciality' ? 'tabMenuButtonStyleSelected' : 'tabMenuButtonStyle'}"
+							action="#{adminUniversityEditPhd.moveToAdminUniversityEditPhdSpeciality( adminUniversityEditPhd.user.id )}"
+							value="#{msgs.userPhdSpecialty}">
+							<f:param name="userId" value="#{adminUniversityEditPhd.user.id}" />
+						</h:commandButton>
+					</div>
+				</h:panelGroup>
+			</h:form>
+
+			<h:form>
+				<h:panelGroup>
+					<div class="center">
+						<h:commandButton style="margin-right: 40px"
+							image="/resources/images/arrow-previous.png"
+							action="#{adminUniversityEditPhd.getPrevious( adminUniversityEditPhd.user.id )}">
+							<f:param name="userId" value="#{adminUniversityEditPhd.user.id}" />
+						</h:commandButton>
+						<h:commandButton style="margin-left: 40px"
+							image="/resources/images/arrow-next.png"
+							action="#{adminUniversityEditPhd.getNext( adminUniversityEditPhd.user.id )}">
+							<f:param name="userId" value="#{adminUniversityEditPhd.user.id}" />
+						</h:commandButton>
+					</div>
+				</h:panelGroup>
+			</h:form>
+
+			<!-- Edit Phd Content -->
+			<ui:insert name="tabEditPhd">
+			</ui:insert>
+
+			<h:form>
+				<h:panelGroup>
+					<div class="center">
+						<h:commandButton style="margin-right: 40px"
+							image="/resources/images/arrow-previous.png"
+							action="#{adminUniversityEditPhd.getPrevious( adminUniversityEditPhd.user.id )}">
+							<f:param name="userId" value="#{adminUniversityEditPhd.user.id}" />
+						</h:commandButton>
+						<h:commandButton style="margin-left: 40px"
+							image="/resources/images/arrow-next.png"
+							action="#{adminUniversityEditPhd.getNext( adminUniversityEditPhd.user.id )}">
+							<f:param name="userId" value="#{adminUniversityEditPhd.user.id}" />
+						</h:commandButton>
+					</div>
+				</h:panelGroup>
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

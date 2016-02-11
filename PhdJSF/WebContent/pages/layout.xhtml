@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:view contentType="text/html" encoding="UTF-8" />
+	<h:outputStylesheet library="css" name="reset.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="Paint.css" />
+	<h:outputStylesheet library="css" name="images.css" />
+	<h:outputScript library="js" name="common.js" />
+</h:head>
+<h:body>
+	<p:growl id="messages" showDetail="true" />
+
+	<!-- HEADER -->
+	<div class="head">
+		<div class="content ">
+
+			<!-- LOGO -->
+			<div>
+				<div class="fl hideHeaderL">
+					<h:graphicImage value="/resources/images/Logo.jpg" class="logo fl" />
+				</div>
+			</div>
+
+			<!--  LOGOUT -->
+			<p:panel styleClass="fr"
+				style="width: 180px; border: none; background: none; font-size: 10px;"
+				rendered="#{auth.user.id != null}">
+				<h:form style="width: 180px;">
+					<h:commandButton class="logOut"
+						style="display:inline; margin-right:0px;"
+						action="#{auth.logout()}" value="#{msgs.logout}" />
+					<h:commandButton class=" logOut" style="display: inline;"
+						action="#{userPhdProfile.moveToUserProfile()}"
+						value="(#{auth.user.personalNameFirst} #{auth.user.personalNameThird})" />
+				</h:form>
+			</p:panel>
+			<br />
+
+			<!-- SU FONT -->
+			<div class="suDiv fl suFont">
+				<h1>#{msgs.isPhdTitle}</h1>
+				<h1 id="su">#{msgs.su}</h1>
+				<h1 id="stKO">#{msgs.stKlimentOhridski}</h1>
+			</div>
+
+			<!-- PROFILE PICTURE 	-->
+			<div style="cursor: crosshair;" class="fr hideHeaderR">
+				<ui:insert name="profilePicture">
+					<h:graphicImage style="margin-top:0px;"
+						rendered="#{not empty auth.user.profilePhoto}" value="#{auth.user.profilePhoto}"
+						class=" profilePicture circle" />
+				</ui:insert>
+			</div>
+
+		</div>
+	</div>
+
+	<!--Main Menu -->
+	<div class="menu ">
+		<h:form class="content">
+			<div>
+				<ul
+					style="display: inline; float: left; width: 100%; padding: 0; margin: 0; list-style-type: none;">
+					<ui:insert name="dropdownRolesMenuButtons">
+						<li class="  mainMenuLine">
+							<div id="dropdownMenu">
+								<div class="wrapper">
+									<div class="content">
+										<ul>
+											<h:panelGroup rendered="#{selectRole.user.roleAdmin}">
+												<li><h:commandButton
+														action="#{navigation.moveToAdminSystemHome()}"
+														value="#{msgs.administratorSystem}"
+														styleClass="mainMenuButtonStyle dropdownWidth" /></li>
+											</h:panelGroup>
+
+											<h:panelGroup rendered="#{selectRole.user.roleAdminUniversity}">
+												<li><h:commandButton
+														action="#{navigation.moveToAdminUniversityHome()}"
+														value="#{msgs.administratorUniversity}"
+														styleClass="mainMenuButtonStyle dropdownWidth" /></li>
+											</h:panelGroup>
+
+											<h:panelGroup rendered="#{selectRole.user.roleInspectorFaculty }">
+												<li><h:commandButton
+														action="#{selectRole.moveToInspectorFacultyHomePage()}"
+														value="#{msgs.inspectorFaculty}"
+														styleClass="mainMenuButtonStyle dropdownWidth" /></li>
+											</h:panelGroup>
+
+											<h:panelGroup
+												rendered="#{selectRole.user.roleInspectorScholarships}">
+												<li><h:commandButton
+														action="#{selectRole.moveToUserScholarshipsPhd()}"
+														value="#{msgs.inspectorScholarships}"
+														styleClass=" mainMenuButtonStyle dropdownWidth " /></li>
+											</h:panelGroup>
+
+											<h:panelGroup rendered="#{selectRole.user.roleInspectorHostel}">
+												<li><h:commandButton
+														action="#{selectRole.moveToUserHostelPhd()}"
+														value="#{msgs.inspectorHostel}"
+														styleClass="mainMenuButtonStyle dropdownWidth" /></li>
+											</h:panelGroup>
+
+											<h:panelGroup rendered="#{selectRole.user.roleSupervisor}">
+												<li><h:commandButton
+														action="#{selectRole.moveToSupervisorListAllPhd()}"
+														value="#{msgs.supervisor}"
+														styleClass="mainMenuButtonStyle dropdownWidth" /></li>
+											</h:panelGroup>
+											
+											<h:panelGroup rendered="#{selectRole.user.rolePhd}">
+												<li><h:commandButton
+														action="#{selectRole.moveToPersonalData()}"
+														value="#{msgs.phd}"
+														styleClass="mainMenuButtonStyle dropdownWidth" /></li>
+											</h:panelGroup>
+										</ul>
+									</div>
+									<div class=" mainMenuButtonStyle"
+										style="position: absolute; border-right: 1px solid black;">
+										<h:commandButton value="#{msgs.roles}"
+											styleClass="mainMenuButtonStyle" />
+									</div>
+								</div>
+							</div>
+						</li>
+					</ui:insert>
+					<li class="mainMenuLine"><h:commandButton
+							action="#{selectRole.moveToHelpPage()}" value="#{msgs.help}"
+							styleClass="mainMenuButtonStyle "
+							style=" position: absolute; right: 13%; border-left:1px solid black;"
+							target="_blank" /></li>
+				</ul>
+			</div>
+		</h:form>
+	</div>
+
+	<!-- Main Panel -->
+
+	<!-- Tab -->
+	<div class="page">
+
+		<!-- MAIN FILED -->
+
+		<div class="tab content">
+
+			<!-- Content -->
+			<ui:insert name="tab">
+			</ui:insert>
+
+		</div>
+
+	</div>
+
+	<!-- Footer -->
+
+	<div id="footer" class="footer">
+		<div id="suFooter">
+			<div id="address" class="grid_8 ac">
+				© 2015, #{msgs.suFullName} <a href="mailto:phdadmin@uni-sofia.bg">phdadmin@uni-sofia.bg</a>
+			</div>
+		</div>
+	</div>
+
+</h:body>
+</h:html>
